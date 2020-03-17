@@ -31,6 +31,7 @@
     "redux-logger": "^3.0.6",
     "redux-observable": "^1.1.0",
     "rxjs": "^6.5.3",
+    "size-limit": "^4.4.0",
     "styled-components": "^4.3.2",
     "warning": "^4.0.3"
   },
@@ -80,8 +81,8 @@
     ]
   },
   "devDependencies": {
-    "@size-limit/preset-app": "^2.1.6",
-    "@size-limit/webpack": "^2.1.6",
+    "@size-limit/preset-app": "^4.4.0",
+    "@size-limit/webpack": "^4.4.0",
     "@storybook/addon-actions": "^5.1.10",
     "@storybook/addon-info": "^5.1.10",
     "@storybook/addon-links": "^5.2.3",
