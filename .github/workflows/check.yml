@@ -1,0 +1,37 @@
+name: Install & Check
+on: push
+
+jobs:
+  install-and-check:
+    name: Install and QA checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+        with:
+          fetch-depth: 1
+
+      - name: Use Node.js
+        uses: actions/setup-node@master
+        with:
+          node-version: 12.x
+
+      - name: Install
+        run: |
+          yarn
+      - name: QA Review
+        run: |
+          yarn test
+          yarn stylelint:check
+          yarn prettier:check
+          yarn check-bundle-size
+        env:
+          CI: true
+      - name: Slack Notification Install & Check
+        if: always()
+        uses: 8398a7/action-slack@v2
+        with:
+          status: ${{ job.status }}
+          author_name: ${{ github.repository }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

@@ -1,0 +1,11 @@
+{
+  "development": {
+    "REACT_APP_SERVER": "development"
+  },
+  "staging": {
+    "REACT_APP_SERVER": "staging"
+  },
+  "production": {
+    "REACT_APP_SERVER": "production"
+  }
+}

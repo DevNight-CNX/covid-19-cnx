@@ -1,0 +1,20 @@
+[
+  {
+    "name": "CSS",
+    "webpack": false,
+    "path": "build/static/css/*.css",
+    "limit": "10 KB"
+  },
+  {
+    "name": "JS",
+    "webpack": false,
+    "path": "build/static/js/*.js",
+    "limit": "500 KB"
+  },
+  {
+    "name": "MEDIA",
+    "webpack": false,
+    "path": "build/static/media/*.{svg,png,jpg}",
+    "limit": "500 KB"
+  }
+]

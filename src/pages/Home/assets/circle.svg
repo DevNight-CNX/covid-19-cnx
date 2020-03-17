@@ -1,0 +1,22 @@
+<svg class="LandingViz__svgViewBox--3fry2" viewBox="0 0 714.4866385372715 500">
+    <filter id="neon">
+        <feFlood flood-color="rgb(255,255,255)" flood-opacity="0.3" in="SourceGraphic" />
+        <feComposite operator="in" in2="SourceGraphic" />
+        <feGaussianBlur stdDeviation="14" />
+        <feComponentTransfer result="glow1">
+            <feFuncA type="linear" slope="2" intercept="0" />
+        </feComponentTransfer>
+        <feMerge>
+            <feMergeNode in="glow1" />
+            <feMergeNode in="SourceGraphic" />
+        </feMerge>
+    </filter>
+    <defs>
+        <radialGradient id="gradient1" cx="0.5" cy="0.5" r="1.0" fx="0.95" fy="0.6089107016812197">
+            <stop offset="0%" stop-color="#aca9a9"></stop>
+            <stop offset="50%" stop-color="#d3d2d2"></stop>
+            <stop offset="100%" stop-color="#ffffff"></stop>
+        </radialGradient>
+    </defs>
+    <path filter="url(#neon)" fill="url(#gradient1)" id="path1" d="M322.2-192.4C380.8-145.3,415-74.2,415,1c0,75.2-34.1,146.3-92.8,193.4c-29.1,23.4-62.5,39.6-98.8,48.3c-20.8,5-41.6,7.2-62.9,7.9c-15.8,0.5-303.2,0.5-318.9,0c-21.3-0.7-42.1-2.9-62.9-7.9c-36.3-8.7-69.7-24.9-98.8-48.3C-378.8,147.3-413,76.2-413,1c0-75.2,34.1-146.3,92.8-193.4c29.1-23.4,62.5-39.6,98.8-48.3c20.8-5,41.6-7.2,62.9-7.9c15.8-0.5,303.2-0.5,318.9,0c21.3,0.7,42.1,2.9,62.9,7.9C259.7-231.9,293-215.8,322.2-192.4z" style="transform: translate(571.589px, 350px) scale(1);"></path>
+</svg>

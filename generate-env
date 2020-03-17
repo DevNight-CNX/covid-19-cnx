@@ -1,0 +1,34 @@
+#!/usr/bin/env node
+
+const fs = require('fs');
+const yargs = require('yargs');
+
+const argv = yargs.option('env', {
+  description: 'specify environment',
+  type: 'string',
+  requiresArg: true
+}).argv;
+
+let configurationEnvObj;
+
+try {
+  configurationEnvObj = JSON.parse(
+    fs.readFileSync('./env-config.json', 'utf8')
+  );
+} catch (e) {
+  throw new Error('env-config.json not found (it must be in root folder)');
+}
+
+const configuration = configurationEnvObj[argv.env];
+
+if (!configuration) {
+  throw new Error(
+    `specified environment "${argv.env}" not found in configuration file`
+  );
+}
+
+const configurationEnv = Object.keys(configuration).reduce((acc, key) => {
+  return acc + `${key}=${configuration[key]}\n`;
+}, '');
+
+fs.writeFileSync('./.env.production', configurationEnv);
