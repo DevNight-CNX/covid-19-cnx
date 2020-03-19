@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { renderToString } from 'react-dom/server';
 import styled from 'styled-components';
 import data from './mapData';
-import pin from './assets/confirmed.svg';
 import ripple from './assets/ripple.svg';
 import mapStyles from './mapStyles';
 import InfoPopup from './components/InfoPopup';
