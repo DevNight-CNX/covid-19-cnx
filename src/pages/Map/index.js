@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { renderToString } from 'react-dom/server';
 import styled from 'styled-components';
-import data from './mapData';
+import useFetch from 'utils/useFetch';
+import { getCases } from 'services/case';
 import ripple from './assets/ripple.svg';
 import mapStyles from './mapStyles';
 import InfoPopup from './components/InfoPopup';
@@ -12,6 +13,9 @@ const MapContainer = styled.div`
 `;
 
 const Map = () => {
+  const mapRef = useRef(null);
+  const { data: cases, loading } = useFetch(() => getCases(), null, []);
+
   useEffect(() => {
     const map = new window.google.maps.Map(document.getElementById('map'), {
       center: { lat: 18.793173, lng: 98.9898834 },
@@ -23,10 +27,20 @@ const Map = () => {
       streetViewControl: false
     });
 
+    mapRef.current = map;
+  }, []);
+
+  useEffect(() => {
+    if (loading) {
+      return;
+    }
+
+    const map = mapRef.current;
+
     const infowindow = new window.google.maps.InfoWindow();
 
-    data.features.forEach(feature => {
-      const coords = feature.geometry.coordinates;
+    cases.forEach(caseItem => {
+      const coords = caseItem.geometry.coordinates;
       const latLng = new window.google.maps.LatLng(coords[1], coords[0]);
       const marker = new window.google.maps.Marker({
         map,
@@ -37,12 +51,12 @@ const Map = () => {
 
       marker.addListener('click', function() {
         infowindow.setContent(
-          renderToString(<InfoPopup message={feature.properties.status} />)
+          renderToString(<InfoPopup message={caseItem.properties.status} />)
         );
         infowindow.open(map, marker);
       });
     });
-  }, []);
+  }, [loading]);
 
   return <MapContainer id="map" />;
 };
