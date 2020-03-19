@@ -1,16 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import moment from 'moment';
-import { Card } from 'antd';
 
 const Wrapper = styled.div`
   width: 300px;
   color: #000000;
   padding: 8px;
-`;
-
-const Message = styled.p`
-  color: #fff;
 `;
 
 const Text = styled.p`
@@ -92,6 +88,10 @@ const StatusColor = styled.span`
   }};
 `;
 
+const InfoPopupPropTypes = {
+  data: PropTypes.object
+};
+
 const InfoPopup = ({ data = {} }) => {
   return (
     <Wrapper>
@@ -115,5 +115,7 @@ const InfoPopup = ({ data = {} }) => {
     </Wrapper>
   );
 };
+
+InfoPopup.propTypes = InfoPopupPropTypes;
 
 export default InfoPopup;
