@@ -15,15 +15,12 @@ const Map = () => {
   useEffect(() => {
     const map = new window.google.maps.Map(document.getElementById('map'), {
       center: { lat: 18.793173, lng: 98.9898834 },
-      // zoom: 13.3,
       zoom: 2,
       styles: mapStyles,
       zoomControl: false,
       mapTypeControl: false,
       fullscreenControl: false,
       streetViewControl: false
-      // panControl: false,
-      // draggable: false
     });
 
     const infowindow = new window.google.maps.InfoWindow();
