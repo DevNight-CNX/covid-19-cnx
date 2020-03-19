@@ -2,4 +2,4 @@ config-overrides.js
 vendor
 server
 build
-/public
+./public
