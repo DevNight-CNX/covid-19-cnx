@@ -195,8 +195,7 @@ cases(
       body: null,
       headers: {
         Authorization: `Bearer overide-token`,
-        'Content-Type': opts.contentType,
-        'x-localization': i18next.language
+        'Content-Type': opts.contentType
       }
     });
   },
