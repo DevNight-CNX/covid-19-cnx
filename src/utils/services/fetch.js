@@ -21,12 +21,12 @@ const genRequestOptions = (method, body, options) => {
   const headers = isAuth
     ? {
         'Content-Type': 'application/json; charset=utf-8',
-        Authorization: `Bearer ${token || getToken() || ''}`,
-        'x-localization': languageKey
+        Authorization: `Bearer ${token || getToken() || ''}`
+        // 'x-localization': languageKey
       }
     : {
-        'Content-Type': 'application/json; charset=utf-8',
-        'x-localization': languageKey
+        'Content-Type': 'application/json; charset=utf-8'
+        // 'x-localization': languageKey
       };
 
   if (method === 'GET' || method === 'DELETE') {

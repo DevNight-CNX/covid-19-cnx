@@ -1,4 +1,4 @@
-const { useEslintRc } = require('customize-cra');
+const { useEslintRc, fixBabelImports } = require('customize-cra');
 const rewireStyledComponents = require('react-app-rewire-styled-components');
 
 const getEslintRule = config =>
@@ -11,6 +11,14 @@ const compose = (...funcs) => {
     funcs.reduce((accConfig, func) => {
       return func(accConfig, env);
     }, config);
+};
+
+const handleBabelImport = config => {
+  return fixBabelImports('import', {
+    libraryName: 'antd',
+    libraryDirectory: 'es',
+    style: 'css'
+  })(config);
 };
 
 const handleWebpackConfig = (config, env) => {
@@ -28,7 +36,8 @@ const handleWebpackConfig = (config, env) => {
 module.exports = function(config, env) {
   const composedConfig = compose(
     rewireStyledComponents,
-    handleWebpackConfig
+    handleWebpackConfig,
+    handleBabelImport
   )(config, env);
 
   return useEslintRc()(composedConfig);
