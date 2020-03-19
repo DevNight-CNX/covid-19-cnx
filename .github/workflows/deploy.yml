@@ -12,7 +12,14 @@ jobs:
       - uses: actions/checkout@master
       - name: Install
         run: yarn
+
       - name: Build Application
-        run: yarn build
+
+        run: |
+          ./generate-env --env=${GITHUB_REF#refs/heads/}
+          yarn build
+        env:
+          REACT_APP_SERVER: 'production'
+
       - name: Deploy to Firebase
         run: firebase deploy --token ${{ secrets.FIREBASE_TOKEN }} --only hosting:covid-19-cnx
