@@ -1,0 +1,28 @@
+name: Danger
+
+on: pull_request
+
+jobs:
+  build-and-deploy-firebase:
+    name: Build and Deploy to Firebase
+    runs-on: self-hosted
+    needs: install-and-check
+    if: github.event_name == 'push' && (endsWith(github.ref, 'master'))
+    steps:
+      - uses: actions/checkout@master
+      - name: Install
+        run: yarn
+      - name: Build Application
+        run: yarn build
+      - name: Deploy to Firebase
+        run: firebase deploy --token ${{ secrets.FIREBASE_TOKEN }} --only hosting:covid-19-cnx
+      - name: Slack Notification Build and Deploy
+        if: always()
+        uses: 8398a7/action-slack@v2
+        with:
+          status: ${{ job.status }}
+          author_name: ${{ github.repository }}
+          fields: repo,message,action,author
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
