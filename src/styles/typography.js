@@ -6,44 +6,92 @@ import {
   createFontFamily
 } from './utils/typography';
 
-const createFontFamilyRubik = () => createFontFamily('Rubik', true);
+const createFontFamilyKanit = () => createFontFamily('Kanit', true);
 
 const typography = {
-  button: createFontStyle(
-    createFontFamilyRubik(),
-    createFontSizeStyle(14),
-    createFontWeightStyle('400'),
-    createLineHeight('21px')
+  headline: createFontStyle(
+    createFontFamilyKanit(),
+    createFontSizeStyle(40),
+    createFontWeightStyle('500'),
+    createLineHeight('52px')
   ),
   title: createFontStyle(
-    createFontFamilyRubik(),
-    createFontSizeStyle(50),
-    createFontWeightStyle('400'),
-    createLineHeight('62px')
+    createFontFamilyKanit(),
+    createFontSizeStyle(32),
+    createFontWeightStyle('500'),
+    createLineHeight('42px')
   ),
-  body: createFontStyle(
-    createFontFamilyRubik(),
-    createFontSizeStyle(16),
-    createFontWeightStyle('400'),
-    createLineHeight('24px')
+  subtitle: createFontStyle(
+    createFontFamilyKanit(),
+    createFontSizeStyle(24),
+    createFontWeightStyle('500'),
+    createLineHeight('31px')
   ),
-  bodyLargeHighlight: createFontStyle(
-    createFontFamilyRubik(),
+  content: createFontStyle(
+    createFontFamilyKanit(),
+    createFontSizeStyle(14),
+    createFontWeightStyle('300'),
+    createLineHeight('18px')
+  ),
+  button: createFontStyle(
+    createFontFamilyKanit(),
     createFontSizeStyle(18),
-    createFontWeightStyle('700'),
+    createFontWeightStyle('600'),
     createLineHeight('21px')
   ),
-  link: createFontStyle(
-    createFontFamilyRubik(),
+  buttonlink: createFontStyle(
+    createFontFamilyKanit(),
+    createFontSizeStyle(14),
+    createFontWeightStyle('600'),
+    createLineHeight('17px')
+  ),
+  body: createFontStyle(
+    createFontFamilyKanit(),
+    createFontSizeStyle(14),
+    createFontWeightStyle('300'),
+    createLineHeight('18px')
+  ),
+  bodyHighlight: createFontStyle(
+    createFontFamilyKanit(),
+    createFontSizeStyle(14),
+    createFontWeightStyle('600'),
+    createLineHeight('18px')
+  ),
+  bodyLarge: createFontStyle(
+    createFontFamilyKanit(),
     createFontSizeStyle(16),
-    createFontWeightStyle('400'),
-    createLineHeight('24px')
+    createFontWeightStyle('300'),
+    createLineHeight('21px')
+  ),
+  bodyLargeHighlight: createFontStyle(
+    createFontFamilyKanit(),
+    createFontSizeStyle(16),
+    createFontWeightStyle('600'),
+    createLineHeight('22px')
+  ),
+  caption: createFontStyle(
+    createFontFamilyKanit(),
+    createFontSizeStyle(10),
+    createFontWeightStyle('300'),
+    createLineHeight('13px')
+  ),
+  captionHighlight: createFontStyle(
+    createFontFamilyKanit(),
+    createFontSizeStyle(10),
+    createFontWeightStyle('600'),
+    createLineHeight('13px')
+  ),
+  link: createFontStyle(
+    createFontFamilyKanit(),
+    createFontSizeStyle(12),
+    createFontWeightStyle('300'),
+    createLineHeight('16px')
   ),
   field: createFontStyle(
-    createFontFamilyRubik(),
-    createFontSizeStyle(16),
-    createFontWeightStyle('400'),
-    createLineHeight('24px')
+    createFontFamilyKanit(),
+    createFontSizeStyle(14),
+    createFontWeightStyle('300'),
+    createLineHeight('17px')
   )
 };
 
