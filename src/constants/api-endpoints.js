@@ -7,6 +7,8 @@ apiUrlProvider.setBaseUrl(env.getAPIUrl() || 'localhost');
 
 export const GET_NEWS = 'GET_NEWS';
 
+export const GET_NEWS_BY_ID = 'GET_NEWS_BY_ID';
+
 export const AUTHENTICATION = 'AUTHENTICATION';
 
 export const SEND_MESSAGE = 'SEND_MESSAGE';
@@ -21,6 +23,7 @@ export const CASE = {
 };
 
 apiUrlProvider.set(GET_NEWS, '/news');
+apiUrlProvider.set(GET_NEWS_BY_ID, '/news/:id');
 apiUrlProvider.set(AUTHENTICATION, '/authen');
 apiUrlProvider.set(SEND_MESSAGE, '/fcm');
 apiUrlProvider.set(SUBSCRIBE_TOPIC, '/subscribe');
