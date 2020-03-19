@@ -18,14 +18,28 @@ const Map = () => {
 
   useEffect(() => {
     const map = new window.google.maps.Map(document.getElementById('map'), {
-      center: { lat: 18.793173, lng: 98.9898834 },
-      zoom: 2,
+      center: { lat: 18.7918218, lng: 98.9855059 },
+      zoom: 14.24,
       styles: mapStyles,
       zoomControl: false,
       mapTypeControl: false,
       fullscreenControl: false,
-      streetViewControl: false
+      streetViewControl: false,
+      gestureHandling: 'greedy',
+      restriction: {
+        latLngBounds: {
+          north: 18.835952,
+          south: 18.734216,
+          west: 98.931837,
+          east: 99.077914
+        },
+        strictBounds: true
+      }
     });
+
+    setTimeout(() => {
+      console.log('bounding', map.getBounds());
+    }, 1000);
 
     mapRef.current = map;
   }, []);
@@ -40,8 +54,8 @@ const Map = () => {
     const infowindow = new window.google.maps.InfoWindow();
 
     cases.forEach(caseItem => {
-      const coords = caseItem.geometry.coordinates;
-      const latLng = new window.google.maps.LatLng(coords[1], coords[0]);
+      const coords = caseItem.location;
+      const latLng = new window.google.maps.LatLng(coords.lat, coords.lng);
       const marker = new window.google.maps.Marker({
         map,
         position: latLng,
@@ -50,9 +64,7 @@ const Map = () => {
       });
 
       marker.addListener('click', function() {
-        infowindow.setContent(
-          renderToString(<InfoPopup message={caseItem.properties.status} />)
-        );
+        infowindow.setContent(renderToString(<InfoPopup data={caseItem} />));
         infowindow.open(map, marker);
       });
     });

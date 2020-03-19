@@ -1,7 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import moment from 'moment';
+import 'moment/locale/th';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+
+moment.locale('th');
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
