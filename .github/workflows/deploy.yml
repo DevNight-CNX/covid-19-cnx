@@ -20,6 +20,9 @@ jobs:
           yarn build
         env:
           REACT_APP_SERVER: 'production'
-
       - name: Deploy to Firebase
-        run: firebase deploy --token ${{ secrets.FIREBASE_TOKEN }} --only hosting:covid-19-cnx
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
