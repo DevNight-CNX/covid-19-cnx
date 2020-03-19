@@ -1,26 +1,4 @@
-import React, { useEffect } from 'react';
-import { renderToString } from 'react-dom/server';
-import styled from 'styled-components';
-import data from './mapData';
-import pin from './confirmed.svg';
-
-const InfoPopupWrapper = styled.div`
-  background-color: red;
-`;
-
-const InfoPopupText = styled.p`
-  color: #fff;
-`;
-
-const InfoPopup = ({ message }) => {
-  return (
-    <InfoPopupWrapper>
-      <InfoPopupText>Hello {message}</InfoPopupText>
-    </InfoPopupWrapper>
-  );
-};
-
-const mapStyles = [
+const style = [
   {
     elementType: 'geometry',
     stylers: [
@@ -181,42 +159,4 @@ const mapStyles = [
   }
 ];
 
-const MapContainer = styled.div`
-  width: 100vw;
-  height: 100vh;
-`;
-
-const Map = () => {
-  useEffect(() => {
-    const map = new window.google.maps.Map(document.getElementById('map'), {
-      center: { lat: 18.793173, lng: 98.9898834 },
-      // zoom: 13.3,
-      zoom: 2,
-      styles: mapStyles
-    });
-
-    const infowindow = new window.google.maps.InfoWindow();
-
-    data.features.forEach(feature => {
-      const coords = feature.geometry.coordinates;
-      const latLng = new window.google.maps.LatLng(coords[1], coords[0]);
-      const marker = new window.google.maps.Marker({
-        position: latLng,
-        map: map,
-        optimized: false,
-        icon: pin
-      });
-
-      marker.addListener('click', function() {
-        infowindow.setContent(
-          renderToString(<InfoPopup message={feature.properties.status} />)
-        );
-        infowindow.open(map, marker);
-      });
-    });
-  }, []);
-
-  return <MapContainer id="map" />;
-};
-
-export default Map;
+export default style;
