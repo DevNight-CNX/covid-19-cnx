@@ -6,11 +6,13 @@ const FcmManager = ({ children }) => {
   const firebase = useContext(FirebaseContext);
 
   useEffect(() => {
-    const messaging = firebase.messaging();
+    if (firebase.messaging.isSupported()) {
+      const messaging = firebase.messaging();
 
-    messaging.onMessage(payload => {
-      console.log('Message received. ', payload);
-    });
+      messaging.onMessage(payload => {
+        console.log('Message received. ', payload);
+      });
+    }
 
     // messaging
     //   .getToken()
