@@ -15,6 +15,7 @@ const CarouselContent = styled.div`
 `;
 
 const Carousel = styled(AntdCarousel)`
+  max-width: 500px;
   .slick-dots {
     display: none !important;
   }
@@ -29,21 +30,13 @@ const NewsCarousel = () => {
 
   return (
     <Carousel autoplay>
-      {/* {data.map(item => {
-        return <CarouselContent>{item.title}</CarouselContent>;
-      })} */}
-      <CarouselContent>
-        <Microlink url="https://www.cm108.com/w/23986/" size="large" />
-      </CarouselContent>
-      <CarouselContent>
-        <Microlink url="https://www.cm108.com/w/23986/" size="large" />
-      </CarouselContent>
-      <CarouselContent>
-        <Microlink url="https://www.cm108.com/w/23986/" size="large" />
-      </CarouselContent>
-      <CarouselContent>
-        <Microlink url="https://instagram.com/p/Bu1-PpyHmCn/" size="large" />
-      </CarouselContent>
+      {data.map(item => {
+        return (
+          <CarouselContent>
+            <Microlink url={item.newsLink} size="large" />
+          </CarouselContent>
+        );
+      })}
     </Carousel>
   );
 };
