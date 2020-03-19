@@ -37,10 +37,6 @@ const Map = () => {
       }
     });
 
-    setTimeout(() => {
-      console.log('bounding', map.getBounds());
-    }, 1000);
-
     mapRef.current = map;
   }, []);
 
