@@ -1,12 +1,13 @@
 name: Danger
 
-on: pull_request
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   build-and-deploy-firebase:
-    name: Build and Deploy to Firebase
     runs-on: self-hosted
-    needs: install-and-check
     if: github.event_name == 'push' && (endsWith(github.ref, 'master'))
     steps:
       - uses: actions/checkout@master
