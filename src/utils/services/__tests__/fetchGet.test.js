@@ -36,9 +36,7 @@ describe('fetchGet', () => {
       expect(global.fetch.mock.calls[0][1]).toEqual({
         method: 'GET',
         body: null,
-        headers: {
-          'x-localization': i18next.language
-        }
+        headers: {}
       });
     });
 
@@ -77,8 +75,7 @@ describe('fetchGet', () => {
         method: 'GET',
         body: null,
         headers: {
-          Authorization: 'Bearer mock-token',
-          'x-localization': i18next.language
+          Authorization: 'Bearer mock-token'
         }
       });
     });

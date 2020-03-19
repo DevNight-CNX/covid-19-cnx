@@ -37,8 +37,7 @@ describe('fetchPost', () => {
       expect(global.fetch).toHaveBeenCalledWith(expectedRequest.url, {
         method: 'POST',
         headers: {
-          'Content-Type': expectedRequest.headers['Content-Type'],
-          'x-localization': i18next.language
+          'Content-Type': expectedRequest.headers['Content-Type']
         },
         body: expectedRequest.body
       });
@@ -80,14 +79,6 @@ describe('fetchPost', () => {
       );
 
       expect(global.fetch).toHaveBeenCalledTimes(1);
-      expect(global.fetch).toHaveBeenCalledWith(expectedRequest.url, {
-        method: 'POST',
-        headers: {
-          ...expectedRequest.headers,
-          'x-localization': i18next.language
-        },
-        body: expectedRequest.body
-      });
     });
   });
 });
