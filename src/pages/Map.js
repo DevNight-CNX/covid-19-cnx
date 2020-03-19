@@ -197,11 +197,6 @@ const Map = () => {
 
     const infowindow = new window.google.maps.InfoWindow();
 
-    console.log(
-      'svgAnimated',
-      `data:image/svg+xml;charset=UTF-8;base64,${svgAnimated}`
-    );
-
     data.features.forEach(feature => {
       const coords = feature.geometry.coordinates;
       const latLng = new window.google.maps.LatLng(coords[1], coords[0]);
