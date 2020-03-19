@@ -1,11 +1,14 @@
 {
   "development": {
-    "REACT_APP_SERVER": "development"
+    "REACT_APP_SERVER": "development",
+    "REACT_APP_API_URL": "https://us-central1-covid-19-cnx.cloudfunctions.net"
   },
   "staging": {
-    "REACT_APP_SERVER": "staging"
+    "REACT_APP_SERVER": "staging",
+    "REACT_APP_API_URL": "https://us-central1-covid-19-cnx.cloudfunctions.net"
   },
   "production": {
-    "REACT_APP_SERVER": "production"
+    "REACT_APP_SERVER": "production",
+    "REACT_APP_API_URL": "https://us-central1-covid-19-cnx.cloudfunctions.net"
   }
 }
