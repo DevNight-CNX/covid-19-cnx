@@ -1,6 +1,9 @@
 import styled from 'styled-components';
+import TextareaAutosize from 'react-textarea-autosize';
 
 export const FieldLabel = styled.label`
+  ${({ theme }) => theme.typography.content()}
+  width: 100%;
   display: inline-block;
   margin-bottom: 8px;
   color: ${({ isError, theme }) =>
@@ -19,18 +22,27 @@ export const FieldLabel = styled.label`
 `;
 
 export const FieldInput = styled.input`
+  ${({ theme }) => theme.typography.content()}
   background-color: ${({ theme }) => theme.color.white};
   background-clip: padding-box;
   box-sizing: border-box;
-  border: 1px solid ${({ theme }) => theme.color.lightGray};
-  border-radius: 4px;
+  border: 1px solid ${({ theme }) => theme.color.field.lightGray};
+  border-radius: 2px;
   color: ${({ theme }) => theme.color.black};
   display: block;
-  height: calc(1.5em + 0.75rem + 2px);
+  height: calc(1.5em + 0.75rem + 11px);
   padding: 0.375rem 0.75rem;
+  max-width: 634px;
+  min-width: 312px;
   width: 100%;
   border-color: ${({ isError, theme }) =>
-    isError ? theme.color.error : theme.color.black};
+    isError ? theme.color.error : theme.color.field.lightGray};
+
+  :focus {
+    border-color: ${({ theme }) => theme.color.black};
+    outline: none;
+  }
+
 `;
 
 export const FieldSelect = styled.select`
@@ -71,6 +83,37 @@ export const HelpMessage = styled.p`
   margin: 8px 0 0;
 `;
 
-export const Textarea = styled.textarea`
+export const Textareasdsdf = styled.textarea`
+  ${({ theme }) => theme.typography.content()}
   display: block;
+  max-width: 634px;
+  min-width: 312px;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 45px);
+  border: 1px solid ${({ theme }) => theme.color.field.lightGray};
+  border-radius: 2px;
+
+  :focus {
+    border-color: ${({ theme }) => theme.color.black};
+    outline: none;
+  }
+`;
+
+export const Textarea = styled(TextareaAutosize)`
+  ${({ theme }) => theme.typography.content()};
+  color: ${({ theme }) => theme.color.black};
+  display: block;
+  max-width: 634px;
+  min-width: 312px;
+  width: 100%;
+  min-height: calc(1.5em + 0.75rem + 45px);
+  height: auto;
+  border: 1px solid ${({ theme }) => theme.color.field.lightGray};
+  padding: 0.375rem 0.75rem;
+  border-radius: 2px;
+
+  :focus {
+    border-color: ${({ theme }) => theme.color.black};
+    outline: none;
+  }
 `;
