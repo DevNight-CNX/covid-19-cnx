@@ -10,6 +10,23 @@ const CarouselContent = styled.div`
   color: black;
   display: flex;
   justify-content: center;
+
+  && {
+    .microlink_card {
+      height: auto;
+    }
+
+    .microlink_card__media_image {
+      min-height: 255px;
+    }
+
+    @media only screen and (max-width: 480px) {
+      .microlink_card__media_image {
+        background-size: contain;
+        min-height: 187px;
+      }
+    }
+  }
 `;
 
 const Carousel = styled(AntdCarousel)`
@@ -25,7 +42,7 @@ const Carousel = styled(AntdCarousel)`
 
   @media only screen and (max-width: 500px) {
     min-width: 360px;
-    max-width: 100vw;
+    max-width: 90vw;
     width: 100%;
   }
 `;
@@ -38,7 +55,7 @@ const NewsCarousel = () => {
   }, []);
 
   return (
-    <Carousel autoplay>
+    <Carousel>
       {data.map((item, index) => {
         return item.newsLink ? (
           <CarouselContent key={index}>
