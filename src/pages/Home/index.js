@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Map from 'components/Map';
 import Summary from './components/Summary';
+import NewsCarousel from 'pages/components/news-carousel';
 
 const Wrapper = styled.div``;
 
@@ -32,6 +33,12 @@ const Notice = styled.p`
   margin: 0;
 `;
 
+const NewsContainer = styled.div`
+  width: 100%;
+  position: relative;
+  margin-top: 24px;
+`;
+
 const Home = () => {
   return (
     <Wrapper>
@@ -45,6 +52,9 @@ const Home = () => {
       <MapContainer>
         <Map />
       </MapContainer>
+      <NewsContainer>
+        <NewsCarousel />
+      </NewsContainer>
       <Summary />
     </Wrapper>
   );
