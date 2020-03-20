@@ -66,8 +66,6 @@ SummaryItem.propTypes = SummaryItemPropTypes;
 const Summary = () => {
   const { data } = useFetch(() => getSummary());
 
-  console.log('data summary', data);
-
   return (
     <Wrapper>
       <SummaryItem title="หายแล้ว" icon={userIcon} value={data['หายแล้ว']} />
