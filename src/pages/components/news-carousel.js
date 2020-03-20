@@ -58,6 +58,7 @@ const NextButton = styled(RightCircleOutlined)`
   font-size: 32px;
   z-index: 10;
   color: ${({ theme }) => theme.color.white} !important;
+  margin: 10px;
 `;
 
 const PreviousButton = styled(LeftCircleOutlined)`
@@ -98,12 +99,12 @@ const NewsCarousel = () => {
         </>
       ) : null}
       <CarouselWrapper>
-        <Carousel ref={carousel} dot={false}>
+        <Carousel ref={carousel} dots={false}>
           {data.map((item, index) => {
             return (
               <CarouselContent key={index}>
                 {/* <Microlink url={item.newsLink} size="large" /> */}
-                <LinkPreview />
+                <LinkPreview item={item} />
               </CarouselContent>
             );
           })}

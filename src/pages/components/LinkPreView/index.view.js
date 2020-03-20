@@ -40,7 +40,7 @@ const Descriptions = styled.div``;
 
 const Footer = styled.div``;
 
-const LinkPreviewView = () => {
+const LinkPreviewView = ({ item }) => {
   return (
     <Card>
       <CoverImage />
