@@ -53,13 +53,16 @@ const CardStyled = styled(Card)`
   border: none !important;
 
   img {
-    object-fit: cover;
+    object-fit: contain;
+    height: 100%;
+    background-color: ${({ theme }) => theme.color.neutralColor.lightGray100};
+  }
+  .ant-card-cover {
     height: 195px;
   }
   .ant-card-body {
     padding: 16px;
     padding-bottom: 0;
-    background-color: ${({ theme }) => theme.color.neutralColor.background};
   }
   .ant-card-body .ant-card-meta .ant-card-meta-detail {
     .ant-card-meta-title {
@@ -72,10 +75,10 @@ const CardStyled = styled(Card)`
     }
   }
   .ant-card-actions {
-    background-color: ${({ theme }) => theme.color.neutralColor.background};
     border-top: none;
     padding-left: 66px;
     width: auto;
+    background: none;
 
     li {
       width: auto !important;
@@ -88,9 +91,10 @@ const CardStyled = styled(Card)`
 
 const Icons = styled.img`
   && {
-    object-fit: cover;
+    object-fit: contain;
     width: 18px;
     height: unset;
+    background: none;
   }
 `;
 
