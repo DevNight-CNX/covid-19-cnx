@@ -45,20 +45,9 @@ const Landing = () => {
 
   return (
     <>
-      {/* <Countdown
-      timeTillDate="3 23 2020, 9:00 am"        
-      timeFormat="MM DD YYYY, h:mm a"
-    /> */}
-      <CardCustom
-        img="http://accesstrade.in.th/wp-content/uploads/2020/02/%E0%B8%AD%E0%B8%B2%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%82%E0%B8%AD%E0%B8%87-COVID-19.jpg"
-        header={{
-          title: 'Eduardo Flores',
-          date: moment().format('LT DD/MM/YYYY')
-        }}
-        content={text}
-        link={
-          'https://ant.design/components/card/#headerasdfasdfasdfasdfasdfasdfasdf'
-        }
+      <Countdown
+        timeTillDate="3 23 2020, 9:00 am"
+        timeFormat="MM DD YYYY, h:mm a"
       />
     </>
   );
