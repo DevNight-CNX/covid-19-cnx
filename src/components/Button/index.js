@@ -12,6 +12,8 @@ const Buttons = styled(Button)`
         : theme.color.neutralColor.white};
     border: 1px solid ${({ theme }) => theme.color.primaryColor.blueRibbon};
     border-radius: 4px;
+    max-width: 150px;
+    width: 100%;
 
     :hover {
       background: ${({ theme, type }) =>
