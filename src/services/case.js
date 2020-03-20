@@ -7,3 +7,10 @@ export const getCases = () => {
     return response.data;
   });
 };
+
+export const getSummary = () => {
+  const url = apiUrlProvider.get(CASE.SUMMARY);
+  return fetchGet(url).then(response => {
+    return response;
+  });
+};

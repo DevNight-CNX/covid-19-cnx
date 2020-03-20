@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useEffect } from 'react';
-import Countdown from './CounterTimer';
+import React from 'react';
+import Countdown from './CounterTimer.js';
 
 const Landing = () => {
   return (
