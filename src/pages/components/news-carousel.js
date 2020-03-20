@@ -55,12 +55,12 @@ const NewsCarousel = () => {
   return (
     <Carousel dots={false}>
       {data.map((item, index) => {
-        return item.newsLink ? (
+        return (
           <CarouselContent key={index}>
             {/* <Microlink url={item.newsLink} size="large" /> */}
             <LinkPreview />
           </CarouselContent>
-        ) : null;
+        );
       })}
     </Carousel>
   );
