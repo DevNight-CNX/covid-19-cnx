@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Carousel as AntdCarousel } from 'antd';
 import styled from 'styled-components';
 import { getNews } from 'services/data';
 import Microlink from '@microlink/react';
 import LinkPreview from './LinkPreView';
+import { RightCircleOutlined, LeftCircleOutlined } from '@ant-design/icons';
 
 const CarouselContent = styled.div`
   width: 100%;
@@ -19,6 +20,7 @@ const CarouselContent = styled.div`
 
     .microlink_card__media_image {
       min-height: 255px;
+      background-color: ${({ theme }) => theme.color.neutralColor.lightGray100};
     }
 
     @media only screen and (max-width: 480px) {
@@ -32,11 +34,16 @@ const CarouselContent = styled.div`
 
 const Carousel = styled(AntdCarousel)`
   position: relative;
+`;
 
+const Wrapper = styled.div`
+  position: relative;
+  display: flex;
   margin: auto;
   width: 100%;
   max-width: 500px;
   height: 100%;
+  align-items: center;
 
   @media only screen and (max-width: 500px) {
     min-width: 360px;
@@ -45,24 +52,64 @@ const Carousel = styled(AntdCarousel)`
   }
 `;
 
+const NextButton = styled(RightCircleOutlined)`
+  right: 0;
+  position: absolute;
+  font-size: 32px;
+  z-index: 10;
+  color: ${({ theme }) => theme.color.white} !important;
+`;
+
+const PreviousButton = styled(LeftCircleOutlined)`
+  position: absolute;
+  font-size: 32px;
+  z-index: 10;
+  color: ${({ theme }) => theme.color.white} !important;
+  margin: 10px;
+`;
+
+const CarouselWrapper = styled.div`
+  width: 100%;
+`;
+
 const NewsCarousel = () => {
+  const carousel = useRef(null);
+
   const [data, setData] = useState([]);
 
   useEffect(() => {
     getNews().then(res => setData(res.data));
   }, []);
 
+  const onNext = () => {
+    carousel.current.next();
+  };
+
+  const onPrevious = () => {
+    carousel.current.prev();
+  };
+
   return (
-    <Carousel dots={false}>
-      {data.map((item, index) => {
-        return (
-          <CarouselContent key={index}>
-            {/* <Microlink url={item.newsLink} size="large" /> */}
-            <LinkPreview />
-          </CarouselContent>
-        );
-      })}
-    </Carousel>
+    <Wrapper>
+      {data.length > 0 ? (
+        <>
+          <PreviousButton onClick={onPrevious} />
+          <NextButton onClick={onNext} />
+        </>
+      ) : null}
+      <CarouselWrapper>
+        <Carousel ref={carousel} dot={false}>
+          {data.map((item, index) => {
+            return (
+              <CarouselContent key={index}>
+                {/* <Microlink url={item.newsLink} size="large" /> */}
+                <LinkPreview />
+              </CarouselContent>
+            );
+          })}
+        </Carousel>
+      </CarouselWrapper>
+    </Wrapper>
   );
 };
 

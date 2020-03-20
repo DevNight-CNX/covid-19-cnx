@@ -25,6 +25,17 @@
     insert-css "^2.0.0"
     rc-util "^4.9.0"
 
+"@ant-design/icons@^4.0.3":
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/@ant-design/icons/-/icons-4.0.3.tgz#ba2fd8160cb1a51ba31979319355a47c5d7b5376"
+  integrity sha512-vWzmt1QsWpnmOfT/wtAIeKTheN61Mo8KtaLm0yosd6vVUEVdc5E/pmcrd8lIp2CmuRT7qCU6e9x/RMffv0hOJg==
+  dependencies:
+    "@ant-design/colors" "^3.1.0"
+    "@ant-design/icons-svg" "^4.0.0"
+    classnames "^2.2.6"
+    insert-css "^2.0.0"
+    rc-util "^4.9.0"
+
 "@ant-design/react-slick@~0.25.5":
   version "0.25.5"
   resolved "https://registry.yarnpkg.com/@ant-design/react-slick/-/react-slick-0.25.5.tgz#18f40abaa22c15dc26da9c473d24da38d4d8f334"
