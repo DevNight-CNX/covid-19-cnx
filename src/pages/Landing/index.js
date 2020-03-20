@@ -1,5 +1,5 @@
 import React from 'react';
-import Countdown from './CounterTimer.js';
+import Countdown from './CounterTimer';
 
 const Landing = () => {
   return (
