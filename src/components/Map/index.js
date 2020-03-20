@@ -8,8 +8,8 @@ import mapStyles from './mapStyles';
 import InfoPopup from './components/InfoPopup';
 
 const MapContainer = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 `;
 
 const Map = () => {
@@ -64,7 +64,7 @@ const Map = () => {
         infowindow.open(map, marker);
       });
     });
-  }, [loading]);
+  }, [loading, cases]);
 
   return <MapContainer id="map" />;
 };

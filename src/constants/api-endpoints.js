@@ -16,7 +16,8 @@ export const SUBSCRIBE_TOPIC = 'SUBSCRIBE_TOPIC';
 export const UNSUBSCRIBE_TOPIC = 'UNSUBSCRIBE_TOPIC';
 
 export const CASE = {
-  LIST: 'LIST_CASE'
+  LIST: 'CASE_LIST',
+  SUMMARY: 'CASE_SUMMARY'
 };
 
 apiUrlProvider.set(GET_NEWS, '/news');
@@ -27,6 +28,11 @@ apiUrlProvider.set(UNSUBSCRIBE_TOPIC, '/unsubscribe');
 apiUrlProvider.set(
   CASE.LIST,
   '/cases',
+  'https://demo0905840.mockable.io/cases'
+);
+apiUrlProvider.set(
+  CASE.SUMMARY,
+  '/summary',
   'https://demo0905840.mockable.io/cases'
 );
 
