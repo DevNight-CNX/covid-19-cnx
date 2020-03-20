@@ -3,6 +3,7 @@ import { Carousel as AntdCarousel } from 'antd';
 import styled from 'styled-components';
 import { getNews } from 'services/data';
 import Microlink from '@microlink/react';
+import LinkPreview from './LinkPreView';
 
 const CarouselContent = styled.div`
   width: 100%;
@@ -31,9 +32,6 @@ const CarouselContent = styled.div`
 
 const Carousel = styled(AntdCarousel)`
   position: relative;
-  .slick-dots {
-    display: none !important;
-  }
 
   margin: auto;
   width: 100%;
@@ -55,11 +53,12 @@ const NewsCarousel = () => {
   }, []);
 
   return (
-    <Carousel>
+    <Carousel dots={false}>
       {data.map((item, index) => {
         return item.newsLink ? (
           <CarouselContent key={index}>
-            <Microlink url={item.newsLink} size="large" />
+            {/* <Microlink url={item.newsLink} size="large" /> */}
+            <LinkPreview />
           </CarouselContent>
         ) : null;
       })}
