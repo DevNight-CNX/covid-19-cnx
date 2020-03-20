@@ -7,17 +7,26 @@ import Microlink from '@microlink/react';
 const CarouselContent = styled.div`
   width: 100%;
   height: 100%;
-  min-height: 30vh;
-  background-color: gray;
   color: black;
   display: flex;
   justify-content: center;
 `;
 
 const Carousel = styled(AntdCarousel)`
-  max-width: 500px;
+  position: relative;
   .slick-dots {
     display: none !important;
+  }
+
+  margin: auto;
+  width: 100%;
+  max-width: 500px;
+  height: 100%;
+
+  @media only screen and (max-width: 500px) {
+    min-width: 360px;
+    max-width: 100vw;
+    width: 100%;
   }
 `;
 
@@ -30,12 +39,12 @@ const NewsCarousel = () => {
 
   return (
     <Carousel autoplay>
-      {data.map(item => {
-        return (
-          <CarouselContent>
+      {data.map((item, index) => {
+        return item.newsLink ? (
+          <CarouselContent key={index}>
             <Microlink url={item.newsLink} size="large" />
           </CarouselContent>
-        );
+        ) : null;
       })}
     </Carousel>
   );

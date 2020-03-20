@@ -22,7 +22,7 @@ export const CASE = {
   SUMMARY: 'CASE_SUMMARY'
 };
 
-apiUrlProvider.set(GET_NEWS, '/news');
+apiUrlProvider.set(GET_NEWS, '/news', 'https://demo6738459.mockable.io/');
 apiUrlProvider.set(GET_NEWS_BY_ID, '/news/:id');
 apiUrlProvider.set(AUTHENTICATION, '/authen');
 apiUrlProvider.set(SEND_MESSAGE, '/fcm');
