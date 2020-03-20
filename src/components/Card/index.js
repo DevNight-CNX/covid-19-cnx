@@ -1,16 +1,25 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Card, Avatar } from 'antd';
 import dislikeIcon from './dislike.svg';
 import likeIcon from './like.svg';
+import moment from 'moment';
 
 const { Meta } = Card;
 
-const CardCustom = ({ img, header, content, link, ...props }) => {
-  console.log(link);
+const CardCustomPropTypes = {
+  image: PropTypes.string,
+  header: PropTypes.object,
+  content: PropTypes.string,
+  avatar: PropTypes.string,
+  link: PropTypes.string
+};
+
+const CardCustom = ({ image, header, content, avatar, link }) => {
   return (
     <CardStyled
-      cover={img ? <img alt="example" src={img} /> : null}
+      cover={image ? <img src={image} alt="example" /> : null}
       actions={[
         <div>
           <Icons src={likeIcon} alt="likeIcon" />
@@ -23,10 +32,8 @@ const CardCustom = ({ img, header, content, link, ...props }) => {
       ]}
     >
       <Meta
-        avatar={
-          <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-        }
-        title={header.title + ' ' + header.date}
+        avatar={<Avatar src={avatar} />}
+        title={header.another + ' ' + moment(header.date).format('LT l')}
         description={content}
       />
       <TagLinkWrapper>
@@ -36,18 +43,23 @@ const CardCustom = ({ img, header, content, link, ...props }) => {
   );
 };
 
+CardCustom.propTypes = CardCustomPropTypes;
+
 export default CardCustom;
 
 const CardStyled = styled(Card)`
-  max-width: 369px;
+  max-width: 360px;
   width: 100%;
+  border: none !important;
 
   img {
-    object-fit: contain;
+    object-fit: cover;
     height: 195px;
   }
   .ant-card-body {
     padding: 16px;
+    padding-bottom: 0;
+    background-color: ${({ theme }) => theme.color.neutralColor.background};
   }
   .ant-card-body .ant-card-meta .ant-card-meta-detail {
     .ant-card-meta-title {
@@ -60,7 +72,7 @@ const CardStyled = styled(Card)`
     }
   }
   .ant-card-actions {
-    background: ${({ theme }) => theme.color.neutralColor.white};
+    background-color: ${({ theme }) => theme.color.neutralColor.background};
     border-top: none;
     padding-left: 66px;
     width: auto;
@@ -91,7 +103,7 @@ const TagLinkWrapper = styled.div`
   color: ${({ theme }) => theme.color.logicColor.info};
   margin: 11px;
   margin-left: 48px;
-  max-width: 280px;
+  max-width: 232px;
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
