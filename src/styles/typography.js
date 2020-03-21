@@ -37,7 +37,7 @@ const typography = {
     createFontFamilyKanit(),
     createFontSizeStyle(18),
     createFontWeightStyle('600'),
-    createLineHeight('21px')
+    createLineHeight('22px')
   ),
   buttonlink: createFontStyle(
     createFontFamilyKanit(),
