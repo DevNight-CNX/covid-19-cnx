@@ -9,6 +9,8 @@ import {
   HelpMessage,
   Textarea
 } from './index.view';
+import ImageUploader from './ImageUploader';
+import PlaceAutocomplete from './PlaceAutocomplete';
 
 const makeAdaptField = Input =>
   makeFieldDecorator(
@@ -21,7 +23,7 @@ const makeAdaptField = Input =>
       return (
         <Wrapper>
           <FieldLabel {...getLabelProps()} />
-          <Input {...getInputProps()} />
+          <Input {...getInputProps()} placeholder="" />
           <ErrorMessage {...getErrorMessageProps()} />
           <HelpMessage {...getHelpMessageProps()} />
         </Wrapper>
@@ -41,3 +43,7 @@ export const AdaptSelect = makeAdaptField(({ options, ...props }) => (
 ));
 
 export const AdaptTextarea = makeAdaptField(Textarea);
+
+export const AdaptImageUploader = makeAdaptField(ImageUploader);
+
+export const AdaptPlaceAutoComplete = makeAdaptField(PlaceAutocomplete);

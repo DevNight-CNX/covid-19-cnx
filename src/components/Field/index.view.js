@@ -1,5 +1,8 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import TextareaAutosize from 'react-textarea-autosize';
+import Downshift from 'downshift';
 
 export const FieldLabel = styled.label`
   ${({ theme }) => theme.typography.content()}
@@ -117,3 +120,62 @@ export const Textarea = styled(TextareaAutosize)`
     outline: none;
   }
 `;
+
+const AutoCompletePropTypes = {
+  items: PropTypes.array,
+  onChange: PropTypes.func,
+  onInputChange: PropTypes.func
+};
+
+export const AutoComplete = ({ items, onChange, onInputChange }) => {
+  return (
+    <Downshift
+      onChange={selection => {
+        onChange(selection);
+      }}
+      onInputValueChange={inputValue => {
+        onInputChange(inputValue);
+      }}
+      itemToString={item => (item ? item.name : '')}
+    >
+      {({
+        getInputProps,
+        getItemProps,
+        getMenuProps,
+        isOpen,
+        highlightedIndex,
+        selectedItem
+      }) => (
+        <div>
+          <AutoComplete.Wrapper>
+            <FieldInput {...getInputProps()} />
+            <ul {...getMenuProps()}>
+              {isOpen
+                ? items.map((item, index) => (
+                    <li
+                      {...getItemProps({
+                        key: item.name,
+                        index,
+                        item,
+                        style: {
+                          backgroundColor:
+                            highlightedIndex === index ? 'lightgray' : null,
+                          fontWeight: selectedItem === item ? 'bold' : 'normal'
+                        }
+                      })}
+                    >
+                      {item.name}
+                    </li>
+                  ))
+                : null}
+            </ul>
+          </AutoComplete.Wrapper>
+        </div>
+      )}
+    </Downshift>
+  );
+};
+
+AutoComplete.propTypes = AutoCompletePropTypes;
+
+AutoComplete.Wrapper = styled.div``;
