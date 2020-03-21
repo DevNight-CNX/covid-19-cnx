@@ -12,8 +12,6 @@ const Buttons = styled(Button)`
         : theme.color.neutralColor.white};
     border: 1px outline ${({ theme }) => theme.color.primaryColor.blueRibbon};
     border-radius: 4px;
-    max-width: 150px;
-    width: 100%;
     height: auto;
     padding: ${({ icon }) => (icon ? ` 7px 16px` : `7px 32px`)};
     display: flex;
