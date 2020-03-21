@@ -87,6 +87,7 @@ const Map = () => {
         visible={visible}
         onOk={handleOk}
         cancelButtonProps={{ style: { display: 'none' } }}
+        centered={true}
         footer={[
           <ButtonCloseModal key="submit" onClick={() => setVisible(false)}>
             ปิด
@@ -139,6 +140,7 @@ const ModalCustom = styled(Modal)`
   p {
     ${({ theme }) => theme.typography.body()};
     color: ${({ theme }) => theme.color.neutralColor.black};
+    margin: 0;
   }
   .ant-modal-content {
     .ant-modal-close {
@@ -148,10 +150,14 @@ const ModalCustom = styled(Modal)`
       height: 57px;
       display: flex;
       align-items: center;
+      padding: 21px 30px 15px;
       .ant-modal-title {
         ${({ theme }) => theme.typography.body()};
         color: ${({ theme }) => theme.color.neutralColor.black};
       }
+    }
+    .ant-modal-body {
+      padding: 13px 32px 15px;
     }
   }
 `;
