@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { Form, Field } from 'react-final-form';
 import {
@@ -12,6 +13,7 @@ import useFirebaseAuthen from 'components/useFirebaseAuthen';
 import { createReport } from 'services/report';
 import { required, isUrlValid } from 'utils/form/validators';
 import { Header } from 'components/BarNavigation/navigation';
+import { notification } from 'antd';
 
 const Wrapper = styled.div`
   padding: 26px 24px;
@@ -35,6 +37,7 @@ const Notice = styled.p`
 
 const CreateReport = () => {
   const { authentication } = useFirebaseAuthen();
+  const history = useHistory();
 
   const onSubmit = values => {
     if (authentication()) {
@@ -43,7 +46,21 @@ const CreateReport = () => {
         linkUrl: values.link,
         imageFile: values.image,
         position: values.address
-      });
+      })
+        .then(() => {
+          notification.success({
+            message: 'รายงานข่าวสำเร็จแล้ว',
+            description:
+              'ขอบคุณที่เป็นส่วนหนึ่งในการรายงาน COVID-19 ในเชียงใหม่'
+          });
+          history.push('/report');
+        })
+        .catch(() => {
+          notification.error({
+            message: 'รายงานข่าวไม่สำเร็จ',
+            description: 'กรุณาลองใหม่อีกครั้งในภายหลัง'
+          });
+        });
     }
   };
 
