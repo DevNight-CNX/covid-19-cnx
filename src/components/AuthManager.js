@@ -16,7 +16,6 @@ const AuthManager = ({ children }) => {
           .then(function(idToken) {
             setIsLoggedIn(true);
             setToken(idToken);
-            console.log('idToken', idToken);
           });
       } else {
         removeToken();

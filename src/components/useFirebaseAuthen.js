@@ -8,15 +8,7 @@ const useFirebaseAuthen = () => {
 
   const login = () => {
     const provider = new firebase.auth.FacebookAuthProvider();
-    firebase
-      .auth()
-      .signInWithPopup(provider)
-      .then(function(result) {
-        console.log('on login', result);
-      })
-      .catch(function(error) {
-        console.log('error', error);
-      });
+    firebase.auth().signInWithPopup(provider);
   };
 
   const authentication = () => {
