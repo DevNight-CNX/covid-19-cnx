@@ -20,7 +20,7 @@ export const getNews = id => {
       };
     });
   } else {
-    return fetchGet(apiUrlProvider.get(GET_NEWS)).then(response => {
+    return fetchGet(apiUrlProvider.getMock(GET_NEWS)).then(response => {
       return {
         data: response.data.map(rawData => {
           return {

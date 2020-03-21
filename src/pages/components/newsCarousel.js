@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Carousel as AntdCarousel } from 'antd';
 import styled from 'styled-components';
 import { getNews } from 'services/data';
-import Microlink from '@microlink/react';
 import LinkPreview from './LinkPreView';
 import { RightCircleOutlined, LeftCircleOutlined } from '@ant-design/icons';
 
@@ -58,7 +57,8 @@ const NextButton = styled(RightCircleOutlined)`
   font-size: 32px;
   z-index: 10;
   color: ${({ theme }) => theme.color.white} !important;
-  margin: 10px;
+  margin-right: 10px;
+  transform: translateY(-25px);
 `;
 
 const PreviousButton = styled(LeftCircleOutlined)`
@@ -66,7 +66,8 @@ const PreviousButton = styled(LeftCircleOutlined)`
   font-size: 32px;
   z-index: 10;
   color: ${({ theme }) => theme.color.white} !important;
-  margin: 10px;
+  margin-left: 10px;
+  transform: translateY(-25px);
 `;
 
 const CarouselWrapper = styled.div`
@@ -103,7 +104,6 @@ const NewsCarousel = () => {
           {data.map((item, index) => {
             return (
               <CarouselContent key={index}>
-                {/* <Microlink url={item.newsLink} size="large" /> */}
                 <LinkPreview item={item} />
               </CarouselContent>
             );

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Map from 'components/Map';
 import Summary from './components/Summary';
-import NewsCarousel from 'pages/components/news-carousel';
+import NewsCarousel from 'pages/components/newsCarousel';
 
 const Wrapper = styled.div``;
 
