@@ -6,6 +6,7 @@ const FakeNewsContainer = styled.div`
   display: block;
   justify-content: center;
   margin: auto;
+  margin-top: 19px;
 `;
 
 const FakeNewsWrapper = styled.p`

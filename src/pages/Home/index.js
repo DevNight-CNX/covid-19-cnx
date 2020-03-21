@@ -6,6 +6,7 @@ import Buttons from 'components/Button';
 import { ReactComponent as AddNewsIcon } from './assets/AddNews.svg';
 import FakeNewsReport from 'pages/Report/FakeNews';
 import NewsCarousel from 'pages/components/newsCarousel';
+import CardCustom from 'components/Card';
 
 const Wrapper = styled.div``;
 
@@ -43,15 +44,15 @@ const NewsContainer = styled.div`
 `;
 
 const NewsCredibilityContainer = styled.div`
-  width: 100%;
   position: relative;
-  padding: 16px 24px 8px;
+  width: 100%;
 `;
 
 const NewsCredibility = styled.p`
   ${({ theme }) => theme.typography.body()};
   color: ${({ theme }) => theme.color.neutralColor.black};
-  margin: 0;
+  margin-bottom: 8px;
+  padding-left: 24px;
 `;
 
 const ButtonsWrapper = styled.div`
