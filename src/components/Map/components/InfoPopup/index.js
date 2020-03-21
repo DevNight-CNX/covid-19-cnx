@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import moment from 'moment';
 
 const Wrapper = styled.div`
-  width: 300px;
+  max-width: 300px;
   color: #000000;
-  padding: 8px;
+  padding: 8px 24px;
 `;
 
 const Text = styled.p`
