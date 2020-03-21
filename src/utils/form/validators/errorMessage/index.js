@@ -5,7 +5,7 @@ export const provideErrorMessage = curry((errorMessage, isValid) =>
 );
 
 export const requireError = fieldName =>
-  provideErrorMessage(`${fieldName} is required.`);
+  provideErrorMessage(`ต้องระบุ${fieldName}`);
 
 export const minLengthError = (minRequired = 0) =>
   provideErrorMessage(`you need to provide at least ${minRequired}.`);
@@ -27,7 +27,7 @@ export const wordCharacterError = fieldName =>
 
 export const isSameError = provideErrorMessage(`Your password aren't match.`);
 
-export const isUrlValidError = provideErrorMessage(`It's not a valid url.`);
+export const isUrlValidError = provideErrorMessage(`ลิงก์ฟอร์แมตไม่ถูกต้อง`);
 
 export const passwordValidError = provideErrorMessage(
   `Password must be at least 9 characters includes lowwer case, upper case, numeric and symbols at least 1`

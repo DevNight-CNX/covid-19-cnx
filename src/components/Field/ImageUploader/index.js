@@ -32,14 +32,7 @@ const ImageUploader = props => {
     <UploadImageHandler
       validFiles={validFiles}
       {...props}
-      render={({
-        getErrorProps,
-        getPreviewImage,
-        getIsLoading,
-        getCaptionProps,
-        getRemoveProps,
-        readOnly
-      }) => (
+      render={({ getErrorProps, getPreviewImage, getIsLoading, readOnly }) => (
         <>
           <Uploader isError={getErrorProps().showError} readOnly={readOnly}>
             Upload Picture

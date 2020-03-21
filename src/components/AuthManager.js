@@ -1,29 +1,34 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FirebaseContext } from '../App';
 import { AuthRouter } from './Auth';
+import { setToken, removeToken } from 'services/auth/token';
 
 const AuthManager = ({ children }) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const firebase = useContext(FirebaseContext);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(user => {
-      console.log('on start', user);
-      // firebase
-      //   .auth()
-      //   .currentUser.getIdToken(/* forceRefresh */ true)
-      //   .then(function(idToken) {
-      //     console.log('idToken', idToken);
-      //   });
-      // if (user) {
-      //   setIsLoggedIn(true);
-      // } else {
-      //   history.push('/login');
-      //   setIsLoggedIn(false);
-      // }
+      if (user) {
+        firebase
+          .auth()
+          .currentUser.getIdToken(true)
+          .then(function(idToken) {
+            setIsLoggedIn(true);
+            setToken(idToken);
+            console.log('idToken', idToken);
+          });
+      } else {
+        removeToken();
+      }
     });
   });
 
-  return <AuthRouter>{children}</AuthRouter>;
+  return (
+    <AuthRouter isAuth={isLoggedIn} isVerifying={false}>
+      {children}
+    </AuthRouter>
+  );
 };
 
 export default AuthManager;

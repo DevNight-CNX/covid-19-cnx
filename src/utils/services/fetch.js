@@ -127,7 +127,9 @@ export const fetchPostFormData = (url, body, isAuth = false) => {
 
   if (body) {
     Object.keys(body).forEach(key => {
-      payload.append(key, body[key]);
+      if (body[key]) {
+        payload.append(key, body[key]);
+      }
     });
   }
 
@@ -136,9 +138,9 @@ export const fetchPostFormData = (url, body, isAuth = false) => {
     body: payload,
     headers: isAuth
       ? {
-          Authorization: `${getToken() || ''}`
+          Authorization: `Bearer ${getToken() || ''}`
         }
       : undefined
   };
-  return fetch(url, requestOptions).then(handleResponse);
+  return fetch(url, requestOptions);
 };

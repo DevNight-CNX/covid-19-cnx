@@ -8,6 +8,9 @@ import {
   AdaptTextarea
 } from 'components/Field';
 import Button from 'components/Button';
+import useFirebaseAuthen from 'components/useFirebaseAuthen';
+import { createReport } from 'services/report';
+import { required, isUrlValid } from 'utils/form/validators';
 
 const Wrapper = styled.div`
   padding: 26px 24px;
@@ -30,28 +33,39 @@ const Notice = styled.p`
 `;
 
 const CreateReport = () => {
+  const { authentication } = useFirebaseAuthen();
+
   const onSubmit = values => {
-    console.log('values', values);
+    if (authentication()) {
+      return createReport({
+        content: values.content,
+        linkUrl: values.link,
+        imageFile: values.image,
+        position: values.address
+      });
+    }
   };
 
   return (
     <Wrapper>
       <Form
         onSubmit={onSubmit}
-        render={({ handleSubmit }) => (
+        render={({ handleSubmit, submitting }) => (
           <form onSubmit={handleSubmit}>
             <FieldRow>
               <Field
                 name="content"
                 label="*เนื้อหา"
                 component={AdaptTextarea}
+                validate={required('เนื้อหา')}
               />
             </FieldRow>
             <FieldRow>
               <Field
                 name="link"
-                label="*Link อ้างอิงที่มาของข่าว"
+                label="Link อ้างอิงที่มาของข่าว"
                 component={AdaptField}
+                validate={isUrlValid}
               />
             </FieldRow>
             <FieldRow>
@@ -63,7 +77,7 @@ const CreateReport = () => {
             </FieldRow>
             <FieldRow>
               <Field
-                name="uploader"
+                name="image"
                 component={AdaptImageUploader}
                 label="รูปภาพ"
               />
@@ -72,7 +86,9 @@ const CreateReport = () => {
               <Notice>
                 กรุณาตรวจสอบข้อมูล และที่มาของ แหล่งข่าวก่อนทำการยืนยัน
               </Notice>
-              <Button type="submit">ยืนยัน</Button>
+              <Button htmlType="submit" loading={submitting}>
+                ยืนยัน
+              </Button>
             </Footer>
           </form>
         )}
