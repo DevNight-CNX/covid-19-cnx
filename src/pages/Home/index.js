@@ -2,7 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import Map from 'components/Map';
 import Summary from './components/Summary';
-import NewsCarousel from 'pages/components/newsCarousel';
+import NewsCarousel from 'pages/components/news-carousel';
+import Buttons from 'components/Button';
+import { ReactComponent as AddNewsIcon } from './assets/AddNews.svg';
+import FakeNewsReport from 'pages/Report/FakeNews';
 
 const Wrapper = styled.div``;
 
@@ -39,6 +42,24 @@ const NewsContainer = styled.div`
   margin-top: 24px;
 `;
 
+const NewsCredibilityContainer = styled.div`
+  width: 100%;
+  position: relative;
+  padding: 16px 24px 8px;
+`;
+
+const NewsCredibility = styled.p`
+  ${({ theme }) => theme.typography.body()};
+  color: ${({ theme }) => theme.color.neutralColor.black};
+  margin: 0;
+`;
+
+const ButtonsWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 2px;
+`;
+
 const Home = () => {
   return (
     <Wrapper>
@@ -56,6 +77,19 @@ const Home = () => {
         <NewsCarousel />
       </NewsContainer>
       <Summary />
+      <NewsCredibilityContainer>
+        <NewsCredibility>แหล่งข่าวน่าเชื่อถือ</NewsCredibility>
+        <div style={{ height: 443 }} />
+        <ButtonsWrapper>
+          <Buttons outline={'true'} style={{ marginRight: 5 }}>
+            ข่าวทั้งหมด
+          </Buttons>
+          <Buttons icon={<AddNewsIcon />} style={{ marginLeft: 5 }}>
+            รายงานข่าว
+          </Buttons>
+        </ButtonsWrapper>
+      </NewsCredibilityContainer>
+      <FakeNewsReport />
     </Wrapper>
   );
 };

@@ -8,7 +8,7 @@ import mapStyles from './mapStyles';
 import InfoPopup from './components/InfoPopup';
 import Buttons from 'components/Button';
 import { ReactComponent as ArenaIcon } from './assets/Arenaicon.svg';
-import { Modal } from 'antd';
+import { Modal, Button } from 'antd';
 
 const MapContainer = styled.div`
   width: 100%;
@@ -116,7 +116,7 @@ const ModalButtonWrapper = styled.div`
   }
 `;
 
-const ButtonModal = styled(Buttons)`
+const ButtonModal = styled(Button)`
   && {
     ${({ theme }) => theme.typography.link()};
     color: ${({ theme }) => theme.color.neutralColor.black};
@@ -129,6 +129,10 @@ const ButtonModal = styled(Buttons)`
     padding: 6px;
     display: flex;
     align-items: center;
+
+    :focus {
+      color: ${({ theme }) => theme.color.neutralColor.black};
+    }
   }
 `;
 
