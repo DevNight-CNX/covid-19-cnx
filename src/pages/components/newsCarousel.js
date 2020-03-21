@@ -11,24 +11,6 @@ const CarouselContent = styled.div`
   color: black;
   display: flex;
   justify-content: center;
-
-  && {
-    .microlink_card {
-      height: auto;
-    }
-
-    .microlink_card__media_image {
-      min-height: 255px;
-      background-color: ${({ theme }) => theme.color.neutralColor.lightGray100};
-    }
-
-    @media only screen and (max-width: 480px) {
-      .microlink_card__media_image {
-        background-size: contain;
-        min-height: 187px;
-      }
-    }
-  }
 `;
 
 const Carousel = styled(AntdCarousel)`
