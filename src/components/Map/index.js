@@ -87,7 +87,7 @@ const Map = () => {
         visible={visible}
         onOk={handleOk}
         cancelButtonProps={{ style: { display: 'none' } }}
-        centered={true}
+        centered
         footer={[
           <ButtonCloseModal key="submit" onClick={() => setVisible(false)}>
             ปิด

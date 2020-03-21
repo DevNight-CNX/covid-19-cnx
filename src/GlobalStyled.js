@@ -8,6 +8,10 @@ const GlobalStyled = createGlobalStyle`
     body:not(.user-is-tabbing) button:focus {
         outline: none;
     }
+
+    .gm-style .gm-style-iw-d, .gm-style .gm-style-iw-c{
+      max-height: none !important;
+    }
 `;
 
 export default GlobalStyled;
