@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import useFirebaseAuthen from 'components/useFirebaseAuthen';
 import { useWithUser } from './AuthManager';
 import { likeReport, dislikeReport, unlikeReport } from 'services/report';
 
@@ -11,6 +12,7 @@ const LikeManagerPropTypes = {
 
 const LikeManager = ({ reportId, render, likeList = [], dislikeList = [] }) => {
   const { userId } = useWithUser();
+  const { authentication } = useFirebaseAuthen();
   const [updatedStatus, setUpdatedStatus] = useState(null);
 
   useEffect(() => {
@@ -24,18 +26,22 @@ const LikeManager = ({ reportId, render, likeList = [], dislikeList = [] }) => {
   }, [updatedStatus]);
 
   const onLikeClick = () => {
-    if (getStatus() === LikeManager.status.like) {
-      setUpdatedStatus(LikeManager.status.normal);
-    } else {
-      setUpdatedStatus(LikeManager.status.like);
+    if (authentication()) {
+      if (getStatus() === LikeManager.status.like) {
+        setUpdatedStatus(LikeManager.status.normal);
+      } else {
+        setUpdatedStatus(LikeManager.status.like);
+      }
     }
   };
 
   const onDislikeClick = () => {
-    if (getStatus() === LikeManager.status.dislike) {
-      setUpdatedStatus(LikeManager.status.normal);
-    } else {
-      setUpdatedStatus(LikeManager.status.dislike);
+    if (authentication()) {
+      if (getStatus() === LikeManager.status.dislike) {
+        setUpdatedStatus(LikeManager.status.normal);
+      } else {
+        setUpdatedStatus(LikeManager.status.dislike);
+      }
     }
   };
 
