@@ -69,6 +69,18 @@ const typography = {
     createFontWeightStyle('600'),
     createLineHeight('22px')
   ),
+  bodySmall: createFontStyle(
+    createFontFamilyKanit(),
+    createFontSizeStyle(12),
+    createFontWeightStyle('300'),
+    createLineHeight('16px')
+  ),
+  bodySmallHighlight: createFontStyle(
+    createFontFamilyKanit(),
+    createFontSizeStyle(12),
+    createFontWeightStyle('300'),
+    createLineHeight('16px')
+  ),
   caption: createFontStyle(
     createFontFamilyKanit(),
     createFontSizeStyle(10),
