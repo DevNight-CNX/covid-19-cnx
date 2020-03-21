@@ -14,7 +14,7 @@ describe('validator', () => {
       const actualUndefined = required('Username')(undefined);
       const actualNull = required('Username')(null);
 
-      const expected = 'Username is required.';
+      const expected = 'ต้องระบุUsername';
 
       expect(actualEmptyString).toBe(expected);
       expect(actualUndefined).toBe(expected);

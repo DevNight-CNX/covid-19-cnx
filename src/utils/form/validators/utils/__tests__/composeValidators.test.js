@@ -7,7 +7,7 @@ describe('composeValidators', () => {
     const actualCase1 = validators('');
     const actualCase2 = validators('test');
 
-    const expectedCase1 = 'Username is required.';
+    const expectedCase1 = 'ต้องระบุUsername';
     const expectedCase2 = `Email address isn't valid.`;
 
     expect(actualCase1).toBe(expectedCase1);
