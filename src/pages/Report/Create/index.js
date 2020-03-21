@@ -11,6 +11,7 @@ import Button from 'components/Button';
 import useFirebaseAuthen from 'components/useFirebaseAuthen';
 import { createReport } from 'services/report';
 import { required, isUrlValid } from 'utils/form/validators';
+import { Header } from 'components/BarNavigation/navigation';
 
 const Wrapper = styled.div`
   padding: 26px 24px;
@@ -47,53 +48,56 @@ const CreateReport = () => {
   };
 
   return (
-    <Wrapper>
-      <Form
-        onSubmit={onSubmit}
-        render={({ handleSubmit, submitting }) => (
-          <form onSubmit={handleSubmit}>
-            <FieldRow>
-              <Field
-                name="content"
-                label="*เนื้อหา"
-                component={AdaptTextarea}
-                validate={required('เนื้อหา')}
-              />
-            </FieldRow>
-            <FieldRow>
-              <Field
-                name="link"
-                label="Link อ้างอิงที่มาของข่าว"
-                component={AdaptField}
-                validate={isUrlValid}
-              />
-            </FieldRow>
-            <FieldRow>
-              <Field
-                name="address"
-                label="ระบุพื้นที่สุ่มเสี่ยง"
-                component={AdaptPlaceAutoComplete}
-              />
-            </FieldRow>
-            <FieldRow>
-              <Field
-                name="image"
-                component={AdaptImageUploader}
-                label="รูปภาพ"
-              />
-            </FieldRow>
-            <Footer>
-              <Notice>
-                กรุณาตรวจสอบข้อมูล และที่มาของ แหล่งข่าวก่อนทำการยืนยัน
-              </Notice>
-              <Button htmlType="submit" loading={submitting}>
-                ยืนยัน
-              </Button>
-            </Footer>
-          </form>
-        )}
-      ></Form>
-    </Wrapper>
+    <>
+      <Header>รายงานข่าว</Header>
+      <Wrapper>
+        <Form
+          onSubmit={onSubmit}
+          render={({ handleSubmit, submitting }) => (
+            <form onSubmit={handleSubmit}>
+              <FieldRow>
+                <Field
+                  name="content"
+                  label="*เนื้อหา"
+                  component={AdaptTextarea}
+                  validate={required('เนื้อหา')}
+                />
+              </FieldRow>
+              <FieldRow>
+                <Field
+                  name="link"
+                  label="Link อ้างอิงที่มาของข่าว"
+                  component={AdaptField}
+                  validate={isUrlValid}
+                />
+              </FieldRow>
+              <FieldRow>
+                <Field
+                  name="address"
+                  label="ระบุพื้นที่สุ่มเสี่ยง"
+                  component={AdaptPlaceAutoComplete}
+                />
+              </FieldRow>
+              <FieldRow>
+                <Field
+                  name="image"
+                  component={AdaptImageUploader}
+                  label="รูปภาพ"
+                />
+              </FieldRow>
+              <Footer>
+                <Notice>
+                  กรุณาตรวจสอบข้อมูล และที่มาของ แหล่งข่าวก่อนทำการยืนยัน
+                </Notice>
+                <Button htmlType="submit" loading={submitting}>
+                  ยืนยัน
+                </Button>
+              </Footer>
+            </form>
+          )}
+        ></Form>
+      </Wrapper>
+    </>
   );
 };
 
