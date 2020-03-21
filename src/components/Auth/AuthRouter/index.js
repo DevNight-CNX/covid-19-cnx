@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const { Provider, Consumer } = React.createContext();
+export const AuthContext = React.createContext();
+
+export const { Provider, Consumer } = AuthContext;
 
 const AuthRouterPropTypes = {
   children: PropTypes.any,
