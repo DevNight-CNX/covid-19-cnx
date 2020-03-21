@@ -35,6 +35,9 @@ export const color = {
     success: '#34C759',
     info: '#007AFF',
     warning: '#FF9500'
+  },
+  field: {
+    lightGray: '#ECECEC'
   }
 };
 

@@ -4,45 +4,46 @@ import { Button } from 'antd';
 const Buttons = styled(Button)`
   && {
     ${({ theme }) => theme.typography.button()};
-    background: ${({ theme, type }) =>
-      type ? null : theme.color.primaryColor.blueRibbon};
-    color: ${({ theme, type }) =>
-      type
+    background: ${({ theme, outline }) =>
+      outline ? null : theme.color.primaryColor.blueRibbon};
+    color: ${({ theme, outline }) =>
+      outline
         ? theme.color.primaryColor.blueRibbon
         : theme.color.neutralColor.white};
-    border: 1px solid ${({ theme }) => theme.color.primaryColor.blueRibbon};
+    border: 1px outline ${({ theme }) => theme.color.primaryColor.blueRibbon};
     border-radius: 4px;
     max-width: 150px;
-    width: 100%;
+    padding: 7px 32px;
+    height: auto;
 
     :hover {
-      background: ${({ theme, type }) =>
-        type ? null : theme.color.alternativeColors.blueRibbonDark};
-      color: ${({ theme, type }) =>
-        type
+      background: ${({ theme, outline }) =>
+        outline ? null : theme.color.alternativeColors.blueRibbonDark};
+      color: ${({ theme, outline }) =>
+        outline
           ? theme.color.alternativeColors.blueRibbonDark
           : theme.color.neutralColor.white};
-      border: 1px solid
+      border: 1px outline
         ${({ theme }) => theme.color.alternativeColors.blueRibbonDark};
     }
     :active {
-      background: ${({ theme, type }) =>
-        type ? null : theme.color.alternativeColors.blueRibbonDark};
-      color: ${({ theme, type }) =>
-        type
+      background: ${({ theme, outline }) =>
+        outline ? null : theme.color.alternativeColors.blueRibbonDark};
+      color: ${({ theme, outline }) =>
+        outline
           ? theme.color.alternativeColors.blueRibbonDark
           : theme.color.neutralColor.white};
-      border: 1px solid
+      border: 1px outline
         ${({ theme }) => theme.color.alternativeColors.blueRibbonDark};
     }
     :focus {
-      background: ${({ theme, type }) =>
-        type ? null : theme.color.alternativeColors.blueRibbonDark};
-      color: ${({ theme, type }) =>
-        type
+      background: ${({ theme, outline }) =>
+        outline ? null : theme.color.alternativeColors.blueRibbonDark};
+      color: ${({ theme, outline }) =>
+        outline
           ? theme.color.alternativeColors.blueRibbonDark
           : theme.color.neutralColor.white};
-      border: 1px solid
+      border: 1px outline
         ${({ theme }) => theme.color.alternativeColors.blueRibbonDark};
     }
   }
