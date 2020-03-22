@@ -21,18 +21,17 @@ export const getNews = id => {
     });
   } else {
     return fetchGet(apiUrlProvider.get(GET_NEWS)).then(response => {
-      return {
-        data: response.data.map(rawData => {
-          return {
-            time: rawData.time,
-            newsLink: rawData.news_links,
-            newsId: rawData.news_id,
-            location: rawData.location,
-            title: rawData.title,
-            id: rawData.id
-          };
-        })
-      };
+      return response.data.map(rawData => {
+        return {
+          time: rawData.time,
+          newsLink: rawData.news_links,
+          newsId: rawData.news_id,
+          location: rawData.location,
+          title: rawData.title,
+          id: rawData.id,
+          unknownLocation: rawData.unknown_location
+        };
+      });
     });
   }
 };

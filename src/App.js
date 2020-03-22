@@ -4,6 +4,8 @@ import { ThemeProvider } from 'styled-components';
 import { BrowserRouter } from 'react-router-dom';
 import * as firebase from 'firebase/app';
 import { Report as ReportProvider } from 'contexts/report.context';
+
+import { News as NewsProvider } from 'contexts/news.context';
 import 'firebase/auth';
 import 'firebase/messaging';
 import GlobalStyled from './GlobalStyled';
@@ -42,13 +44,15 @@ const App = () => {
             <BrowserRouter>
               <ThemeProvider theme={theme}>
                 <ReportProvider>
-                  <ScrollToTop>
-                    <>
-                      <Router />
-                      <GlobalStyled />
-                      <RemoveFocusWhenNotTab />
-                    </>
-                  </ScrollToTop>
+                  <NewsProvider>
+                    <ScrollToTop>
+                      <>
+                        <Router />
+                        <GlobalStyled />
+                        <RemoveFocusWhenNotTab />
+                      </>
+                    </ScrollToTop>
+                  </NewsProvider>
                 </ReportProvider>
               </ThemeProvider>
             </BrowserRouter>
