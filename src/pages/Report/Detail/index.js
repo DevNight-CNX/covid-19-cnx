@@ -10,7 +10,7 @@ const Container = styled.div`
   margin: auto !important;
 `;
 
-const DetailPropTypes = { report: PropTypes.array };
+const DetailPropTypes = { match: PropTypes.object };
 
 const Detail = ({ match }) => {
   const [report, setReport] = useState();
