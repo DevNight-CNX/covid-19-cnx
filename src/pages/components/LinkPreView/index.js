@@ -10,7 +10,7 @@ import { Card as AntdCard } from 'antd';
 const Card = styled(AntdCard)`
   width: 100%;
   max-width: 500px;
-  height: 380px;
+  height: 120px;
   .ant-card-body {
     padding: 0px !important;
   }
@@ -47,15 +47,18 @@ const Footer = styled.div`
   ${({ theme }) => theme.typography.body()}
   padding: 8px 16px 0px 16px;
   bottom: 0;
+  width: 100%;
   position: absolute;
   padding-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const LinkPreview = ({ item }) => {
-  console.log(item);
   return (
     <Card onClick={() => window.open(item.newsLink)}>
-      <CoverImage />
+      {/* <CoverImage /> */}
       <TextWrapper>
         <Title>
           <p>{item.title}</p>
