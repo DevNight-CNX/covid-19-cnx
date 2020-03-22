@@ -24,8 +24,8 @@ const FullReport = ({ history }) => {
     getReportList().then(res => setReportList(res));
   }, []);
 
-  const onClickCard = report => {
-    history.push(`/report/${report.id}`);
+  const onClickCard = id => {
+    history.push(`/report/${id}`);
   };
 
   return (

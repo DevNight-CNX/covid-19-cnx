@@ -42,7 +42,7 @@ const CardCustom = ({
   return (
     <>
       <CardStyled
-        onClick={() => alert('golf')}
+        onClick={() => onClick(report.id)}
         cover={image ? <img src={image} alt="example" /> : null}
       >
         <Container>
