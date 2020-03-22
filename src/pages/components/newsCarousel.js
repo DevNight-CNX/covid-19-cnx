@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Carousel as AntdCarousel } from 'antd';
 import styled from 'styled-components';
 import { getNews } from 'services/data';
+import { useNews } from 'contexts/news.context';
 import LinkPreview from './LinkPreView';
 import { RightCircleOutlined, LeftCircleOutlined } from '@ant-design/icons';
 
@@ -67,11 +68,7 @@ const CarouselWrapper = styled.div`
 const NewsCarousel = () => {
   const carousel = useRef(null);
 
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    getNews().then(res => setData(res.data));
-  }, []);
+  const { news } = useNews();
 
   const onNext = () => {
     carousel.current.next();
@@ -83,7 +80,7 @@ const NewsCarousel = () => {
 
   return (
     <Wrapper>
-      {data.length > 0 ? (
+      {news.length > 0 ? (
         <>
           <PreviousButton onClick={onPrevious} />
           <NextButton onClick={onNext} />
@@ -91,7 +88,7 @@ const NewsCarousel = () => {
       ) : null}
       <CarouselWrapper>
         <Carousel ref={carousel} dots={false} autoplay>
-          {data.map((item, index) => {
+          {news.map((item, index) => {
             return (
               <CarouselContent key={index}>
                 <LinkPreview item={item} />

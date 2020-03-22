@@ -38,6 +38,12 @@ Status.Title = styled(Text)`
   font-size: 13px;
 `;
 
+Status.UnknownLocation = styled(Status.Title)`
+  display: inline;
+  font-size: 13px;
+  font-weight: normal;
+`;
+
 const Title = styled.p`
   font-family: Kanit, Arial, sans-serif;
   font-style: normal;
@@ -45,6 +51,11 @@ const Title = styled.p`
   font-size: 18px;
   line-height: 18px;
   margin-bottom: 2px;
+`;
+
+const NewsTitle = styled(Title)`
+  font-size: 14px;
+  line-height: 18px;
 `;
 
 const LinkWrapper = styled.div`
@@ -92,7 +103,7 @@ const InfoPopupPropTypes = {
   data: PropTypes.object
 };
 
-const InfoPopup = ({ data = {} }) => {
+const CasePopup = ({ data = {} }) => {
   return (
     <Wrapper>
       <Title>{data.treatAt}</Title>
@@ -116,6 +127,43 @@ const InfoPopup = ({ data = {} }) => {
   );
 };
 
-InfoPopup.propTypes = InfoPopupPropTypes;
+CasePopup.propTypes = InfoPopupPropTypes;
 
-export default InfoPopup;
+const NewsPopup = ({ data = {} }) => {
+  const getTime = () => {
+    console.log(
+      'moment(data.time)',
+      moment(data.time),
+      data.time,
+      moment(data.time).fromNow(),
+      moment(data.time).format('DD/MM/YYYY')
+    );
+    return moment(data.time).fromNow() === 'Invalid date'
+      ? moment(data.time, 'DD/MM/YYYY').fromNow()
+      : moment(data.time).fromNow();
+  };
+
+  return (
+    <Wrapper>
+      <NewsTitle>{data.title}</NewsTitle>
+      <StatementDate>{getTime()}</StatementDate>
+      <Nation>{data.nationality}</Nation>
+      {data.unknownLocation ? (
+        <Status>
+          <Status.UnknownLocation>
+            ไม่สามารถระบุตำแหน่งที่ชัดเจนได้
+          </Status.UnknownLocation>
+        </Status>
+      ) : null}
+      <LinkWrapper>
+        <Link href={data.newsLink} target="_blank">
+          ลิ้งค์ข่าว
+        </Link>
+      </LinkWrapper>
+    </Wrapper>
+  );
+};
+
+NewsPopup.propTypes = InfoPopupPropTypes;
+
+export { NewsPopup, CasePopup };

@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { renderToString } from 'react-dom/server';
 import styled from 'styled-components';
+import { useNews } from 'contexts/news.context';
 import useFetch from 'utils/useFetch';
 import { getCases } from 'services/case';
-import ripple from './assets/ripple.svg';
+import rippleIcon from './assets/ripple.svg';
+import newsIcon from './assets/news.svg';
 import mapStyles from './mapStyles';
-import InfoPopup from './components/InfoPopup';
+import { CasePopup, NewsPopup } from './components/InfoPopup';
 import Buttons from 'components/Button';
 import { ReactComponent as ArenaIcon } from './assets/Arenaicon.svg';
 import { Modal, Button } from 'antd';
@@ -17,8 +19,10 @@ const MapContainer = styled.div`
 
 const Map = () => {
   const mapRef = useRef(null);
+  const infoWindowRef = useRef(null);
   const { data: cases, loading } = useFetch(() => getCases(), null, []);
   const [visible, setVisible] = useState(false);
+  const { news, newsLoading } = useNews();
 
   useEffect(() => {
     const map = new window.google.maps.Map(document.getElementById('map'), {
@@ -32,16 +36,19 @@ const Map = () => {
       gestureHandling: 'greedy',
       restriction: {
         latLngBounds: {
-          north: 18.835952,
-          south: 18.734216,
-          west: 98.931837,
-          east: 99.077914
+          north: 19.370793,
+          south: 18.4548,
+          west: 98.521096,
+          east: 99.342739
         },
         strictBounds: true
       }
     });
 
+    const infowindow = new window.google.maps.InfoWindow();
+
     mapRef.current = map;
+    infoWindowRef.current = infowindow;
   }, []);
 
   useEffect(() => {
@@ -51,7 +58,7 @@ const Map = () => {
 
     const map = mapRef.current;
 
-    const infowindow = new window.google.maps.InfoWindow();
+    const infowindow = infoWindowRef.current;
 
     cases.forEach(caseItem => {
       const coords = caseItem.location;
@@ -60,15 +67,42 @@ const Map = () => {
         map,
         position: latLng,
         optimized: false,
-        icon: ripple
+        icon: rippleIcon
       });
 
       marker.addListener('click', function() {
-        infowindow.setContent(renderToString(<InfoPopup data={caseItem} />));
+        infowindow.setContent(renderToString(<CasePopup data={caseItem} />));
         infowindow.open(map, marker);
       });
     });
   }, [loading, cases]);
+
+  useEffect(() => {
+    if (newsLoading) {
+      return;
+    }
+
+    const map = mapRef.current;
+
+    const infowindow = infoWindowRef.current;
+
+    console.log('news', news);
+
+    news.forEach(newsItem => {
+      const coords = newsItem.location;
+      const latLng = new window.google.maps.LatLng(coords.lat, coords.lng);
+      const marker = new window.google.maps.Marker({
+        map,
+        position: latLng,
+        icon: newsIcon
+      });
+
+      marker.addListener('click', function() {
+        infowindow.setContent(renderToString(<NewsPopup data={newsItem} />));
+        infowindow.open(map, marker);
+      });
+    });
+  }, [newsLoading, news]);
 
   const handleOk = () => {
     setVisible(false);
