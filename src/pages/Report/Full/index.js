@@ -28,27 +28,29 @@ const FullReport = ({ history }) => {
   return (
     <>
       <GoBackHeader mxwidth="680px" />
-      <Container>
-        {reportList.reverse().map(report => {
-          return (
-            <CardCustom
-              key={report.id}
-              report={report}
-              onClick={onClickCard}
-              image={report.image}
-              header={report.header}
-              content={report.content}
-              avatar={report.avatar}
-              reference={report.link}
-              location={report.location}
-              another={report.header.another}
-              id={report.id}
-              dislikes={report.dislikes}
-              likes={report.likes}
-            />
-          );
-        })}
-      </Container>
+      <List>
+        <Container>
+          {reportList.reverse().map(report => {
+            return (
+              <CardCustom
+                key={report.id}
+                report={report}
+                onClick={onClickCard}
+                image={report.image}
+                header={report.header}
+                content={report.content}
+                avatar={report.avatar}
+                reference={report.link}
+                location={report.location}
+                another={report.header.another}
+                id={report.id}
+                dislikes={report.dislikes}
+                likes={report.likes}
+              />
+            );
+          })}
+        </Container>
+      </List>
     </>
   );
 };
