@@ -6,6 +6,7 @@ import CreateReport from './pages/Report/Create';
 import FullReport from './pages/Report/Full';
 import DetailReport from './pages/Report/Detail';
 import Home from './pages/Home';
+import Policy from './pages/Policy';
 import Map from './pages/Example/pages/Map';
 import Like from './pages/Example/pages/Like';
 
@@ -13,6 +14,7 @@ const Router = () => {
   return (
     <Switch>
       <Route path="/submit" component={CreateReport} />
+      <Route path="/policy" component={Policy} />
       <Route path="/like" component={Like} />
       <Route path="/report/:id" component={DetailReport} />
       <Route path="/report" component={FullReport} />
