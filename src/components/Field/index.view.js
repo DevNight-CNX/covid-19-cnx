@@ -199,11 +199,10 @@ const List = styled.div`
   }
 
   ${({ isActive }) =>
-    isActive
-      ? css`
-          background: ${({ theme }) =>
-            theme.color.alternativeColors.blueRibbonLight};
-          color: ${({ theme }) => theme.color.neutralColor.white};
-        `
-      : css``};
+    isActive &&
+    css`
+      background: ${({ theme }) =>
+        theme.color.alternativeColors.blueRibbonLight};
+      color: ${({ theme }) => theme.color.neutralColor.white};
+    `}
 `;
