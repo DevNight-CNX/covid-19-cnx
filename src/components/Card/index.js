@@ -24,6 +24,9 @@ const CardCustomPropTypes = {
   report: PropTypes.object,
   onClick: PropTypes.func
 };
+const CardCustomDefaultProps = {
+  report: {}
+};
 
 const CardCustom = ({
   image,
@@ -48,7 +51,7 @@ const CardCustom = ({
         <Container>
           <Avatar src={avatar} />
           <span className="avatar">
-            {another + ' ' + moment(date).format('LT l')}
+            {`${another} ${moment(date).format('LT l')}`}
           </span>
           <pre className="description">{content}</pre>
         </Container>
@@ -97,6 +100,7 @@ const CardCustom = ({
 };
 
 CardCustom.propTypes = CardCustomPropTypes;
+CardCustom.defaultProps = CardCustomDefaultProps;
 
 export default CardCustom;
 

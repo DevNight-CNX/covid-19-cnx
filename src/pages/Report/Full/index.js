@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-
 import { getReportList } from 'services/report';
 import { List } from 'antd';
 import CardCustom from 'components/Card';
-import routeUrlProvider from 'constants/route-paths';
-import { GET_REPORT_BY_ID } from 'constants/api-endpoints';
+import { GoBackHeader } from 'components/BarNavigation/navigation';
 
 const Container = styled.div`
   max-width: 680px;
   width: 100%;
-  margin: auto !important;
-  margin-bottom: 36px !important;
+  margin: 15px auto 36px;
 `;
 
 const FullReportPropTypes = { history: PropTypes.object };
@@ -29,29 +26,32 @@ const FullReport = ({ history }) => {
   };
 
   return (
-    <List>
+    <>
+      <GoBackHeader mxwidth="680px" />
       <Container>
-        {reportList.map(report => {
-          return (
-            <CardCustom
-              key={report.id}
-              report={report}
-              onClick={onClickCard}
-              image={report.image}
-              header={report.header}
-              content={report.content}
-              avatar={report.image}
-              reference={report.link}
-              location={report.location}
-              another={report.header.another}
-              id={report.id}
-              dislikes={report.dislikes}
-              likes={report.likes}
-            />
-          );
-        })}
+        <List>
+          {reportList.map(report => {
+            return (
+              <CardCustom
+                key={report.id}
+                report={report}
+                onClick={onClickCard}
+                image={report.image}
+                header={report.header}
+                content={report.content}
+                avatar={report.image}
+                reference={report.link}
+                location={report.location}
+                another={report.header.another}
+                id={report.id}
+                dislikes={report.dislikes}
+                likes={report.likes}
+              />
+            );
+          })}
+        </List>
       </Container>
-    </List>
+    </>
   );
 };
 
