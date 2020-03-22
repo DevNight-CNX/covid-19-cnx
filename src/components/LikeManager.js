@@ -32,6 +32,7 @@ const LikeManager = ({ reportId, render, likeList = [], dislikeList = [] }) => {
         setUpdatedStatus(LikeManager.status.normal);
         eventTracker({ type: 'onLikeCilcked', id: reportId });
       } else {
+        eventTracker({ type: 'onLikeCilckedWithOutAuthen', id: reportId });
         setUpdatedStatus(LikeManager.status.like);
       }
     }
@@ -43,6 +44,7 @@ const LikeManager = ({ reportId, render, likeList = [], dislikeList = [] }) => {
         setUpdatedStatus(LikeManager.status.normal);
         eventTracker({ type: 'onDisLikeCilcked', id: reportId });
       } else {
+        eventTracker({ type: 'onDisLikeCilckedWithOutAuthen', id: reportId });
         setUpdatedStatus(LikeManager.status.dislike);
       }
     }
