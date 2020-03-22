@@ -106,5 +106,9 @@ const typography = {
     createLineHeight('17px')
   )
 };
+const font = {
+  mainFont: createFontStyle(createFontFamilyKanit())
+};
 
 export default typography;
+export { font };

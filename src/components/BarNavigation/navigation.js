@@ -1,64 +1,62 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
+import { ReactComponent as CloseIcon } from './assets/close.svg';
+import { ReactComponent as BackIcon } from './assets/back.svg';
+import { Wrapper, Container, Title, BackLink } from './index.view';
 
-import { ReactComponent as CloseIconImage } from './assets/close.svg';
-import { ReactComponent as BackIconImage } from './assets/back.svg';
-
-const Header = ({ children }) => {
+const CancelHeader = ({ icon: Icon, label, link, mxwidth }) => {
+  const { goBack, push } = useHistory();
+  const customizedLink = () => (link ? push(link) : goBack());
   return (
     <Wrapper>
-      <Title>{children}</Title>
-      <CloseIcon />
+      <Container mxwidth={mxwidth}>
+        <Title>
+          {Icon ? <Icon /> : null} {label}
+        </Title>
+        <BackLink onClick={customizedLink}>
+          <CloseIcon />
+        </BackLink>
+      </Container>
     </Wrapper>
   );
 };
+CancelHeader.propTypes = {
+  label: PropTypes.string,
+  link: PropTypes.string,
+  icon: PropTypes.node,
+  mxwidth: PropTypes.string
+};
+CancelHeader.defaultProps = {
+  label: 'Back',
+  link: '',
+  icon: null,
+  mxwidth: 'auto'
+};
 
-const BackHeader = ({ children }) => {
+const GoBackHeader = ({ label, link, mxwidth }) => {
+  const { goBack, push } = useHistory();
+  const customizedLink = () => (link ? push(link) : goBack());
   return (
     <Wrapper>
-      <Title>
-        <BackIcon />
-        {children}
-      </Title>
+      <Container mxwidth={mxwidth}>
+        <BackLink onClick={customizedLink}>
+          <BackIcon />
+          <span>{label}</span>
+        </BackLink>
+      </Container>
     </Wrapper>
   );
 };
+GoBackHeader.propTypes = {
+  label: PropTypes.string,
+  link: PropTypes.string,
+  mxwidth: PropTypes.string
+};
+GoBackHeader.defaultProps = {
+  label: 'Back',
+  link: '',
+  mxwidth: 'auto'
+};
 
-Header.propTypes = { children: PropTypes.string };
-BackHeader.propTypes = { children: PropTypes.string };
-
-export { Header, BackHeader };
-
-const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  height: 57px;
-  background: #ffffff;
-  box-shadow: inset 0px -1px 0px #f0f0f0;
-`;
-
-const Title = styled.span`
-  ${({ children, theme }) =>
-    children === 'รายงานข่าว'
-      ? theme.typography.bodyLarge()
-      : theme.typography.body()};
-  color: ${({ children, theme }) =>
-    children === 'รายงานข่าว'
-      ? theme.color.neutralColor.black
-      : theme.color.primaryColor.blue};
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  padding: 24px;
-  padding-bottom: 15px;
-`;
-
-const BackIcon = styled(BackIconImage)`
-  margin-right: 22px !important;
-`;
-
-const CloseIcon = styled(CloseIconImage)`
-  margin-right: 22px !important;
-`;
+export { CancelHeader, GoBackHeader };

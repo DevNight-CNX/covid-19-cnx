@@ -12,8 +12,12 @@ import Button from 'components/Button';
 import useFirebaseAuthen from 'components/useFirebaseAuthen';
 import { createReport } from 'services/report';
 import { required, isUrlValid } from 'utils/form/validators';
-import { Header } from 'components/BarNavigation/navigation';
 import { notification } from 'antd';
+import { ReactComponent as BackIcon } from './assets/back.svg';
+import {
+  GoBackHeader,
+  CancelHeader
+} from 'components/BarNavigation/navigation';
 
 const Wrapper = styled.div`
   padding: 26px 24px;
@@ -68,7 +72,11 @@ const CreateReport = () => {
 
   return (
     <>
-      <Header>รายงานข่าว</Header>
+      <CancelHeader
+        icon={() => <BackIcon />}
+        label="รายงานข่าว"
+        mxwidth="680px"
+      />
       <Wrapper>
         <Form
           onSubmit={onSubmit}
