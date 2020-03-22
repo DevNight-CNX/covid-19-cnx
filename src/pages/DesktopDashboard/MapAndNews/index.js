@@ -11,6 +11,7 @@ const HeaderWrapper = styled.header`
 
 const MapContainer = styled.div`
   height: 450px;
+  position: relative;
 `;
 
 const NewsContainer = styled.div`
