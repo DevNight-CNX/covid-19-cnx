@@ -17,6 +17,8 @@ import { notification } from 'antd';
 
 const Wrapper = styled.div`
   padding: 26px 24px;
+  max-width: 680px;
+  margin: auto !important;
 `;
 
 const FieldRow = styled.div`
