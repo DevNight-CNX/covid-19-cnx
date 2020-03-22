@@ -4,6 +4,7 @@ const Wrapper = styled.div`
   padding: 16px;
   position: relative;
   width: 100%;
+  overflow: hidden;
 `;
 const ButtonsWrapper = styled.div`
   display: flex;
