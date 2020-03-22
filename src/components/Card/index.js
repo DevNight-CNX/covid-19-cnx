@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Card, Avatar } from 'antd';
 import dislikeIcon from './assets/dislike.svg';
+import actionDislike from './assets/actionDislike.svg';
 import likeIcon from './assets/like.svg';
+import actionLike from './assets/actionLike.svg';
 import locationIcon from './assets/location.svg';
 import moment from 'moment';
 import LikeManager from 'components/LikeManager';
@@ -18,7 +20,7 @@ const CardCustomPropTypes = {
   id: PropTypes.string,
   likes: PropTypes.array,
   dislikes: PropTypes.array,
-  location: PropTypes.array
+  location: PropTypes.string
 };
 
 const CardCustom = ({
@@ -50,12 +52,16 @@ const CardCustom = ({
           }) => (
             <ActionWrapper>
               <div>
-                <Icons src={likeIcon} alt="likeIcon" onClick={onLikeClick} />
+                <Icons
+                  src={likes.length > 0 ? actionLike : likeIcon}
+                  alt="likeIcon"
+                  onClick={onLikeClick}
+                />
                 <CountWrapper>{likeCount}</CountWrapper>
               </div>
               <div>
                 <Icons
-                  src={dislikeIcon}
+                  src={dislikes.length > 0 ? actionDislike : dislikeIcon}
                   alt="dislikeIcon"
                   onClick={onDislikeClick}
                 />
