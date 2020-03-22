@@ -173,9 +173,7 @@ export const AutoComplete = ({ items, onChange, onInputChange }) => {
 
 AutoComplete.propTypes = AutoCompletePropTypes;
 
-AutoComplete.Wrapper = styled.div`
-  position: relative;
-`;
+AutoComplete.Wrapper = styled.div``;
 
 const ListWrapper = styled.div`
   max-height: 310px;
