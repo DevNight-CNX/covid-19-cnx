@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Map from 'components/Map';
 import Summary from './components/Summary';
-import News from './components/News';
 import FakeNewsReport from 'pages/Report/FakeNews';
 import NewsCarousel from 'pages/components/newsCarousel';
 import Header from './components/Header';
@@ -14,6 +13,7 @@ import {
   SummaryWrapper,
   FakeNewsReportWrapper
 } from './index.view';
+const LazyNews = React.lazy(() => import('./components/News'));
 
 const Home = () => {
   return (
@@ -33,7 +33,9 @@ const Home = () => {
         <SummaryWrapper>
           <Summary />
         </SummaryWrapper>
-        <News />
+        <Suspense fallback={<div />}>
+          <LazyNews />
+        </Suspense>
         <FakeNewsReportWrapper>
           <FakeNewsReport />
         </FakeNewsReportWrapper>
