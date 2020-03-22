@@ -8,12 +8,6 @@ const Container = styled.div`
   max-width: 680px;
   width: 100%;
   margin: auto !important;
-
-  @media only screen and (max-width: 768px) {
-    .ant-card-actions {
-      border-bottom: 1px solid ${({ theme }) => theme.color.silver};
-    }
-  }
 `;
 
 const DetailPropTypes = { report: PropTypes.array };
