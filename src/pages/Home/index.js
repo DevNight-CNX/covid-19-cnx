@@ -4,29 +4,24 @@ import Summary from './components/Summary';
 import News from './components/News';
 import FakeNewsReport from 'pages/Report/FakeNews';
 import NewsCarousel from 'pages/components/newsCarousel';
-
+import Header from './components/Header';
 import {
   Wrapper,
   Container,
   MapContainer,
-  Header,
-  Headline,
-  LastUpdateStatus,
-  Notice,
-  NewsContainer
+  HeaderWrapper,
+  NewsContainer,
+  SummaryWrapper,
+  FakeNewsReportWrapper
 } from './index.view';
 
 const Home = () => {
   return (
     <Wrapper>
       <Container>
-        <Header>
-          <Headline>รายงานสถานการณ์ โควิด-19 ณ จังหวัดเชียงใหม่</Headline>
-          <LastUpdateStatus>อัพเดทข้อมูลล่าสุด 6 ชม ที่แล้ว</LastUpdateStatus>
-          <Notice>
-            ข้อมูลในเว็บไซต์จะถูกจำกัดในพื้นที่จังหวัดเชียงใหม่เท่านั้น
-          </Notice>
-        </Header>
+        <HeaderWrapper>
+          <Header />
+        </HeaderWrapper>
       </Container>
       <MapContainer>
         <Map />
@@ -35,9 +30,13 @@ const Home = () => {
         <NewsContainer>
           <NewsCarousel />
         </NewsContainer>
-        <Summary />
+        <SummaryWrapper>
+          <Summary />
+        </SummaryWrapper>
         <News />
-        <FakeNewsReport />
+        <FakeNewsReportWrapper>
+          <FakeNewsReport />
+        </FakeNewsReportWrapper>
       </Container>
     </Wrapper>
   );
