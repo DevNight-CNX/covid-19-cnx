@@ -32,7 +32,7 @@ const SummaryWrapper = styled.div`
 `;
 
 const FakeNewsReportWrapper = styled.div`
-  margin-top: 19px;
+  margin-top: 3px;
 `;
 
 export {
