@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { ReactComponent as CloseIcon } from './assets/close.svg';
-import { ReactComponent as BackIcon } from './assets/back.svg';
+
+import { ReactComponent as CloseIconImage } from './assets/close.svg';
+import { ReactComponent as BackIconImage } from './assets/back.svg';
 
 const Header = ({ children }) => {
   return (
@@ -16,12 +18,15 @@ const BackHeader = ({ children }) => {
   return (
     <Wrapper>
       <Title>
-        <BackIcon style={{ marginRight: 18 }} />
+        <BackIcon />
         {children}
       </Title>
     </Wrapper>
   );
 };
+
+Header.propTypes = { children: PropTypes.string };
+BackHeader.propTypes = { children: PropTypes.string };
 
 export { Header, BackHeader };
 
@@ -44,9 +49,16 @@ const Title = styled.span`
       : theme.color.primaryColor.blue};
   display: flex;
   align-items: center;
-  max-width: 316px;
   width: 100%;
   height: 100%;
   padding: 24px;
   padding-bottom: 15px;
+`;
+
+const BackIcon = styled(BackIconImage)`
+  margin-right: 22px !important;
+`;
+
+const CloseIcon = styled(CloseIconImage)`
+  margin-right: 22px !important;
 `;
