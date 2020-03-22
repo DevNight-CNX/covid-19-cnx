@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Card, Avatar } from 'antd';
 import dislikeIcon from './assets/dislike.svg';
+import actionDislike from './assets/actionDislike.svg';
 import likeIcon from './assets/like.svg';
+import actionLike from './assets/actionLike.svg';
 import locationIcon from './assets/location.svg';
 import moment from 'moment';
 import LikeManager from 'components/LikeManager';
@@ -18,7 +20,7 @@ const CardCustomPropTypes = {
   id: PropTypes.string,
   likes: PropTypes.array,
   dislikes: PropTypes.array,
-  location: PropTypes.array
+  location: PropTypes.string
 };
 
 const CardCustom = ({
@@ -34,9 +36,23 @@ const CardCustom = ({
   location
 }) => {
   return (
-    <CardStyled
-      cover={image ? <img src={image} alt="example" /> : null}
-      actions={[
+    <>
+      <CardStyled cover={image ? <img src={image} alt="example" /> : null}>
+        <Container>
+          <Avatar src={avatar} />
+          <span className="avatar">
+            {another + ' ' + moment(date).format('LT l')}
+          </span>
+          <pre className="description">{content}</pre>
+        </Container>
+        <TagLinkWrapper>
+          <a href={reference}>{reference}</a>
+        </TagLinkWrapper>
+        <LocationWrapper>
+          {location ? <Icons src={locationIcon} /> : null}
+        </LocationWrapper>
+      </CardStyled>
+      <LikeManagerWrapper>
         <LikeManager
           reportId={id}
           likeList={likes}
@@ -50,36 +66,26 @@ const CardCustom = ({
           }) => (
             <ActionWrapper>
               <div>
-                <Icons src={likeIcon} alt="likeIcon" onClick={onLikeClick} />
+                <Icons
+                  src={status === 'LIKE' ? actionLike : likeIcon}
+                  alt="likeIcon"
+                  onClick={() => onLikeClick()}
+                />
                 <CountWrapper>{likeCount}</CountWrapper>
               </div>
               <div>
                 <Icons
-                  src={dislikeIcon}
+                  src={status === 'DISLIKE' ? actionDislike : dislikeIcon}
                   alt="dislikeIcon"
-                  onClick={onDislikeClick}
+                  onClick={() => onDislikeClick()}
                 />
                 <CountWrapper>{dislikeCount}</CountWrapper>
               </div>
             </ActionWrapper>
           )}
         ></LikeManager>
-      ]}
-    >
-      <Container>
-        <Avatar src={avatar} />
-        <span className="avatar">
-          {another + ' ' + moment(date).format('LT l')}
-        </span>
-        <pre className="description">{content}</pre>
-      </Container>
-      <TagLinkWrapper>
-        <a href={reference}>{reference}</a>
-      </TagLinkWrapper>
-      <LocationWrapper>
-        {location ? <Icons src={locationIcon} /> : null}
-      </LocationWrapper>
-    </CardStyled>
+      </LikeManagerWrapper>
+    </>
   );
 };
 
@@ -95,7 +101,6 @@ const CardStyled = styled(Card)`
   width: 100%;
   border: none !important;
   margin: auto !important;
-  margin-bottom: 36px !important;
   position: relative;
   cursor: pointer;
 
@@ -174,4 +179,8 @@ const TagLinkWrapper = styled.div`
 
 const LocationWrapper = styled.div`
   margin: 0px 0px 8px 48px;
+`;
+
+const LikeManagerWrapper = styled.div`
+  padding: 20px 0 36px 64px;
 `;
