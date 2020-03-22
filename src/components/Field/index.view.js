@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import TextareaAutosize from 'react-textarea-autosize';
 import Downshift from 'downshift';
 
@@ -149,26 +149,23 @@ export const AutoComplete = ({ items, onChange, onInputChange }) => {
         <div>
           <AutoComplete.Wrapper>
             <FieldInput {...getInputProps()} />
-            <ul {...getMenuProps()}>
+            <ListWrapper {...getMenuProps()}>
               {isOpen
                 ? items.map((item, index) => (
-                    <li
+                    <List
                       {...getItemProps({
                         key: item.name,
                         index,
                         item,
-                        style: {
-                          backgroundColor:
-                            highlightedIndex === index ? 'lightgray' : null,
-                          fontWeight: selectedItem === item ? 'bold' : 'normal'
-                        }
+                        isActive: selectedItem === item,
+                        isHightlighted: highlightedIndex === index
                       })}
                     >
                       {item.name}
-                    </li>
+                    </List>
                   ))
                 : null}
-            </ul>
+            </ListWrapper>
           </AutoComplete.Wrapper>
         </div>
       )}
@@ -179,3 +176,33 @@ export const AutoComplete = ({ items, onChange, onInputChange }) => {
 AutoComplete.propTypes = AutoCompletePropTypes;
 
 AutoComplete.Wrapper = styled.div``;
+
+const ListWrapper = styled.div`
+  background: ${({ theme }) => theme.color.neutralColor.white};
+  border-radius: 4px;
+  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+`;
+
+const List = styled.div`
+  ${({ theme }) => theme.typography.body()};
+  color: ${({ theme }) => theme.color.neutralColor.black};
+  font-weight: ${({ isActive }) => (isActive ? 'bold' : 'normal')};
+  background-color: ${({ theme }) => theme.color.neutralColor.white};
+  height: 44px;
+  display: flex;
+  align-items: center;
+  padding-left: 16px;
+  border-top: 1px solid ${({ theme }) => theme.color.neutralColor.background};
+  &:first-of-type {
+    border-top: 0;
+  }
+
+  ${({ isActive }) =>
+    isActive &&
+    css`
+      background: ${({ theme }) =>
+        theme.color.alternativeColors.blueRibbonLight};
+      color: ${({ theme }) => theme.color.neutralColor.white};
+    `}
+`;
