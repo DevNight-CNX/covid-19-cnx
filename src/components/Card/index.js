@@ -49,7 +49,7 @@ CardCustom.propTypes = CardCustomPropTypes;
 export default CardCustom;
 
 const CardStyled = styled(Card)`
-  max-width: 360px;
+  max-width: 414px;
   width: 100%;
   border: none !important;
   margin-bottom: 36px !important;
@@ -71,6 +71,7 @@ const CardStyled = styled(Card)`
     padding-left: 48px;
     width: auto;
     background: none;
+    margin-bottom: 23px;
 
     li {
       width: auto !important;
