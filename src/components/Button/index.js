@@ -12,9 +12,14 @@ const Buttons = styled(Button)`
         : theme.color.neutralColor.white};
     border: 1px outline ${({ theme }) => theme.color.primaryColor.blueRibbon};
     border-radius: 4px;
-    max-width: 150px;
-    padding: 7px 32px;
     height: auto;
+    padding: ${({ icon }) => (icon ? ` 7px 16px` : `7px 32px`)};
+    display: flex;
+    align-items: center;
+
+    svg {
+      margin-right: 8px;
+    }
 
     :hover {
       background: ${({ theme, outline }) =>
