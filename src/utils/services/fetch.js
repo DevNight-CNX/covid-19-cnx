@@ -127,7 +127,7 @@ export const fetchPostFormData = (url, body, isAuth = false) => {
 
   if (body) {
     Object.keys(body).forEach(key => {
-      if (body[key]) {
+      if (typeof body[key] !== 'undefined' && body[key] !== null) {
         payload.append(key, body[key]);
       }
     });
