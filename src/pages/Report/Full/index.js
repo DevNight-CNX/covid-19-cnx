@@ -19,7 +19,7 @@ const FullReport = () => {
       <GoBackHeader mxwidth="680px" />
       <Container>
         <List>
-          {reports.map(report => {
+          {reports.reverse().map(report => {
             return (
               <CardCustom
                 key={report.id}
@@ -28,7 +28,7 @@ const FullReport = () => {
                 image={report.image}
                 header={report.header}
                 content={report.content}
-                avatar={report.image}
+                avatar={report.avatar}
                 reference={report.link}
                 location={report.location}
                 another={report.header.another}
