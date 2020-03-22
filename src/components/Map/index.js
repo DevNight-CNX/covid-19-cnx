@@ -107,13 +107,9 @@ const Map = () => {
 export default Map;
 
 const ModalButtonWrapper = styled.div`
-  position: absolute;
-  top: 445px;
+  bottom: 35px;
   left: 31px;
-
-  @media screen and (max-width: 768px) {
-    top: 480px;
-  }
+  position: absolute;
 `;
 
 const ButtonModal = styled(Button)`

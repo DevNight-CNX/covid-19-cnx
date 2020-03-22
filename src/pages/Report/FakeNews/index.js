@@ -2,49 +2,30 @@ import React from 'react';
 import styled from 'styled-components';
 import FakeNewsIcon from './assets/FakeNews.svg';
 
-const FakeNewsContainer = styled.div`
-  display: block;
-  justify-content: center;
-  margin: auto;
-  margin-top: 19px;
-`;
-
-const FakeNewsWrapper = styled.p`
-  position: relative;
+const FakeNewsWrapper = styled.div`
   ${({ theme }) => theme.typography.body()};
   color: ${({ theme }) => theme.color.error};
   background-color: ${({ theme }) => theme.color.neutralColor.background};
-  max-width: 360px;
-  width: 100%;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
+  margin-top: 19px;
+  padding: 8px 0;
+  position: relative;
+  text-align: center;
 `;
-
 const ExplanationWrapper = styled.div`
+  ${({ theme }) => theme.typography.body()};
   background-color: ${({ theme }) => theme.color.secondaryColor.gold};
-  max-width: 360px;
-  width: 100%;
-  height: 300px;
-  padding: 24px 38px 35px 26px;
-
-  .header {
-    ${({ theme }) => theme.typography.bodyLarge()};
-    color: ${({ theme }) => theme.color.neutralColor.black};
-    margin-bottom: 8px;
-  }
-  .content {
-    ${({ theme }) => theme.typography.body()};
-    color: ${({ theme }) => theme.color.neutralColor.black};
-    margin-bottom: 16px;
-  }
+  padding: 24px 26px;
 `;
+ExplanationWrapper.Title = styled.div`
+  ${({ theme }) => theme.typography.bodyLarge()};
+  color: ${({ theme }) => theme.color.neutralColor.black};
+  margin-bottom: 8px;
+`;
+ExplanationWrapper.Content = styled.div``;
 
 const FakeNewsReport = () => {
   return (
-    <FakeNewsContainer>
+    <>
       <FakeNewsWrapper>
         <img
           src={FakeNewsIcon}
@@ -54,31 +35,27 @@ const FakeNewsReport = () => {
         ข่าวปลอมที่ตรวจพบ 1,987
       </FakeNewsWrapper>
       <ExplanationWrapper>
-        <div className="header">คำชี้แจง</div>
-        <div className="content">
-          <div className="content">
+        <ExplanationWrapper.Title>คำชี้แจง</ExplanationWrapper.Title>
+        <ExplanationWrapper.Content>
+          <p>
             เนื่องด้วยข้อมูลในปัจจุบันไม่มีเพียงต่อประชาชนโดย รอบ
             จากสถานการณ์ของโรคระบาดในประเทศไทย
             ทีมพัฒนาจึงรวบรวมชุมชนแหล่งข่าวจากคนในพื้นที่
             และคัดกรองความน่าเชื่อถือของข่าวด้วยกันเองขึ้นมา
             เบาะแสจากข่าวสถานที่ตำแหน่งในภาคเหนืออาจจะ ทำให้สื่อถึงจุดประสงค์ของ
             การนำเสนอที่ผิดพลาดได้.
-          </div>
-          <div className="content">
-            มีข้อเสนอแนะ ติดต่อได้ที่
-            <div>
-              <a href="email@gmail.com"> email@gmail.com</a>
-            </div>
-          </div>
-          <div>
-            ความรู้สู้ Covin-19
-            <div>
-              <a href="https://ddc.moph.go.th">https://ddc.moph.go.th</a>
-            </div>
-          </div>
-        </div>
+          </p>
+          <p>
+            มีข้อเสนอแนะ ติดต่อได้ที่ <br />
+            <a href="email@gmail.com"> email@gmail.com</a>
+          </p>
+          <p>
+            ความรู้สู้ Covin-19 <br />
+            <a href="https://ddc.moph.go.th">https://ddc.moph.go.th</a>
+          </p>
+        </ExplanationWrapper.Content>
       </ExplanationWrapper>
-    </FakeNewsContainer>
+    </>
   );
 };
 
