@@ -14,6 +14,7 @@ import { createReport } from 'services/report';
 import { required, isUrlValid } from 'utils/form/validators';
 import { notification } from 'antd';
 import { CancelHeader } from 'components/BarNavigation/navigation';
+import eventTracker from 'utils/eventTracker';
 
 const Wrapper = styled.div`
   padding: 26px 24px;
@@ -49,7 +50,9 @@ const CreateReport = () => {
         imageFile: values.image,
         position: values.address
       })
-        .then(() => {
+        .then(res => {
+          console.log(res);
+          eventTracker({ type: 'submitReport', id: 'submitReportSuccess' });
           notification.success({
             message: 'รายงานข่าวสำเร็จแล้ว',
             description:
@@ -58,6 +61,7 @@ const CreateReport = () => {
           history.push('/report');
         })
         .catch(() => {
+          eventTracker({ type: 'submitReport', id: 'submitReportFailed' });
           notification.error({
             message: 'รายงานข่าวไม่สำเร็จ',
             description: 'กรุณาลองใหม่อีกครั้งในภายหลัง'
