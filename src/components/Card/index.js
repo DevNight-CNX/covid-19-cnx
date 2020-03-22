@@ -20,8 +20,8 @@ const CardCustomPropTypes = {
   id: PropTypes.string,
   likes: PropTypes.array,
   dislikes: PropTypes.array,
-  location: PropTypes.array,
-  report: PropTypes.array,
+  location: PropTypes.string,
+  report: PropTypes.object,
   onClick: PropTypes.func
 };
 
