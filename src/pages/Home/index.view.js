@@ -13,26 +13,8 @@ const MapContainer = styled.div`
   width: 100%;
 `;
 
-const Header = styled.header`
+const HeaderWrapper = styled.header`
   padding: 62px 24px 16px;
-`;
-
-const Headline = styled.h1`
-  ${({ theme }) => theme.typography.subtitle()}
-  color: ${({ theme }) => theme.color.dark};
-  margin-bottom: 8px;
-`;
-
-const LastUpdateStatus = styled.p`
-  ${({ theme }) => theme.typography.body()}
-  color: ${({ theme }) => theme.color.dark};
-  margin-bottom: 8px;
-`;
-
-const Notice = styled.p`
-  ${({ theme }) => theme.typography.body()}
-  color: ${({ theme }) => theme.color.logicColor.warning};
-  margin: 0;
 `;
 
 const NewsContainer = styled.div`
@@ -41,13 +23,24 @@ const NewsContainer = styled.div`
   margin-top: 24px;
 `;
 
+const SummaryWrapper = styled.div`
+  padding: 16px 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 16px 32px;
+  justify-content: center;
+`;
+
+const FakeNewsReportWrapper = styled.div`
+  margin-top: 19px;
+`;
+
 export {
   Wrapper,
   Container,
   MapContainer,
-  Header,
-  Headline,
-  LastUpdateStatus,
-  Notice,
-  NewsContainer
+  HeaderWrapper,
+  NewsContainer,
+  SummaryWrapper,
+  FakeNewsReportWrapper
 };

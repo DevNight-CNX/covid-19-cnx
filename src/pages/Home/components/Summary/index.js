@@ -8,14 +8,6 @@ import hospitalIcon from './assets/hospital.svg';
 import virusIcon from './assets/virus.svg';
 import deadIcon from './assets/dead.svg';
 
-const Wrapper = styled.div`
-  padding: 16px 24px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 16px 32px;
-  justify-content: center;
-`;
-
 const Title = styled.p`
   ${({ theme }) => theme.typography.body()}
   color: ${({ theme }) => theme.color.neutralColor.gray};
@@ -69,7 +61,7 @@ const Summary = () => {
   const { data } = useFetch(() => getSummary());
 
   return (
-    <Wrapper>
+    <>
       <SummaryItem title="หายแล้ว" icon={userIcon} value={data['หายแล้ว']} />
       <SummaryItem
         title="รักษาอยู่ใน รพ."
@@ -86,7 +78,7 @@ const Summary = () => {
         icon={deadIcon}
         value={data['เสียชีวิต']}
       />
-    </Wrapper>
+    </>
   );
 };
 
