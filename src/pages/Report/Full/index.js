@@ -18,12 +18,18 @@ const FullReport = () => {
     getReportList().then(res => setReportList(res));
   }, []);
 
+  const onClickCard = report => {
+    console.log(report);
+  };
+
   return (
     <List>
       <Container>
         {reportList.map(report => {
           return (
             <CardCustom
+              report={report}
+              onClick={onClickCard}
               image={report.image}
               header={report.header}
               content={report.content}

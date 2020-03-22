@@ -20,7 +20,9 @@ const CardCustomPropTypes = {
   id: PropTypes.string,
   likes: PropTypes.array,
   dislikes: PropTypes.array,
-  location: PropTypes.string
+  location: PropTypes.array,
+  report: PropTypes.array,
+  onClick: PropTypes.func
 };
 
 const CardCustom = ({
@@ -33,7 +35,9 @@ const CardCustom = ({
   id,
   likes,
   dislikes,
-  location
+  location,
+  onClick,
+  report
 }) => {
   return (
     <>
