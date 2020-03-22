@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import styled from 'styled-components';
-import { getReportList } from 'services/report';
 import { List } from 'antd';
 import CardCustom from 'components/Card';
 import { GoBackHeader } from 'components/BarNavigation/navigation';
+import { useReport } from 'contexts/report.context';
 
 const Container = styled.div`
   max-width: 680px;
@@ -12,30 +11,20 @@ const Container = styled.div`
   margin: 15px auto 36px;
 `;
 
-const FullReportPropTypes = { history: PropTypes.object };
-
-const FullReport = ({ history }) => {
-  const [reportList, setReportList] = useState([]);
-
-  useEffect(() => {
-    getReportList().then(res => setReportList(res));
-  }, []);
-
-  const onClickCard = id => {
-    history.push(`/report/${id}`);
-  };
+const FullReport = () => {
+  const { reports, viewReportDetail } = useReport();
 
   return (
     <>
       <GoBackHeader mxwidth="680px" />
       <Container>
         <List>
-          {reportList.map(report => {
+          {reports.map(report => {
             return (
               <CardCustom
                 key={report.id}
                 report={report}
-                onClick={onClickCard}
+                onClick={viewReportDetail}
                 image={report.image}
                 header={report.header}
                 content={report.content}
@@ -54,7 +43,5 @@ const FullReport = ({ history }) => {
     </>
   );
 };
-
-FullReport.propTypes = FullReportPropTypes;
 
 export default FullReport;
