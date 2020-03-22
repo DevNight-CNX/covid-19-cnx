@@ -19,6 +19,10 @@ export const SUBSCRIBE_TOPIC = 'SUBSCRIBE_TOPIC';
 
 export const UNSUBSCRIBE_TOPIC = 'UNSUBSCRIBE_TOPIC';
 
+export const GET_REPORTS = 'GET_REPORTS';
+
+export const GET_REPORT_BY_ID = 'GET_REPORT_BY_ID';
+
 export const CASE = {
   LIST: 'CASE_LIST',
   SUMMARY: 'CASE_SUMMARY'
@@ -50,5 +54,7 @@ apiUrlProvider.set(
 apiUrlProvider.set(REPORT.LIKE, '/report/:id/like');
 apiUrlProvider.set(REPORT.DISLIKE, '/report/:id/dislike');
 apiUrlProvider.set(REPORT.UNLIKE, '/report/:id/unlike');
+apiUrlProvider.set(GET_REPORTS, '/report');
+apiUrlProvider.set(GET_REPORT_BY_ID, '/report/:id');
 
 export default apiUrlProvider;
