@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import Typography from 'components/Typography';
 import Card, { CardsLoading } from 'components/Card';
 import SubmitReportButton from 'components/SubmitReportButton';
@@ -24,9 +25,7 @@ const News = () => {
     autoplay: true,
     autoplaySpeed: 5000
   };
-  const { history } = useHistory();
-
-  console.log(history);
+  const history = useHistory();
 
   return (
     <Wrapper>
@@ -86,7 +85,7 @@ const News = () => {
         <Button
           outline
           onClick={() => {
-            window.location.href = '/report';
+            history.push('/report');
             eventTracker({ type: 'allNewsClicked', id: 'allNewsClicked' });
           }}
         >
