@@ -1,10 +1,16 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.div``;
+const Container = styled.div`
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+`;
 
 const MapContainer = styled.div`
-  width: 100%;
   height: 344px;
+  position: relative;
+  width: 100%;
 `;
 
 const Header = styled.header`
@@ -35,33 +41,13 @@ const NewsContainer = styled.div`
   margin-top: 24px;
 `;
 
-const NewsCredibilityContainer = styled.div`
-  position: relative;
-  width: 100%;
-`;
-
-const NewsCredibility = styled.p`
-  ${({ theme }) => theme.typography.body()};
-  color: ${({ theme }) => theme.color.neutralColor.black};
-  margin-bottom: 8px;
-  padding-left: 24px;
-`;
-
-const ButtonsWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  padding: 2px;
-`;
-
 export {
   Wrapper,
+  Container,
   MapContainer,
   Header,
   Headline,
   LastUpdateStatus,
   Notice,
-  NewsContainer,
-  NewsCredibilityContainer,
-  NewsCredibility,
-  ButtonsWrapper
+  NewsContainer
 };

@@ -11,7 +11,7 @@ import deadIcon from './assets/dead.svg';
 const Wrapper = styled.div`
   padding: 16px 24px;
   display: grid;
-  grid-template-columns: 140px 140px;
+  grid-template-columns: 1fr 1fr;
   grid-gap: 16px 32px;
   justify-content: center;
 `;
@@ -49,7 +49,9 @@ const SummaryItemPropTypes = {
   icon: PropTypes.string,
   value: PropTypes.string
 };
-
+const SummaryItemDefaultProps = {
+  value: '0'
+};
 const SummaryItem = ({ title, icon, value }) => {
   return (
     <SummaryItemWrapper>
@@ -60,8 +62,8 @@ const SummaryItem = ({ title, icon, value }) => {
     </SummaryItemWrapper>
   );
 };
-
 SummaryItem.propTypes = SummaryItemPropTypes;
+SummaryItem.defaultProps = SummaryItemDefaultProps;
 
 const Summary = () => {
   const { data } = useFetch(() => getSummary());
