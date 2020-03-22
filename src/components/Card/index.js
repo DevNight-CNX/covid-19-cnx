@@ -4,7 +4,9 @@ import styled from 'styled-components';
 import { Card, Avatar } from 'antd';
 import dislikeIcon from './assets/dislike.svg';
 import likeIcon from './assets/like.svg';
+import locationIcon from './assets/location.svg';
 import moment from 'moment';
+import LikeManager from 'components/LikeManager';
 
 const CardCustomPropTypes = {
   image: PropTypes.string,
@@ -12,22 +14,56 @@ const CardCustomPropTypes = {
   date: PropTypes.object,
   content: PropTypes.string,
   avatar: PropTypes.string,
-  reference: PropTypes.string
+  reference: PropTypes.string,
+  id: PropTypes.string,
+  likes: PropTypes.array,
+  dislikes: PropTypes.array,
+  location: PropTypes.array
 };
 
-const CardCustom = ({ image, another, date, content, avatar, reference }) => {
+const CardCustom = ({
+  image,
+  another,
+  date,
+  content,
+  avatar,
+  reference,
+  id,
+  likes,
+  dislikes,
+  location
+}) => {
   return (
     <CardStyled
       cover={image ? <img src={image} alt="example" /> : null}
       actions={[
-        <div>
-          <Icons src={likeIcon} alt="likeIcon" />
-          <CountWrapper>0</CountWrapper>
-        </div>,
-        <div>
-          <Icons src={dislikeIcon} alt="dislikeIcon" />
-          <CountWrapper>0</CountWrapper>
-        </div>
+        <LikeManager
+          reportId={id}
+          likeList={likes}
+          dislikeList={dislikes}
+          render={({
+            likeCount,
+            dislikeCount,
+            onLikeClick,
+            onDislikeClick,
+            status
+          }) => (
+            <ActionWrapper>
+              <div>
+                <Icons src={likeIcon} alt="likeIcon" onClick={onLikeClick} />
+                <CountWrapper>{likeCount}</CountWrapper>
+              </div>
+              <div>
+                <Icons
+                  src={dislikeIcon}
+                  alt="dislikeIcon"
+                  onClick={onDislikeClick}
+                />
+                <CountWrapper>{dislikeCount}</CountWrapper>
+              </div>
+            </ActionWrapper>
+          )}
+        ></LikeManager>
       ]}
     >
       <Container>
@@ -40,6 +76,9 @@ const CardCustom = ({ image, another, date, content, avatar, reference }) => {
       <TagLinkWrapper>
         <a href={reference}>{reference}</a>
       </TagLinkWrapper>
+      <LocationWrapper>
+        {location ? <Icons src={locationIcon} /> : null}
+      </LocationWrapper>
     </CardStyled>
   );
 };
@@ -48,11 +87,18 @@ CardCustom.propTypes = CardCustomPropTypes;
 
 export default CardCustom;
 
+const ActionWrapper = styled.div`
+  display: flex;
+`;
+
 const CardStyled = styled(Card)`
-  max-width: 414px;
+  max-width: 680px;
   width: 100%;
   border: none !important;
+  margin: auto !important;
   margin-bottom: 36px !important;
+  position: relative;
+  cursor: pointer;
 
   img {
     object-fit: contain;
@@ -68,7 +114,7 @@ const CardStyled = styled(Card)`
   }
   .ant-card-actions {
     border-top: none;
-    padding-left: 48px;
+    padding-left: 62px;
     width: auto;
     background: none;
     margin-bottom: 23px;
@@ -120,10 +166,13 @@ const CountWrapper = styled.span`
 const TagLinkWrapper = styled.div`
   ${({ theme }) => theme.typography.link()};
   color: ${({ theme }) => theme.color.logicColor.info};
-  margin: 11px;
-  margin-left: 48px;
+  margin: 11px 11px 8px 48px;
   max-width: 232px;
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
+`;
+
+const LocationWrapper = styled.div`
+  margin: 0px 0px 8px 48px;
 `;

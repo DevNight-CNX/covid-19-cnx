@@ -1,6 +1,10 @@
 import { fetchPostFormData, fetchGet } from 'utils/services/fetch';
 import { prop } from 'ramda';
-import apiUrlProvider, { CREATE_REPORT, REPORT } from 'constants/api-endpoints';
+import apiUrlProvider, {
+  CREATE_REPORT,
+  REPORT,
+  GET_REPORTS
+} from 'constants/api-endpoints';
 
 export const createReport = ({ position, content, linkUrl, imageFile }) => {
   const url = apiUrlProvider.get(CREATE_REPORT);
@@ -49,5 +53,26 @@ export const unlikeReport = id => {
 
   return fetchGet(url, null, {
     isAuth: true
+  });
+};
+
+export const getReportList = () => {
+  return fetchGet(apiUrlProvider.get(GET_REPORTS)).then(response => {
+    return response.data.map(res => {
+      return {
+        id: res.id,
+        image: res.image,
+        avatar: res.reporter.photoURL,
+        header: {
+          another: res.reporter.displayName,
+          date: res.created
+        },
+        location: res.location,
+        content: res.content,
+        link: res.link,
+        dislikes: res.dislikes,
+        likes: res.likes
+      };
+    });
   });
 };

@@ -19,7 +19,12 @@ const FullReport = () => {
             header={report.header}
             content={report.content}
             avatar={report.image}
-            link={report.link}
+            reference={report.link}
+            location={report.location}
+            another={report.header.another}
+            id={report.id}
+            dislikes={report.dislikes}
+            likes={report.likes}
           />
         );
       })}
