@@ -2,21 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Card, Avatar } from 'antd';
-import dislikeIcon from './dislike.svg';
-import likeIcon from './like.svg';
+import dislikeIcon from './assets/dislike.svg';
+import likeIcon from './assets/like.svg';
 import moment from 'moment';
-
-const { Meta } = Card;
 
 const CardCustomPropTypes = {
   image: PropTypes.string,
-  header: PropTypes.object,
+  another: PropTypes.string,
+  date: PropTypes.object,
   content: PropTypes.string,
   avatar: PropTypes.string,
-  link: PropTypes.string
+  reference: PropTypes.string
 };
 
-const CardCustom = ({ image, header, content, avatar, link }) => {
+const CardCustom = ({ image, another, date, content, avatar, reference }) => {
   return (
     <CardStyled
       cover={image ? <img src={image} alt="example" /> : null}
@@ -31,13 +30,15 @@ const CardCustom = ({ image, header, content, avatar, link }) => {
         </div>
       ]}
     >
-      <Meta
-        avatar={<Avatar src={avatar} />}
-        title={header.another + ' ' + moment(header.date).format('LT l')}
-        description={content}
-      />
+      <Container>
+        <Avatar src={avatar} />
+        <span className="avatar">
+          {another + ' ' + moment(date).format('LT l')}
+        </span>
+        <pre className="description">{content}</pre>
+      </Container>
       <TagLinkWrapper>
-        <a href={link}>{link}</a>
+        <a href={reference}>{reference}</a>
       </TagLinkWrapper>
     </CardStyled>
   );
@@ -51,6 +52,7 @@ const CardStyled = styled(Card)`
   max-width: 360px;
   width: 100%;
   border: none !important;
+  margin-bottom: 36px !important;
 
   img {
     object-fit: contain;
@@ -64,19 +66,9 @@ const CardStyled = styled(Card)`
     padding: 16px;
     padding-bottom: 0;
   }
-  .ant-card-body .ant-card-meta .ant-card-meta-detail {
-    .ant-card-meta-title {
-      ${({ theme }) => theme.typography.link()};
-      color: ${({ theme }) => theme.color.neutralColor.lightGray300};
-    }
-    .ant-card-meta-description {
-      ${({ theme }) => theme.typography.link()};
-      color: ${({ theme }) => theme.color.neutralColor.black};
-    }
-  }
   .ant-card-actions {
     border-top: none;
-    padding-left: 66px;
+    padding-left: 48px;
     width: auto;
     background: none;
 
@@ -86,6 +78,28 @@ const CardStyled = styled(Card)`
         border-right: none;
       }
     }
+  }
+`;
+
+const Container = styled.div`
+  .avatar {
+    ${({ theme }) => theme.typography.link()};
+    color: ${({ theme }) => theme.color.neutralColor.lightGray300};
+    padding-left: 16px;
+  }
+  .description {
+    ${({ theme }) => theme.typography.link()};
+    color: ${({ theme }) => theme.color.neutralColor.black};
+  }
+
+  pre {
+    padding-left: 48px;
+    margin: 0;
+    max-width: 280px;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: pre-wrap;
   }
 `;
 
