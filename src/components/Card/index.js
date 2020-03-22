@@ -67,7 +67,7 @@ const CardCustom = ({
             <ActionWrapper>
               <div>
                 <Icons
-                  src={likes.length > 0 ? actionLike : likeIcon}
+                  src={status === 'LIKE' ? actionLike : likeIcon}
                   alt="likeIcon"
                   onClick={() => onLikeClick()}
                 />
@@ -75,7 +75,7 @@ const CardCustom = ({
               </div>
               <div>
                 <Icons
-                  src={dislikes.length > 0 ? actionDislike : dislikeIcon}
+                  src={status === 'DISLIKE' ? actionDislike : dislikeIcon}
                   alt="dislikeIcon"
                   onClick={() => onDislikeClick()}
                 />
