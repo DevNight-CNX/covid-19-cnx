@@ -36,6 +36,7 @@ const BackLink = styled.button`
   font-size: 14px;
   line-height: 18px;
   padding: 0;
+  background: transparent;
   > span {
     padding-left: 18px;
   }

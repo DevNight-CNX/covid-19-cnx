@@ -27,7 +27,6 @@ const PlaceAutocomplete = ({ onChange }) => {
 
     serviceRef.current.textSearch(request, (results, status) => {
       if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-        console.log('results', results);
         setPlaces(
           results.map(result => {
             return {
@@ -42,8 +41,6 @@ const PlaceAutocomplete = ({ onChange }) => {
       }
     });
   }, 500);
-
-  console.log('places', places);
 
   return (
     <AutoComplete
