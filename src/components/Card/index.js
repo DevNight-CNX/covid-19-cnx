@@ -41,7 +41,10 @@ const CardCustom = ({
 }) => {
   return (
     <>
-      <CardStyled cover={image ? <img src={image} alt="example" /> : null}>
+      <CardStyled
+        onClick={() => alert('golf')}
+        cover={image ? <img src={image} alt="example" /> : null}
+      >
         <Container>
           <Avatar src={avatar} />
           <span className="avatar">
@@ -87,29 +90,9 @@ const CardCustom = ({
               </div>
             </ActionWrapper>
           )}
-<<<<<<< HEAD
         ></LikeManager>
       </LikeManagerWrapper>
     </>
-=======
-        />
-      ]}
-    >
-      <Container>
-        <Avatar src={avatar} />
-        <span className="avatar">
-          {another + ' ' + moment(date).format('LT l')}
-        </span>
-        <pre className="description">{content}</pre>
-      </Container>
-      <TagLinkWrapper>
-        <a href={reference}>{reference}</a>
-      </TagLinkWrapper>
-      <LocationWrapper>
-        {location && <Icons src={locationIcon} />}
-      </LocationWrapper>
-    </CardStyled>
->>>>>>> report detail
   );
 };
 
@@ -184,6 +167,7 @@ const Icons = styled.img`
     width: 18px;
     height: unset;
     background: none;
+    cursor: pointer;
   }
 `;
 
