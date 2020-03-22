@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+
 import { ReactComponent as CloseIconImage } from './assets/close.svg';
 import { ReactComponent as BackIconImage } from './assets/back.svg';
 
@@ -22,6 +24,9 @@ const BackHeader = ({ children }) => {
     </Wrapper>
   );
 };
+
+Header.propTypes = { children: PropTypes.string };
+BackHeader.propTypes = { children: PropTypes.string };
 
 export { Header, BackHeader };
 
