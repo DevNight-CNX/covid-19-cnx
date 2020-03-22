@@ -68,11 +68,7 @@ const CreateReport = () => {
 
   return (
     <>
-      <CancelHeader
-        icon={() => <BackIcon />}
-        label="รายงานข่าว"
-        mxwidth="680px"
-      />
+      <CancelHeader label="รายงานข่าว" mxwidth="680px" />
       <Wrapper>
         <Form
           onSubmit={onSubmit}
