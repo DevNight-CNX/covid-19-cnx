@@ -28,8 +28,8 @@ const FullReport = ({ history }) => {
   return (
     <>
       <GoBackHeader mxwidth="680px" />
-      <List>
-        <Container>
+      <Container>
+        <List>
           {reportList.reverse().map(report => {
             return (
               <CardCustom
@@ -49,8 +49,8 @@ const FullReport = ({ history }) => {
               />
             );
           })}
-        </Container>
-      </List>
+        </List>
+      </Container>
     </>
   );
 };
