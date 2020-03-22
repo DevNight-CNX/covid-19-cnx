@@ -15,9 +15,9 @@ const Container = styled.div`
   margin-bottom: 36px !important;
 `;
 
-const FullReportPropTypes = { histoty: PropTypes.object };
+const FullReportPropTypes = { history: PropTypes.object };
 
-const FullReport = ({ histoty }) => {
+const FullReport = ({ history }) => {
   const [reportList, setReportList] = useState([]);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const FullReport = ({ histoty }) => {
   }, []);
 
   const onClickCard = report => {
-    history.push(routeUrlProvider.getForLink(GET_REPORT_BY_ID, report.id));
+    history.push(`/report/${report.id}`);
   };
 
   return (

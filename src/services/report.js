@@ -3,7 +3,8 @@ import { prop } from 'ramda';
 import apiUrlProvider, {
   CREATE_REPORT,
   REPORT,
-  GET_REPORTS
+  GET_REPORTS,
+  GET_REPORT_BY_ID
 } from 'constants/api-endpoints';
 
 export const createReport = ({ position, content, linkUrl, imageFile }) => {
@@ -75,4 +76,25 @@ export const getReportList = () => {
       };
     });
   });
+};
+
+export const getReportById = id => {
+  return fetchGet(apiUrlProvider.get(GET_REPORT_BY_ID, { id })).then(
+    response => {
+      return {
+        id: response.id,
+        image: response.image,
+        avatar: response.reporter.photoURL,
+        header: {
+          another: response.reporter.displayName,
+          date: response.created
+        },
+        location: response.location,
+        content: response.content,
+        link: response.link,
+        dislikes: response.dislikes,
+        likes: response.likes
+      };
+    }
+  );
 };

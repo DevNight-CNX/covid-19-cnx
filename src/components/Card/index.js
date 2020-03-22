@@ -87,9 +87,29 @@ const CardCustom = ({
               </div>
             </ActionWrapper>
           )}
+<<<<<<< HEAD
         ></LikeManager>
       </LikeManagerWrapper>
     </>
+=======
+        />
+      ]}
+    >
+      <Container>
+        <Avatar src={avatar} />
+        <span className="avatar">
+          {another + ' ' + moment(date).format('LT l')}
+        </span>
+        <pre className="description">{content}</pre>
+      </Container>
+      <TagLinkWrapper>
+        <a href={reference}>{reference}</a>
+      </TagLinkWrapper>
+      <LocationWrapper>
+        {location && <Icons src={locationIcon} />}
+      </LocationWrapper>
+    </CardStyled>
+>>>>>>> report detail
   );
 };
 
@@ -122,10 +142,10 @@ const CardStyled = styled(Card)`
   }
   .ant-card-actions {
     border-top: none;
-    padding-left: 62px;
+    margin-left: 62px;
     width: auto;
     background: none;
-    margin-bottom: 23px;
+    padding-bottom: 23px;
 
     li {
       width: auto !important;
