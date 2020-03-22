@@ -182,5 +182,5 @@ const LocationWrapper = styled.div`
 `;
 
 const LikeManagerWrapper = styled.div`
-  padding: 25px 0 36px 64px;
+  padding: 20px 0 36px 64px;
 `;
