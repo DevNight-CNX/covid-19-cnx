@@ -36,9 +36,23 @@ const CardCustom = ({
   location
 }) => {
   return (
-    <CardStyled
-      cover={image ? <img src={image} alt="example" /> : null}
-      actions={[
+    <>
+      <CardStyled cover={image ? <img src={image} alt="example" /> : null}>
+        <Container>
+          <Avatar src={avatar} />
+          <span className="avatar">
+            {another + ' ' + moment(date).format('LT l')}
+          </span>
+          <pre className="description">{content}</pre>
+        </Container>
+        <TagLinkWrapper>
+          <a href={reference}>{reference}</a>
+        </TagLinkWrapper>
+        <LocationWrapper>
+          {location ? <Icons src={locationIcon} /> : null}
+        </LocationWrapper>
+      </CardStyled>
+      <LikeManagerWrapper>
         <LikeManager
           reportId={id}
           likeList={likes}
@@ -55,7 +69,7 @@ const CardCustom = ({
                 <Icons
                   src={likes.length > 0 ? actionLike : likeIcon}
                   alt="likeIcon"
-                  onClick={onLikeClick}
+                  onClick={() => onLikeClick()}
                 />
                 <CountWrapper>{likeCount}</CountWrapper>
               </div>
@@ -63,29 +77,15 @@ const CardCustom = ({
                 <Icons
                   src={dislikes.length > 0 ? actionDislike : dislikeIcon}
                   alt="dislikeIcon"
-                  onClick={onDislikeClick}
+                  onClick={() => onDislikeClick()}
                 />
                 <CountWrapper>{dislikeCount}</CountWrapper>
               </div>
             </ActionWrapper>
           )}
         ></LikeManager>
-      ]}
-    >
-      <Container>
-        <Avatar src={avatar} />
-        <span className="avatar">
-          {another + ' ' + moment(date).format('LT l')}
-        </span>
-        <pre className="description">{content}</pre>
-      </Container>
-      <TagLinkWrapper>
-        <a href={reference}>{reference}</a>
-      </TagLinkWrapper>
-      <LocationWrapper>
-        {location ? <Icons src={locationIcon} /> : null}
-      </LocationWrapper>
-    </CardStyled>
+      </LikeManagerWrapper>
+    </>
   );
 };
 
@@ -101,7 +101,6 @@ const CardStyled = styled(Card)`
   width: 100%;
   border: none !important;
   margin: auto !important;
-  margin-bottom: 36px !important;
   position: relative;
   cursor: pointer;
 
@@ -180,4 +179,8 @@ const TagLinkWrapper = styled.div`
 
 const LocationWrapper = styled.div`
   margin: 0px 0px 8px 48px;
+`;
+
+const LikeManagerWrapper = styled.div`
+  padding: 25px 0 36px 64px;
 `;
