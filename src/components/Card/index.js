@@ -19,6 +19,7 @@ import {
   LocationWrapper,
   LikeManagerWrapper
 } from './index.view';
+import eventTracker from 'utils/eventTracker';
 
 const CardCustomPropTypes = {
   image: PropTypes.string,
@@ -54,7 +55,10 @@ const CardCustom = ({
   return (
     <>
       <CardStyled
-        onClick={() => onClick(report.id)}
+        onClick={() => {
+          onClick(report.id);
+          eventTracker({ type: 'onClickedCard', id: report.id });
+        }}
         cover={image ? <img src={image} alt="example" /> : null}
       >
         <Content>

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import useFirebaseAuthen from 'components/useFirebaseAuthen';
 import { useWithUser } from './AuthManager';
 import { likeReport, dislikeReport, unlikeReport } from 'services/report';
+import eventTracker from 'utils/eventTracker';
 
 const LikeManagerPropTypes = {
   render: PropTypes.func,
@@ -29,6 +30,7 @@ const LikeManager = ({ reportId, render, likeList = [], dislikeList = [] }) => {
     if (authentication()) {
       if (getStatus() === LikeManager.status.like) {
         setUpdatedStatus(LikeManager.status.normal);
+        eventTracker({ type: 'onLikeCilcked', id: reportId });
       } else {
         setUpdatedStatus(LikeManager.status.like);
       }
@@ -39,6 +41,7 @@ const LikeManager = ({ reportId, render, likeList = [], dislikeList = [] }) => {
     if (authentication()) {
       if (getStatus() === LikeManager.status.dislike) {
         setUpdatedStatus(LikeManager.status.normal);
+        eventTracker({ type: 'onDisLikeCilcked', id: reportId });
       } else {
         setUpdatedStatus(LikeManager.status.dislike);
       }

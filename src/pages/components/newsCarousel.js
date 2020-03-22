@@ -5,6 +5,7 @@ import { getNews } from 'services/data';
 import { useNews } from 'contexts/news.context';
 import LinkPreview from './LinkPreView';
 import { RightCircleOutlined, LeftCircleOutlined } from '@ant-design/icons';
+import eventTracker from 'utils/eventTracker';
 
 const CarouselContent = styled.div`
   width: 100%;
@@ -78,6 +79,11 @@ const NewsCarousel = () => {
     carousel.current.prev();
   };
 
+  const onClickCard = (url, id) => {
+    window.open(url);
+    eventTracker({ type: 'carouselClicked', id });
+  };
+
   return (
     <Wrapper>
       {news.length > 0 ? (
@@ -91,7 +97,7 @@ const NewsCarousel = () => {
           {news.map((item, index) => {
             return (
               <CarouselContent key={index}>
-                <LinkPreview item={item} />
+                <LinkPreview item={item} onClick={onClickCard} />
               </CarouselContent>
             );
           })}

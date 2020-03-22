@@ -55,9 +55,9 @@ const Footer = styled.div`
   text-overflow: ellipsis;
 `;
 
-const LinkPreview = ({ item }) => {
+const LinkPreview = ({ item, onClick }) => {
   return (
-    <Card onClick={() => window.open(item.newsLink)}>
+    <Card onClick={() => onClick(item.newsLink, item.id)}>
       {/* <CoverImage /> */}
       <TextWrapper>
         <Title>
@@ -69,6 +69,6 @@ const LinkPreview = ({ item }) => {
   );
 };
 
-LinkPreview.propTypes = { item: PropTypes.object };
+LinkPreview.propTypes = { item: PropTypes.object, onClick: PropTypes.func };
 
 export default LinkPreview;

@@ -1,8 +1,11 @@
-import React, { createContext } from 'react';
+import React, { createContext, useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import { BrowserRouter } from 'react-router-dom';
 import * as firebase from 'firebase/app';
+import 'firebase/analytics';
+import LogRocket from 'logrocket';
+
 import { Report as ReportProvider } from 'contexts/report.context';
 
 import { News as NewsProvider } from 'contexts/news.context';
@@ -17,6 +20,7 @@ import RemoveFocusWhenNotTab from './components/RemoveFocusWhenNotTab';
 import './i18n';
 import AuthManager from './components/AuthManager';
 import FcmManager from './components/FcmManager';
+import LogRocketTracking from 'LogRocketTracking';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCgcd4bi5rNnpC9Wi4Czqk9lPWFh7Sf7lw',
@@ -33,7 +37,7 @@ export const FirebaseContext = createContext();
 
 const store = getStore();
 
-console.log('firebase', firebase);
+firebase.analytics();
 
 const App = () => {
   return (

@@ -11,6 +11,7 @@ import { CasePopup, NewsPopup } from './components/InfoPopup';
 import Buttons from 'components/Button';
 import { ReactComponent as ArenaIcon } from './assets/Arenaicon.svg';
 import { Modal, Button } from 'antd';
+import eventTracker from 'utils/eventTracker';
 
 const MapContainer = styled.div`
   width: 100%;
@@ -108,11 +109,16 @@ const Map = () => {
     setVisible(false);
   };
 
+  const onClickButton = () => {
+    setVisible(true);
+    eventTracker({ type: 'openDangerAreaModal', id: 'openDangerAreaModal' });
+  };
+
   return (
     <>
       <MapContainer id="map" />
       <ModalButtonWrapper>
-        <ButtonModal icon={<IconArena />} onClick={() => setVisible(true)}>
+        <ButtonModal icon={<IconArena />} onClick={() => onClickButton()}>
           พื้นที่เสี่ยง
         </ButtonModal>
       </ModalButtonWrapper>
