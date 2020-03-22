@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import { BrowserRouter } from 'react-router-dom';
 import * as firebase from 'firebase/app';
+import { Report as ReportProvider } from 'contexts/report.context';
 import 'firebase/auth';
 import 'firebase/messaging';
 import GlobalStyled from './GlobalStyled';
@@ -40,13 +41,15 @@ const App = () => {
           <FcmManager>
             <BrowserRouter>
               <ThemeProvider theme={theme}>
-                <ScrollToTop>
-                  <>
-                    <Router />
-                    <GlobalStyled />
-                    <RemoveFocusWhenNotTab />
-                  </>
-                </ScrollToTop>
+                <ReportProvider>
+                  <ScrollToTop>
+                    <>
+                      <Router />
+                      <GlobalStyled />
+                      <RemoveFocusWhenNotTab />
+                    </>
+                  </ScrollToTop>
+                </ReportProvider>
               </ThemeProvider>
             </BrowserRouter>
           </FcmManager>

@@ -13,4 +13,7 @@ const ButtonsWrapper = styled.div`
     margin-left: 15px;
   }
 `;
-export { Wrapper, ButtonsWrapper };
+const WrapperCards = styled.div`
+  margin-top: 15px;
+`;
+export { Wrapper, ButtonsWrapper, WrapperCards };
