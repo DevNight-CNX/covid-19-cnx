@@ -20,9 +20,9 @@ const FullReport = () => {
 
   return (
     <List>
-      {reportList.map(report => {
-        return (
-          <Container>
+      <Container>
+        {reportList.map(report => {
+          return (
             <CardCustom
               image={report.image}
               header={report.header}
@@ -35,9 +35,9 @@ const FullReport = () => {
               dislikes={report.dislikes}
               likes={report.likes}
             />
-          </Container>
-        );
-      })}
+          );
+        })}
+      </Container>
     </List>
   );
 };
