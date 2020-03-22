@@ -36,7 +36,6 @@ export const FieldInput = styled.input`
   height: calc(1.5em + 0.75rem + 11px);
   padding: 0.375rem 0.75rem;
   max-width: 634px;
-  min-width: 312px;
   width: 100%;
   border-color: ${({ isError, theme }) =>
     isError ? theme.color.error : theme.color.field.lightGray};
@@ -107,7 +106,6 @@ export const Textarea = styled(TextareaAutosize)`
   color: ${({ theme }) => theme.color.black};
   display: block;
   max-width: 634px;
-  min-width: 312px;
   width: 100%;
   min-height: calc(1.5em + 0.75rem + 45px);
   height: auto;
