@@ -181,7 +181,7 @@ const ListWrapper = styled.div`
   background: ${({ theme }) => theme.color.neutralColor.white};
   border-radius: 4px;
   box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.07);
-  overflow: scroll;
+  overflow: auto;
 `;
 
 const List = styled.div`
