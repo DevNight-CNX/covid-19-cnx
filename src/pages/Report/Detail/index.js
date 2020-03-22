@@ -34,7 +34,7 @@ const Detail = ({ match }) => {
           image={report.image}
           header={report.header}
           content={report.content}
-          avatar={report.image}
+          avatar={report.avatar}
           reference={report.link}
           location={report.location}
           another={report.header.another}

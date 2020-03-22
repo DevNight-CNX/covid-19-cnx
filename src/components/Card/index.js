@@ -48,19 +48,25 @@ const CardCustom = ({
         onClick={() => onClick(report.id)}
         cover={image ? <img src={image} alt="example" /> : null}
       >
-        <Container>
+        <Content>
           <Avatar src={avatar} />
-          <span className="avatar">
-            {`${another} ${moment(date).format('LT l')}`}
-          </span>
-          <pre className="description">{content}</pre>
-        </Container>
-        <TagLinkWrapper>
-          <a href={reference}>{reference}</a>
-        </TagLinkWrapper>
-        <LocationWrapper>
-          {location ? <Icons src={locationIcon} /> : null}
-        </LocationWrapper>
+          <div>
+            <Container>
+              <div className="avatar">
+                {`${another} ${moment(date).format('LT l')}`}
+              </div>
+              <pre className="description">{content}</pre>
+            </Container>
+            <TagLinkWrapper>
+              <a href={`https://${reference}`} target="_blank">
+                {reference}
+              </a>
+            </TagLinkWrapper>
+            <LocationWrapper>
+              {location ? <Icons src={locationIcon} /> : null}
+            </LocationWrapper>
+          </div>
+        </Content>
       </CardStyled>
       <LikeManagerWrapper>
         <LikeManager
@@ -103,6 +109,10 @@ CardCustom.propTypes = CardCustomPropTypes;
 CardCustom.defaultProps = CardCustomDefaultProps;
 
 export default CardCustom;
+
+const Content = styled.div`
+  display: flex;
+`;
 
 const ActionWrapper = styled.div`
   display: flex;
@@ -155,8 +165,9 @@ const Container = styled.div`
   }
 
   pre {
-    padding-left: 48px;
+    padding-left: 16px;
     margin: 0;
+    margin-top: 4px;
     max-width: 280px;
     width: 100%;
     overflow: hidden;
@@ -182,7 +193,7 @@ const CountWrapper = styled.span`
 const TagLinkWrapper = styled.div`
   ${({ theme }) => theme.typography.link()};
   color: ${({ theme }) => theme.color.logicColor.info};
-  margin: 11px 11px 8px 48px;
+  margin: 11px 11px 8px 16px;
   max-width: 232px;
   width: 100%;
   overflow: hidden;
@@ -190,7 +201,7 @@ const TagLinkWrapper = styled.div`
 `;
 
 const LocationWrapper = styled.div`
-  margin: 0px 0px 8px 48px;
+  margin: 0px 0px 8px 16px;
 `;
 
 const LikeManagerWrapper = styled.div`
