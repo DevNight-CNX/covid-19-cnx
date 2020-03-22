@@ -38,18 +38,26 @@ const NextButton = styled(RightCircleOutlined)`
   position: absolute;
   font-size: 32px;
   z-index: 10;
-  color: ${({ theme }) => theme.color.white} !important;
+  color: ${({ theme }) => theme.color.neutralColor.lightGray300} !important;
   margin-right: 10px;
-  transform: translateY(-25px);
+  transform: translateX(45px);
+
+  @media only screen and (max-width: 768px) {
+    display: none !important;
+  }
 `;
 
 const PreviousButton = styled(LeftCircleOutlined)`
   position: absolute;
   font-size: 32px;
   z-index: 10;
-  color: ${({ theme }) => theme.color.white} !important;
+  color: ${({ theme }) => theme.color.neutralColor.lightGray300} !important;
   margin-left: 10px;
-  transform: translateY(-25px);
+  transform: translateX(-45px);
+
+  @media only screen and (max-width: 768px) {
+    display: none !important;
+  }
 `;
 
 const CarouselWrapper = styled.div`
@@ -82,7 +90,7 @@ const NewsCarousel = () => {
         </>
       ) : null}
       <CarouselWrapper>
-        <Carousel ref={carousel} dots={false} autoplay>
+        <Carousel ref={carousel} dots={false}>
           {data.map((item, index) => {
             return (
               <CarouselContent key={index}>

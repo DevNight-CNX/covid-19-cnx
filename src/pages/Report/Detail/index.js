@@ -22,7 +22,6 @@ const Detail = ({ match }) => {
   const getReport = () => {
     getReportById(match.params.id).then(res => {
       setReport(res);
-      console.log(res);
     });
   };
 
