@@ -1,10 +1,9 @@
-import React, { createContext, useEffect } from 'react';
+import React, { createContext } from 'react';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import { BrowserRouter } from 'react-router-dom';
 import * as firebase from 'firebase/app';
 import 'firebase/analytics';
-import LogRocket from 'logrocket';
 
 import { Report as ReportProvider } from 'contexts/report.context';
 
@@ -54,6 +53,7 @@ const App = () => {
                         <Router />
                         <GlobalStyled />
                         <RemoveFocusWhenNotTab />
+                        <LogRocketTracking />
                       </>
                     </ScrollToTop>
                   </NewsProvider>
