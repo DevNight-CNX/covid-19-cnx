@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  border-radius: 4px;
   grid-area: ${({ grid }) => grid};
-  overflow: hidden;
 `;
 
 const Container = styled.div`
   background: ${({ noBg }) => (noBg ? 'transparent' : '#ffffff')};
+  border-radius: 4px;
+  overflow: hidden;
 `;
 
 const Title = styled.p`
