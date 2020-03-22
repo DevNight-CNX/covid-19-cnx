@@ -176,10 +176,12 @@ AutoComplete.propTypes = AutoCompletePropTypes;
 AutoComplete.Wrapper = styled.div``;
 
 const ListWrapper = styled.div`
+  max-height: 310px;
+  height: 100%;
   background: ${({ theme }) => theme.color.neutralColor.white};
   border-radius: 4px;
   box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.07);
-  overflow: hidden;
+  overflow: auto;
 `;
 
 const List = styled.div`
