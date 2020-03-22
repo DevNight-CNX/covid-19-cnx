@@ -8,6 +8,7 @@ export const color = {
   black: '#1c1e21',
   dark: '#000000',
   error: 'red',
+  silver: '#C4C4C4',
   primaryColor: {
     blueRibbon: '#2962FF',
     blue: '#4190F7'

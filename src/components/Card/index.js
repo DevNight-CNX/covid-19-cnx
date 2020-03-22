@@ -20,7 +20,9 @@ const CardCustomPropTypes = {
   id: PropTypes.string,
   likes: PropTypes.array,
   dislikes: PropTypes.array,
-  location: PropTypes.string
+  location: PropTypes.string,
+  report: PropTypes.object,
+  onClick: PropTypes.func
 };
 
 const CardCustom = ({
@@ -33,11 +35,16 @@ const CardCustom = ({
   id,
   likes,
   dislikes,
-  location
+  location,
+  onClick,
+  report
 }) => {
   return (
     <>
-      <CardStyled cover={image ? <img src={image} alt="example" /> : null}>
+      <CardStyled
+        onClick={() => onClick(report.id)}
+        cover={image ? <img src={image} alt="example" /> : null}
+      >
         <Container>
           <Avatar src={avatar} />
           <span className="avatar">
@@ -118,10 +125,10 @@ const CardStyled = styled(Card)`
   }
   .ant-card-actions {
     border-top: none;
-    padding-left: 62px;
+    margin-left: 62px;
     width: auto;
     background: none;
-    margin-bottom: 23px;
+    padding-bottom: 23px;
 
     li {
       width: auto !important;
@@ -160,6 +167,7 @@ const Icons = styled.img`
     width: 18px;
     height: unset;
     background: none;
+    cursor: pointer;
   }
 `;
 

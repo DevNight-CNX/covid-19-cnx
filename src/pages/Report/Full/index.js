@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
 import { getReportList } from 'services/report';
 import { List } from 'antd';
 import CardCustom from 'components/Card';
-import styled from 'styled-components';
+import routeUrlProvider from 'constants/route-paths';
+import { GET_REPORT_BY_ID } from 'constants/api-endpoints';
 
 const Container = styled.div`
   max-width: 680px;
@@ -11,12 +15,18 @@ const Container = styled.div`
   margin-bottom: 36px !important;
 `;
 
-const FullReport = () => {
+const FullReportPropTypes = { history: PropTypes.object };
+
+const FullReport = ({ history }) => {
   const [reportList, setReportList] = useState([]);
 
   useEffect(() => {
     getReportList().then(res => setReportList(res));
   }, []);
+
+  const onClickCard = id => {
+    history.push(`/report/${id}`);
+  };
 
   return (
     <List>
@@ -24,6 +34,9 @@ const FullReport = () => {
         {reportList.map(report => {
           return (
             <CardCustom
+              key={report.id}
+              report={report}
+              onClick={onClickCard}
               image={report.image}
               header={report.header}
               content={report.content}
@@ -41,5 +54,7 @@ const FullReport = () => {
     </List>
   );
 };
+
+FullReport.propTypes = FullReportPropTypes;
 
 export default FullReport;

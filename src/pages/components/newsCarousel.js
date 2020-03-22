@@ -82,7 +82,7 @@ const NewsCarousel = () => {
         </>
       ) : null}
       <CarouselWrapper>
-        <Carousel ref={carousel} dots={false}>
+        <Carousel ref={carousel} dots={false} autoplay>
           {data.map((item, index) => {
             return (
               <CarouselContent key={index}>
