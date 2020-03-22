@@ -92,7 +92,6 @@ const ActionWrapper = styled.div`
 `;
 
 const CardStyled = styled(Card)`
-  max-width: 680px;
   width: 100%;
   border: none !important;
   margin: auto !important;
