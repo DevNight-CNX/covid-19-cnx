@@ -9,7 +9,8 @@ export const color = {
   dark: '#000000',
   error: 'red',
   primaryColor: {
-    blueRibbon: '#2962FF'
+    blueRibbon: '#2962FF',
+    blue: '#4190F7'
   },
   secondaryColor: {
     gold: '#FFD600'
