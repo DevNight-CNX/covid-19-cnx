@@ -42,7 +42,7 @@ const GoBackHeader = ({ label, link, mxwidth }) => {
       <Container mxwidth={mxwidth}>
         <BackLink onClick={customizedLink}>
           <BackIcon />
-          <span>{label}</span>
+          <span style={{ transform: 'translateY(2px)' }}>{label}</span>
         </BackLink>
       </Container>
     </Wrapper>
