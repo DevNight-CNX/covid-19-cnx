@@ -57,12 +57,16 @@ const LogoImage = styled.div`
   ${props => css`
     background-image: url(${props.src});
   `};
+  padding: 8px;
+  box-sizing: border-box;
 `;
 
 const StyledDefaultImage = styled(DefaultImage)`
+  padding: 4px;
   width: 64px;
   height: 64px;
   position: absolute;
+  box-sizing: border-box;
 `;
 
 const LinkPreview = ({ item, onClick }) => {
