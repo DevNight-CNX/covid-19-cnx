@@ -84,7 +84,8 @@ const EmptyWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  ${({ theme }) => theme.typography.body()}
+  ${({ theme }) => theme.typography.body()};
+  background-color: ${({ theme }) => theme.color.neutralColor.white};
 `;
 
 const EmptyTitle = styled.div`
