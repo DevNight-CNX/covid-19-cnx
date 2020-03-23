@@ -13,34 +13,9 @@ const FullReport = () => {
   return (
     <>
       <GoBackHeader mxwidth="680px" />
-      <Container>
-        <List>
-          {fetching ? (
-            <CardsLoading />
-          ) : (
-            reports.reverse().map(report => {
-              return (
-                <CardCustom
-                  key={report.id}
-                  report={report}
-                  onClick={viewReportDetail}
-                  image={report.image}
-                  header={report.header}
-                  content={report.content}
-                  avatar={report.avatar}
-                  reference={report.link}
-                  location={report.location}
-                  another={report.header.another}
-                  id={report.id}
-                  dislikes={report.dislikes}
-                  likes={report.likes}
-                  date={report.date}
-                />
-              );
-            })
-          )}
-        </List>
-      </Container>
+      <Wrapper>
+        <Container />
+      </Wrapper>
     </>
   );
 };
