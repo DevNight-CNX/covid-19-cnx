@@ -62,7 +62,9 @@ const CardCustom = ({
         cover={image ? <img src={image} alt={content} /> : null}
       >
         <Content>
-          <Avatar src={avatar} />
+          <div>
+            <Avatar src={avatar} />
+          </div>
           <div>
             <Container>
               <div className="avatar">

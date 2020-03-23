@@ -59,7 +59,6 @@ const Container = styled.div`
     padding-left: 16px;
     margin: 0;
     margin-top: 4px;
-    max-width: 280px;
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
