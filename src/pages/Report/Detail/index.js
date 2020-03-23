@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import CardCustom from 'components/Card';
+import CardCustom, { CardsLoading } from 'components/Card';
 import { getReportById } from 'services/report';
 import styled from 'styled-components';
 import { GoBackHeader } from 'components/BarNavigation/navigation';
@@ -26,27 +26,33 @@ const Detail = ({ match }) => {
     });
   };
 
-  return report ? (
+  return (
     <>
       <GoBackHeader mxwidth="680px" />
       <Container>
-        <CardCustom
-          image={report.image}
-          header={report.header}
-          content={report.content}
-          avatar={report.avatar}
-          reference={report.link}
-          location={report.location}
-          another={report.header.another}
-          id={report.id}
-          dislikes={report.dislikes}
-          likes={report.likes}
-          date={report.date}
-          address={report.address}
-        />
+        {report ? (
+          <>
+            <CardCustom
+              image={report.image}
+              header={report.header}
+              content={report.content}
+              avatar={report.avatar}
+              reference={report.link}
+              location={report.location}
+              another={report.header.another}
+              id={report.id}
+              dislikes={report.dislikes}
+              likes={report.likes}
+              date={report.date}
+              address={report.address}
+            />
+          </>
+        ) : (
+          <CardsLoading rows={1} />
+        )}
       </Container>
     </>
-  ) : null;
+  );
 };
 
 Detail.propTypes = DetailPropTypes;

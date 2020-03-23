@@ -56,6 +56,7 @@ const News = () => {
                     dislikes={report.dislikes}
                     likes={report.likes}
                     address={report.address}
+                    date={report.date}
                   />
                   {!isEmpty(secReport) ? (
                     <Card
@@ -72,6 +73,7 @@ const News = () => {
                       id={secReport.id}
                       dislikes={secReport.dislikes}
                       likes={secReport.likes}
+                      date={report.date}
                     />
                   ) : null}
                 </div>

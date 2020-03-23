@@ -60,7 +60,7 @@ export const unlikeReport = id => {
 
 export const getReportList = () => {
   return fetchGet(apiUrlProvider.get(GET_REPORTS)).then(response => {
-    return response.data.map(res => {
+    return response.data.map((res, index) => {
       return {
         id: res.id,
         image: res.image,
@@ -74,8 +74,9 @@ export const getReportList = () => {
         link: res.link,
         dislikes: res.dislikes,
         likes: res.likes,
-        date: res.createdm,
-        address: res.address
+        address: res.address,
+        date: res.created,
+        index
       };
     });
   });
