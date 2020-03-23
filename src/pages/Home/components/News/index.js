@@ -9,6 +9,8 @@ import Slider from 'react-slick';
 import { isEmpty } from 'lodash';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import eventTracker from 'utils/eventTracker';
+import { useHistory } from 'react-router-dom';
 
 const News = () => {
   const { fetching, reliableReports, viewReportDetail } = useReport();
@@ -22,6 +24,10 @@ const News = () => {
     autoplay: true,
     autoplaySpeed: 5000
   };
+  const { history } = useHistory();
+
+  console.log(history);
+
   return (
     <Wrapper>
       <Typography variant="body" weight="normal">
@@ -77,7 +83,13 @@ const News = () => {
       </WrapperCards>
 
       <ButtonsWrapper>
-        <Button outline linkTo="/report">
+        <Button
+          outline
+          onClick={() => {
+            window.location.href = '/report';
+            eventTracker({ type: 'allNewsClicked', id: 'allNewsClicked' });
+          }}
+        >
           ข่าวทั้งหมด
         </Button>
         <SubmitReportButton />
