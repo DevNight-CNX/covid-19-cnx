@@ -26,7 +26,6 @@ const CardStyled = styled(Card)`
   }
   .ant-card-body {
     padding: 16px;
-    padding-bottom: 0;
   }
   .ant-card-actions {
     border-top: none;
@@ -59,7 +58,6 @@ const Container = styled.div`
     padding-left: 16px;
     margin: 0;
     margin-top: 4px;
-    max-width: 280px;
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -84,7 +82,7 @@ const CountWrapper = styled.span`
 const TagLinkWrapper = styled.div`
   ${({ theme }) => theme.typography.link()};
   color: ${({ theme }) => theme.color.logicColor.info};
-  margin: 11px 11px 8px 16px;
+  margin: 11px 11px 7px 16px;
   max-width: 232px;
   width: 100%;
   overflow: hidden;
@@ -92,11 +90,11 @@ const TagLinkWrapper = styled.div`
 `;
 
 const LocationWrapper = styled.div`
-  margin: 0px 0px 8px 16px;
+  margin-left: 16px;
 `;
 
 const LikeManagerWrapper = styled.div`
-  padding: 20px 0 36px 64px;
+  padding: 0 0 36px 66px;
 `;
 
 export {

@@ -62,7 +62,9 @@ const CardCustom = ({
         cover={image ? <img src={image} alt={content} /> : null}
       >
         <Content>
-          <Avatar src={avatar} />
+          <div>
+            <Avatar src={avatar} />
+          </div>
           <div>
             <Container>
               <div className="avatar">
@@ -70,14 +72,18 @@ const CardCustom = ({
               </div>
               <pre className="description">{content}</pre>
             </Container>
-            <TagLinkWrapper>
-              <a href={`https://${reference}`} target="_blank">
-                {reference}
-              </a>
-            </TagLinkWrapper>
-            <LocationWrapper>
-              {location ? <Icons src={locationIcon} /> : null}
-            </LocationWrapper>
+            {reference ? (
+              <TagLinkWrapper>
+                <a href={`https://${reference}`} target="_blank">
+                  {reference}
+                </a>
+              </TagLinkWrapper>
+            ) : null}
+            {location ? (
+              <LocationWrapper>
+                {location ? <Icons src={locationIcon} /> : null}
+              </LocationWrapper>
+            ) : null}
           </div>
         </Content>
       </CardStyled>
