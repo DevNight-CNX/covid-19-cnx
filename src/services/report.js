@@ -13,10 +13,11 @@ export const createReport = ({ position, content, linkUrl, imageFile }) => {
     content,
     image: imageFile,
     link: linkUrl,
+    address: prop('name', position),
     location: prop('location', position)
       ? JSON.stringify([position.location.lat, position.location.lng])
       : null,
-    anonymous: ''
+    anonymous: false
   };
 
   return fetchPostFormData(url, body, true).then(response => {
