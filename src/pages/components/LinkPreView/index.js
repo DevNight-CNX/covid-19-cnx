@@ -18,24 +18,8 @@ const Card = styled(AntdCard)`
   cursor: pointer;
 `;
 
-const CoverImage = styled.div`
-  && {
-    background-color: ${({ theme }) => theme.color.neutralColor.lightGray100};
-    ${({ imageUrl }) => {
-      console.log(imageUrl);
-      return css`
-        background-image: ${imageUrl};
-      `;
-    }};
-    background-size: contain;
-    height: 260px;
-    width: 100%;
-    max-width: 500px;
-  }
-`;
-
 const TextWrapper = styled.div`
-  height: 120px;
+  height: 100px;
   width: 100%;
 `;
 
