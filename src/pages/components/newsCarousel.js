@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import { Carousel as AntdCarousel } from 'antd';
 import styled from 'styled-components';
-import { getNews } from 'services/data';
 import { useNews } from 'contexts/news.context';
 import LinkPreview from './LinkPreView';
 import { RightCircleOutlined, LeftCircleOutlined } from '@ant-design/icons';
@@ -93,7 +92,7 @@ const NewsCarousel = () => {
         </>
       ) : null}
       <CarouselWrapper>
-        <Carousel ref={carousel} dots={false} autoplay>
+        <Carousel ref={carousel} dots={false}>
           {news.map((item, index) => {
             return (
               <CarouselContent key={index}>
