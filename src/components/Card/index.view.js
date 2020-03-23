@@ -102,6 +102,7 @@ const LocationWrapper = styled.div`
 
 const LikeManagerWrapper = styled.div`
   padding: 0 0 36px 66px;
+  background-color: ${({ theme }) => theme.color.neutralColor.white};
 `;
 
 export {

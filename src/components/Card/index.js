@@ -87,7 +87,7 @@ const CardCustom = ({
             ) : null}
             {address ? (
               <LocationWrapper>
-                {location ? (
+                {address ? (
                   <>
                     <Icons
                       src={locationIcon}
