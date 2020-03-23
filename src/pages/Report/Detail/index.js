@@ -42,6 +42,7 @@ const Detail = ({ match }) => {
           dislikes={report.dislikes}
           likes={report.likes}
           date={report.date}
+          address={report.address}
         />
       </Container>
     </>

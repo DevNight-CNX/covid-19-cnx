@@ -74,7 +74,8 @@ export const getReportList = () => {
         link: res.link,
         dislikes: res.dislikes,
         likes: res.likes,
-        date: res.created
+        date: res.createdm,
+        address: res.address
       };
     });
   });
@@ -96,7 +97,8 @@ export const getReportById = id => {
         link: response.link,
         dislikes: response.dislikes,
         likes: response.likes,
-        date: response.created
+        date: response.created,
+        address: response.address
       };
     }
   );

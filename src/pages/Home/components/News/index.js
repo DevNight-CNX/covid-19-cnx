@@ -55,6 +55,7 @@ const News = () => {
                     id={report.id}
                     dislikes={report.dislikes}
                     likes={report.likes}
+                    address={report.address}
                   />
                   {!isEmpty(secReport) ? (
                     <Card
