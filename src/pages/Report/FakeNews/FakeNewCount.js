@@ -1,5 +1,7 @@
 import React from 'react';
+import numeral from 'numeral';
 import styled from 'styled-components';
+import { useReport } from 'contexts/report.context';
 import fakeNewsIcon from './assets/fakeNews.svg';
 
 const Wrapper = styled.div`
@@ -12,10 +14,11 @@ const Wrapper = styled.div`
 `;
 
 const FakeNewCount = () => {
+  const { fakeReports } = useReport();
   return (
     <Wrapper>
       <img src={fakeNewsIcon} alt="FakeNewsIcon" style={{ paddingRight: 16 }} />
-      ข่าวปลอมที่ตรวจพบ 1,987
+      ข่าวปลอมที่ตรวจพบ {numeral(fakeReports.length).format('0,0')}
     </Wrapper>
   );
 };
