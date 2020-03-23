@@ -39,20 +39,26 @@ const genRequestOptions = (method, body, options) => {
   };
 };
 
-const handleSuccess = response =>
-  response.json().then(body => {
-    if (Array.isArray(body)) {
-      return {
-        data: body,
-        response
-      };
-    } else {
-      return {
-        ...body,
-        response
-      };
-    }
-  });
+const handleSuccess = response => {
+  const contentType = response.headers.get('content-type');
+  if (contentType && contentType.includes('application/json')) {
+    return response.json().then(body => {
+      if (Array.isArray(body)) {
+        return {
+          data: body,
+          response
+        };
+      } else {
+        return {
+          ...body,
+          response
+        };
+      }
+    });
+  } else {
+    return response;
+  }
+};
 
 const handleFail = response =>
   response.json().then(body => {
