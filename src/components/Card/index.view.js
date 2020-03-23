@@ -19,7 +19,7 @@ const CardStyled = styled(Card)`
   img {
     object-fit: contain;
     height: 100%;
-    background-color: ${({ theme }) => theme.color.neutralColor.lightGray100};
+    background-color: ${({ theme }) => theme.color.neutralColor.background};
   }
   .ant-card-cover {
     height: 195px;
