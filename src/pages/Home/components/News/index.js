@@ -12,7 +12,7 @@ import { CardsLoading } from 'components/Card';
 const News = () => {
   const history = useHistory();
 
-  const { fetching, reliableReports } = useReport();
+  const { fetching } = useReport();
 
   return (
     <Wrapper>
