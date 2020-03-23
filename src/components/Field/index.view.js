@@ -152,7 +152,7 @@ export const AutoComplete = ({ items, onChange, onInputChange }) => {
                 ? items.map((item, index) => (
                     <List
                       {...getItemProps({
-                        key: item.name,
+                        key: item.id,
                         index,
                         item,
                         isActive: selectedItem === item,

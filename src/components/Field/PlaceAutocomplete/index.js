@@ -34,7 +34,8 @@ const PlaceAutocomplete = ({ onChange }) => {
               location: {
                 lat: result.geometry.location.lat(),
                 lng: result.geometry.location.lng()
-              }
+              },
+              id: result.id
             };
           })
         );
