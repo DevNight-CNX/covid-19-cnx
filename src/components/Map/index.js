@@ -62,6 +62,8 @@ const Map = () => {
 
     const infowindow = infoWindowRef.current;
 
+    const markers = [];
+
     cases.forEach(caseItem => {
       const coords = caseItem.location;
       const latLng = new window.google.maps.LatLng(coords.lat, coords.lng);
@@ -72,19 +74,25 @@ const Map = () => {
         icon: rippleIcon
       });
 
+      markers.push(marker);
+
       marker.addListener('click', function() {
         infowindow.setContent(renderToString(<CasePopup data={caseItem} />));
         infowindow.open(map, marker);
       });
     });
+
+    return () => {
+      markers.forEach(marker => {
+        marker.setMap(null);
+      });
+    };
   }, [loading, cases]);
 
   useEffect(() => {
     if (newsLoading) {
       return;
     }
-
-    console.log('news', news);
 
     const map = mapRef.current;
 
