@@ -26,6 +26,7 @@ const Container = () => {
               id={report.id}
               dislikes={report.dislikes}
               likes={report.likes}
+              date={report.date}
             />
           );
         })
