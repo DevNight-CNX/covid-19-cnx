@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import { Carousel as AntdCarousel } from 'antd';
 import styled from 'styled-components';
-import { getNews } from 'services/data';
 import { useNews } from 'contexts/news.context';
 import LinkPreview from './LinkPreView';
 import { RightCircleOutlined, LeftCircleOutlined } from '@ant-design/icons';
