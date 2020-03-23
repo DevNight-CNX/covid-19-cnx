@@ -40,7 +40,7 @@ const News = () => {
           <CardsLoading rows={2} />
         ) : (
           <>
-            {reliableReports.length ? (
+            {reliableReports.length === 99 ? (
               <Slider {...settings}>
                 {reliableReports.map((report, i) => {
                   if (i % 2) return null;

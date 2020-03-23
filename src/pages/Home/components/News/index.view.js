@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ReactComponent as Subtract } from './assets/subtract.svg';
+import { ReactComponent as EmptyIcon } from './assets/subtract.svg';
 
 const Wrapper = styled.div`
   padding: 16px;
@@ -9,8 +9,6 @@ const Wrapper = styled.div`
   overflow: hidden;
 `;
 const ButtonsWrapper = styled.div`
-  height: 209px;
-  padding-top: 30px;
   display: flex;
   justify-content: center;
   margin-top: 25px;
@@ -22,9 +20,8 @@ const WrapperCards = styled.div`
   margin-top: 15px;
 `;
 
-const EmptyIcon = styled(Subtract)``;
-
 const EmptyWrapper = styled.div`
+  height: 209px;
   width: 100%;
   display: flex;
   flex-direction: column;
