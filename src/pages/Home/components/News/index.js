@@ -11,7 +11,6 @@ import { isEmpty } from 'lodash';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import eventTracker from 'utils/eventTracker';
-import { useHistory } from 'react-router-dom';
 
 const News = () => {
   const { fetching, reliableReports, viewReportDetail } = useReport();
