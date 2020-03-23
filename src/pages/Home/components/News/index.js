@@ -72,7 +72,6 @@ const News = () => {
                       id={secReport.id}
                       dislikes={secReport.dislikes}
                       likes={secReport.likes}
-                      address={report.address}
                     />
                   ) : null}
                 </div>
