@@ -79,6 +79,7 @@ const Report = props => {
   }, [reqReports]);
 
   const viewReportDetail = id => {
+    console.log(id);
     push(`/report/${id}`);
   };
 

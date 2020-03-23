@@ -34,7 +34,7 @@ const DesktopDashboard = () => {
         <Paper grid="all-report" title="ข่าวทั้งหมด">
           <Report />
         </Paper>
-        <Paper grid="aside" title="แหล่งข่าวน่าเชื่อถือ" noBg>
+        <Paper grid="aside" title="ข่าวน่าเชื่อถือจากชุมชน" noBg>
           <ReliableReport />
         </Paper>
       </Container>

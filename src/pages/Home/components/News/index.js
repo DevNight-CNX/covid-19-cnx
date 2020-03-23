@@ -22,7 +22,6 @@ const News = () => {
   const settings = {
     className: '',
     dots: false,
-    fade: true,
     infinite: true,
     slidesToScroll: 1,
     adaptiveHeight: true,
@@ -34,7 +33,7 @@ const News = () => {
   return (
     <Wrapper>
       <Typography variant="body" weight="normal">
-        แหล่งข่าวน่าเชื่อถือ
+        ข่าวน่าเชื่อถือจากชุมชน
       </Typography>
       <WrapperCards>
         {fetching ? (
@@ -80,7 +79,7 @@ const News = () => {
                           id={secReport.id}
                           dislikes={secReport.dislikes}
                           likes={secReport.likes}
-                          date={report.date}
+                          date={secReport.date}
                         />
                       ) : null}
                     </div>

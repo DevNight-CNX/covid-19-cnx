@@ -24,14 +24,14 @@ import eventTracker from 'utils/eventTracker';
 const CardCustomPropTypes = {
   image: PropTypes.string,
   another: PropTypes.string,
-  date: PropTypes.object,
+  date: PropTypes.number,
   content: PropTypes.string,
   avatar: PropTypes.string,
   reference: PropTypes.string,
   id: PropTypes.string,
   likes: PropTypes.array,
   dislikes: PropTypes.array,
-  location: PropTypes.string,
+  location: PropTypes.array,
   report: PropTypes.object,
   onClick: PropTypes.func,
   address: PropTypes.string
