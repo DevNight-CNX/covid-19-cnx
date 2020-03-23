@@ -97,7 +97,8 @@ export const getReportById = id => {
         link: response.link,
         dislikes: response.dislikes,
         likes: response.likes,
-        date: response.created
+        date: response.created,
+        address: response.address
       };
     }
   );
