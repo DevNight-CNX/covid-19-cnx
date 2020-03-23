@@ -33,7 +33,8 @@ const CardCustomPropTypes = {
   dislikes: PropTypes.array,
   location: PropTypes.string,
   report: PropTypes.object,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  address: PropTypes.string
 };
 const CardCustomDefaultProps = {
   report: {}
@@ -50,7 +51,8 @@ const CardCustom = ({
   dislikes,
   location,
   onClick,
-  report
+  report,
+  address
 }) => {
   return (
     <>
@@ -68,7 +70,7 @@ const CardCustom = ({
           <div>
             <Container>
               <div className="avatar">
-                {`${another} ${moment(date).format('LT l')}`}
+                {`${another} ${moment(date).format('LT L')}`}
               </div>
               <pre className="description">{content}</pre>
             </Container>
@@ -79,9 +81,13 @@ const CardCustom = ({
                 </a>
               </TagLinkWrapper>
             ) : null}
-            {location ? (
+            {address ? (
               <LocationWrapper>
-                {location ? <Icons src={locationIcon} /> : null}
+                {location ? (
+                  <>
+                    <Icons src={locationIcon} /> {address}
+                  </>
+                ) : null}
               </LocationWrapper>
             ) : null}
           </div>

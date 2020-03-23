@@ -74,7 +74,8 @@ export const getReportList = () => {
         link: res.link,
         dislikes: res.dislikes,
         likes: res.likes,
-        date: res.created
+        date: res.createdm,
+        address: res.address
       };
     });
   });

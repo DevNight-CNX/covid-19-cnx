@@ -90,6 +90,8 @@ const TagLinkWrapper = styled.div`
 `;
 
 const LocationWrapper = styled.div`
+  ${({ theme }) => theme.typography.link()};
+  color: ${({ theme }) => theme.color.neutralColor.lightGray300};
   margin-left: 16px;
 `;
 
