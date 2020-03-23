@@ -41,6 +41,7 @@ const Detail = ({ match }) => {
           id={report.id}
           dislikes={report.dislikes}
           likes={report.likes}
+          date={report.date}
         />
       </Container>
     </>
