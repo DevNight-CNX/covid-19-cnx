@@ -21,6 +21,10 @@ const WrapperCards = styled.div`
 const EmptyState = styled.div`
   height: 200px;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  ${({ theme }) => theme.typography.body()}
 `;
 
 export { Wrapper, ButtonsWrapper, WrapperCards, EmptyState };
