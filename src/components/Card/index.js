@@ -88,7 +88,7 @@ const CardCustom = ({
                     <Icons
                       src={locationIcon}
                       alt="locationIcon"
-                      style={{ marginRight: 10 }}
+                      style={{ marginRight: 5 }}
                     />
                     {address}
                   </>
