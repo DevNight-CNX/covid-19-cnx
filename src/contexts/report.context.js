@@ -8,6 +8,8 @@ import React, {
 import { defaultTo } from 'ramda';
 import { useHistory } from 'react-router-dom';
 import { getReportList } from 'services/report';
+import { FirebaseContext } from 'App.js';
+import { getReportById } from 'services/report';
 
 const defaultToEmptyArray = defaultTo([]);
 
@@ -22,11 +24,44 @@ const useReport = () => {
 
 const ReportProvider = ReportContext.Provider;
 const Report = props => {
-  const [reports, setReports] = useState([]);
-  const [reliableReports, setReliableReports] = useState([]);
-  const [fakeReports, setFakeReports] = useState([]);
+  const [reports, setReports] = useState(undefined);
+  const [newReports, setNewReports] = useState([]);
   const [fetching, setFetching] = useState(false);
   const { push } = useHistory();
+  const firebase = useContext(FirebaseContext);
+
+  useEffect(() => {
+    if (!reports) {
+      return;
+    }
+
+    const db = firebase.firestore();
+
+    db.collection('notifications')
+      .doc('report')
+      .collection('items')
+      .onSnapshot(querySnapshot => {
+        const notiReports = [];
+
+        querySnapshot.docChanges().forEach(function(change) {
+          if (change.type === 'added') {
+            notiReports.push(change.doc.id);
+          }
+        });
+
+        const newReports = notiReports.filter(notiReport => {
+          return !reports.some(item => {
+            return item.id === notiReport;
+          });
+        });
+
+        Promise.all(newReports.map(id => getReportById(id))).then(
+          newReports => {
+            setNewReports(reports => [...reports, ...newReports]);
+          }
+        );
+      });
+  }, [reports]);
 
   const filterReliableReports = (reports = []) => {
     const proveReliableNumber = 1;
@@ -62,11 +97,7 @@ const Report = props => {
     setFetching(true);
     getReportList()
       .then(response => {
-        const dataReliable = filterReliableReports(response);
-        const fakeReports = filterFakeReports(response);
         setReports(response);
-        setReliableReports(dataReliable);
-        setFakeReports(fakeReports);
       })
       .catch(err => console.error(`[Request Reports]: ${err}`))
       .finally(() => {
@@ -83,12 +114,14 @@ const Report = props => {
     push(`/report/${id}`);
   };
 
+  const allReports = [...defaultToEmptyArray(reports), ...newReports];
+
   return (
     <ReportProvider
       value={{
-        reports,
-        reliableReports,
-        fakeReports,
+        reports: allReports,
+        reliableReports: filterReliableReports(allReports),
+        fakeReports: filterFakeReports(allReports),
         fetching,
         reqReports,
         viewReportDetail
