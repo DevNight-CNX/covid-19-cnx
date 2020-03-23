@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { getAllSummary } from 'services/summary';
 import moment from 'moment';
+import { getAllSummary } from 'services/summary';
 
 const Headline = styled.h1`
   ${({ theme }) => theme.typography.subtitle()}

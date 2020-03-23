@@ -24,12 +24,18 @@ const Map = () => {
   const [visible, setVisible] = useState(false);
   const { news, newsLoading } = useNews();
 
-  const { data: cases, loading } = useFirestore(db => db.collection('cases'));
+  const { data: cases, loading } = useFirestore(
+    db => db.collection('cases'),
+    item => ({
+      ...item,
+      unknownLocation: item.unknown_location
+    })
+  );
 
   useEffect(() => {
     const map = new window.google.maps.Map(document.getElementById('map'), {
-      center: { lat: 18.7918218, lng: 98.9855059 },
-      zoom: 14.24,
+      center: { lat: 18.818218, lng: 98.9855059 },
+      zoom: 11,
       styles: mapStyles,
       zoomControl: false,
       mapTypeControl: false,

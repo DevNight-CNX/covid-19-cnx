@@ -14,7 +14,7 @@ const useFirestore = (getCollection = db => db, parse = data => data) => {
       const listData = [];
       querySnapshot.docChanges().forEach(function(change) {
         if (change.type === 'added') {
-          listData.push(change.doc.data());
+          listData.push(parse(change.doc.data()));
         }
       });
       if (listData.length > 0) {

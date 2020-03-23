@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { prop } from 'ramda';
 import styled from 'styled-components';
 import moment from 'moment';
 
@@ -40,8 +41,9 @@ Status.Title = styled(Text)`
 
 Status.UnknownLocation = styled(Status.Title)`
   display: inline;
-  font-size: 13px;
+  font-size: 10px;
   font-weight: normal;
+  color: #ff3b30;
 `;
 
 const Title = styled.p`
@@ -104,10 +106,17 @@ const InfoPopupPropTypes = {
 };
 
 const CasePopup = ({ data = {} }) => {
+  const getTime = () => {
+    const time = prop('seconds', data.statementDate);
+    return moment.unix(time).fromNow() === 'Invalid date'
+      ? null
+      : moment.unix(time).fromNow();
+  };
+
   return (
     <Wrapper>
       <Title>{data.treatAt}</Title>
-      <StatementDate>{moment(data.statementDate).fromNow()}</StatementDate>
+      {getTime() ? <StatementDate>{getTime()}</StatementDate> : null}
       <Nation>{data.nationality}</Nation>
       <Identity>
         อายุ {data.age} เพศ {data.gender}
@@ -116,10 +125,17 @@ const CasePopup = ({ data = {} }) => {
         <Status.Title>สถานะ </Status.Title>
         <StatusColor type={data.status}>{data.status}</StatusColor>
       </Status>
+      {data.unknownLocation ? (
+        <Status>
+          <Status.UnknownLocation>
+            ไม่สามารถระบุตำแหน่งที่ชัดเจนได้
+          </Status.UnknownLocation>
+        </Status>
+      ) : null}
       <LinkWrapper>
         {data.references.map((ref, index) => (
           <Link href={ref} target="_blank">
-            ลิ้งค์ข่าว {index + 1}
+            ลิงก์ข่าว {index + 1}
           </Link>
         ))}
       </LinkWrapper>
@@ -131,23 +147,16 @@ CasePopup.propTypes = InfoPopupPropTypes;
 
 const NewsPopup = ({ data = {} }) => {
   const getTime = () => {
-    console.log(
-      'moment(data.time)',
-      moment(data.time),
-      data.time,
-      moment(data.time).fromNow(),
-      moment(data.time).format('DD/MM/YYYY')
-    );
-    return moment(data.time).fromNow() === 'Invalid date'
-      ? moment(data.time, 'DD/MM/YYYY').fromNow()
-      : moment(data.time).fromNow();
+    const time = prop('seconds', data.time);
+    return moment.unix(time).fromNow() === 'Invalid date'
+      ? null
+      : moment.unix(time).fromNow();
   };
 
   return (
     <Wrapper>
       <NewsTitle>{data.title}</NewsTitle>
-      <StatementDate>{getTime()}</StatementDate>
-      <Nation>{data.nationality}</Nation>
+      {getTime() ? <StatementDate>{getTime()}</StatementDate> : null}
       {data.unknownLocation ? (
         <Status>
           <Status.UnknownLocation>
@@ -157,7 +166,7 @@ const NewsPopup = ({ data = {} }) => {
       ) : null}
       <LinkWrapper>
         <Link href={data.newsLink} target="_blank">
-          ลิ้งค์ข่าว
+          ลิงก์ข่าว
         </Link>
       </LinkWrapper>
     </Wrapper>
