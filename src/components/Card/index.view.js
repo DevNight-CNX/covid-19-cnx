@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Card } from 'antd';
 
 const Content = styled.div`
@@ -22,7 +22,11 @@ const CardStyled = styled(Card)`
     background-color: ${({ theme }) => theme.color.neutralColor.background};
   }
   .ant-card-cover {
-    height: 195px;
+    ${({ path }) =>
+      path !== '/report/:id' &&
+      css`
+        height: 195px;
+      `};
   }
   .ant-card-body {
     padding: 16px;
