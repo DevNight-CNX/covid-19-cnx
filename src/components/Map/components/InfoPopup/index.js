@@ -52,12 +52,13 @@ const Title = styled.p`
   font-weight: normal;
   font-size: 18px;
   line-height: 18px;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
 `;
 
 const NewsTitle = styled(Title)`
   font-size: 14px;
   line-height: 18px;
+  margin-bottom: 2px;
 `;
 
 const LinkWrapper = styled.div`
@@ -115,7 +116,7 @@ const CasePopup = ({ data = {} }) => {
 
   return (
     <Wrapper>
-      <Title>{data.treatAt}</Title>
+      {data.treatAt ? <Title>{data.treatAt}</Title> : null}
       {getTime() ? <StatementDate>{getTime()}</StatementDate> : null}
       <Nation>{data.nationality}</Nation>
       <Identity>
