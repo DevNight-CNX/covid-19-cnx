@@ -1,7 +1,10 @@
+import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import { Button } from 'antd';
 
-const Buttons = styled(Button)`
+const CustomizedButton = styled(Button)`
   && {
     ${({ theme }) => theme.typography.button()};
     background: ${({ theme, outline }) =>
@@ -54,4 +57,32 @@ const Buttons = styled(Button)`
   }
 `;
 
-export default Buttons;
+const ButtonAntd = ({ linkTo, linkMode, ...rest }) => {
+  const { push, replace } = useHistory();
+  return linkTo ? (
+    <CustomizedButton
+      {...rest}
+      onClick={() => {
+        if (linkMode === 'replace') {
+          replace(linkTo);
+        } else {
+          push(linkTo);
+        }
+      }}
+    />
+  ) : (
+    <CustomizedButton {...rest} />
+  );
+};
+
+ButtonAntd.propTypes = {
+  linkTo: PropTypes.string,
+  linkMode: PropTypes.oneOf(['replace'])
+};
+
+ButtonAntd.defaultProps = {
+  linkTo: null,
+  linkMode: null
+};
+
+export default ButtonAntd;

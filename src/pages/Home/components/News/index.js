@@ -77,7 +77,9 @@ const News = () => {
       </WrapperCards>
 
       <ButtonsWrapper>
-        <Button outline={'true'}>ข่าวทั้งหมด</Button>
+        <Button outline linkTo="/report">
+          ข่าวทั้งหมด
+        </Button>
         <SubmitReportButton />
       </ButtonsWrapper>
     </Wrapper>
