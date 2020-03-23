@@ -57,7 +57,7 @@ const LogoImage = styled.div`
   ${props => css`
     background-image: url(${props.src});
   `};
-  padding: 8px;
+  padding: 4px;
   box-sizing: border-box;
 `;
 
