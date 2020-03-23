@@ -30,12 +30,22 @@ describe('fetch handle response', () => {
       ];
 
       const mockUrl = 'http://www.mock-api.com';
-      const expectedResponse = new Response(JSON.stringify(mockData));
+      const expectedResponse = new Response(JSON.stringify(mockData), {
+        headers: {
+          'content-type': 'application/json'
+        }
+      });
 
       await expectedResponse.json();
 
       global.fetch.mockReturnValue(
-        Promise.resolve(new Response(JSON.stringify(mockData)))
+        Promise.resolve(
+          new Response(JSON.stringify(mockData), {
+            headers: {
+              'content-type': 'application/json'
+            }
+          })
+        )
       );
 
       const fetchResponse = await opts.fetch(mockUrl);
@@ -63,12 +73,22 @@ describe('fetch handle response', () => {
       };
 
       const mockUrl = 'http://www.mock-api.com';
-      const expectedResponse = new Response(JSON.stringify(mockData));
+      const expectedResponse = new Response(JSON.stringify(mockData), {
+        headers: {
+          'content-type': 'application/json'
+        }
+      });
 
       await expectedResponse.json();
 
       global.fetch.mockReturnValue(
-        Promise.resolve(new Response(JSON.stringify(mockData)))
+        Promise.resolve(
+          new Response(JSON.stringify(mockData), {
+            headers: {
+              'content-type': 'application/json'
+            }
+          })
+        )
       );
 
       const fetchResponse = await opts.fetch(mockUrl);
@@ -97,13 +117,15 @@ describe('fetch handle response', () => {
 
       const mockUrl = 'http://www.mock-api.com';
       const expectedResponse = new Response(JSON.stringify(mockError), {
-        status: 400
+        status: 400,
+        'content-type': 'application/json'
       });
 
       await expectedResponse.json();
 
       const mockResponse = new Response(JSON.stringify(mockError), {
-        status: 400
+        status: 400,
+        'content-type': 'application/json'
       });
 
       global.fetch.mockReturnValue(Promise.resolve(mockResponse));
@@ -150,7 +172,8 @@ describe('fetch handle response', () => {
       await expectedResponse.json();
 
       const mockResponse = new Response(JSON.stringify(mockError), {
-        status: 400
+        status: 400,
+        'content-type': 'application/json'
       });
 
       global.fetch.mockReturnValue(Promise.resolve(mockResponse));
@@ -179,7 +202,12 @@ cases(
         new Response(
           JSON.stringify({
             message: 'success'
-          })
+          }),
+          {
+            headers: {
+              'content-type': 'application/json'
+            }
+          }
         )
       )
     );
