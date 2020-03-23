@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { Form, Field } from 'react-final-form';
@@ -12,7 +12,7 @@ import Button from 'components/Button';
 import useFirebaseAuthen from 'components/useFirebaseAuthen';
 import { createReport } from 'services/report';
 import { required, isUrlValid } from 'utils/form/validators';
-import { notification } from 'antd';
+import { notification, Switch } from 'antd';
 import { CancelHeader } from 'components/BarNavigation/navigation';
 import eventTracker from 'utils/eventTracker';
 
@@ -36,6 +36,14 @@ const Notice = styled.p`
   margin-right: 24px;
   ${({ theme }) => theme.typography.bodySmall()}
   color: ${({ theme }) => theme.color.logicColor.warning};
+`;
+
+const PublicUser = styled.div`
+  width: 100%;
+  height: 50px;
+  background-color: black;
+  box-sizing: border-box;
+  margin-bottom: 8px;
 `;
 
 const CreateReport = () => {
@@ -117,6 +125,14 @@ const CreateReport = () => {
                   label="รูปภาพ"
                 />
               </FieldRow>
+              <PublicUser>
+                <Field
+                  name="publicUser"
+                  component={() => {
+                    return <Switch defaultChecked />;
+                  }}
+                />
+              </PublicUser>
               <Footer>
                 <Notice>
                   กรุณาตรวจสอบข้อมูล และที่มาของ แหล่งข่าวก่อนทำการยืนยัน
