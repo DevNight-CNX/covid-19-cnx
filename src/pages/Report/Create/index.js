@@ -51,7 +51,6 @@ const CreateReport = () => {
         position: values.address
       })
         .then(res => {
-          console.log(res);
           eventTracker({ type: 'submitReport', id: 'submitReportSuccess' });
           notification.success({
             message: 'รายงานข่าวสำเร็จแล้ว',
