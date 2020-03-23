@@ -104,6 +104,16 @@ const CreateReport = () => {
                 <Field
                   name="image"
                   component={AdaptImageUploader}
+                  validate={image => {
+                    if (!image) {
+                      return null;
+                    }
+
+                    if (image.size / Math.pow(1024, 2) > 10) {
+                      return 'ขนาดไฟล์ใหณ่เกินไป';
+                    }
+                  }}
+                  maxSize={null}
                   label="รูปภาพ"
                 />
               </FieldRow>
