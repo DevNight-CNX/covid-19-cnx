@@ -23,7 +23,18 @@ const SummaryWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-column-gap: 18px;
+  padding-top: 24px;
+`;
+
+const InfoSummaryWrapper = styled.div`
+  display: grid;
   padding: 24px 16px;
+`;
+
+const InfoSummary = styled.p`
+  ${({ theme }) => theme.typography.body()};
+  color: ${({ theme }) => theme.color.neutralColor.black};
+  margin: 0;
 `;
 
 const MapAndNews = () => {
@@ -38,9 +49,12 @@ const MapAndNews = () => {
       <NewsContainer>
         <NewsCarousel />
       </NewsContainer>
-      <SummaryWrapper>
-        <Summary />
-      </SummaryWrapper>
+      <InfoSummaryWrapper>
+        <InfoSummary>ข้อมูลผู้ป่วยอยู่ในประเทศไทย</InfoSummary>
+        <SummaryWrapper>
+          <Summary />
+        </SummaryWrapper>
+      </InfoSummaryWrapper>
     </div>
   );
 };

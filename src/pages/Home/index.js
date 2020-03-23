@@ -11,7 +11,9 @@ import {
   HeaderWrapper,
   NewsContainer,
   SummaryWrapper,
-  FakeNewsReportWrapper
+  FakeNewsReportWrapper,
+  InfoSummaryWrapper,
+  InfoSummary
 } from './index.view';
 const LazyNews = React.lazy(() => import('./components/News'));
 
@@ -30,9 +32,12 @@ const Home = () => {
         <NewsContainer>
           <NewsCarousel />
         </NewsContainer>
-        <SummaryWrapper>
-          <Summary />
-        </SummaryWrapper>
+        <InfoSummaryWrapper>
+          <InfoSummary>ข้อมูลผู้ป่วยอยู่ในประเทศไทย</InfoSummary>
+          <SummaryWrapper>
+            <Summary />
+          </SummaryWrapper>
+        </InfoSummaryWrapper>
         <Suspense fallback={<div />}>
           <LazyNews />
         </Suspense>

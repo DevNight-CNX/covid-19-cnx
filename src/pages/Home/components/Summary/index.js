@@ -57,16 +57,18 @@ const SummaryItemDefaultProps = {
 };
 const SummaryItem = ({ title, icon, value, note }) => {
   return (
-    <SummaryItemWrapper>
-      <Title>
-        {title}
-        <Note>{note}</Note>
-      </Title>
+    <>
+      <SummaryItemWrapper>
+        <Title>
+          {title}
+          <Note>{note}</Note>
+        </Title>
 
-      <ValueSection icon={icon}>
-        <Value>{value}</Value>
-      </ValueSection>
-    </SummaryItemWrapper>
+        <ValueSection icon={icon}>
+          <Value>{value}</Value>
+        </ValueSection>
+      </SummaryItemWrapper>
+    </>
   );
 };
 SummaryItem.propTypes = SummaryItemPropTypes;
