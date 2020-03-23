@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import FakeNewCount from 'pages/Report/FakeNews/FakeNewCount';
 import Explanation from 'pages/Report/FakeNews/Explanation';
+import ReliableReportNews from 'pages/Home/components/ReliableReport';
 
 const Wrapper = styled.div`
   display: grid;
@@ -12,6 +13,7 @@ const Wrapper = styled.div`
 const ReliableReport = () => {
   return (
     <Wrapper>
+      <ReliableReportNews />
       <FakeNewCount />
       <Explanation />
     </Wrapper>
