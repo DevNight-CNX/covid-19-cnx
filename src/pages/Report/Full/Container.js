@@ -51,8 +51,6 @@ const Container = () => {
               />
             );
           });
-    } else {
-      return [];
     }
   };
 
