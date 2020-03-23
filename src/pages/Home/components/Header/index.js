@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { getAllSummary } from 'services/summary';
+import moment from 'moment';
 
 const Headline = styled.h1`
   ${({ theme }) => theme.typography.subtitle()}
@@ -20,10 +22,22 @@ const Notice = styled.p`
 `;
 
 const Header = () => {
+  const [time, setTime] = useState('');
+
+  useEffect(() => {
+    getAllSummary().then(res =>
+      setTime(
+        moment(res.เพิ่มวันที่, 'DD/MM/YYYY')
+          .startOf('day')
+          .fromNow()
+      )
+    );
+  }, []);
+
   return (
     <>
       <Headline>รายงานสถานการณ์ โควิด-19 ณ จังหวัดเชียงใหม่</Headline>
-      <LastUpdateStatus>อัพเดทข้อมูลล่าสุด 6 ชม ที่แล้ว</LastUpdateStatus>
+      <LastUpdateStatus>{`อัพเดทข้อมูลล่าสุด ${time}`}</LastUpdateStatus>
       <Notice>
         ข้อมูลในเว็บไซต์จะถูกจำกัดในพื้นที่จังหวัดเชียงใหม่เท่านั้น
       </Notice>

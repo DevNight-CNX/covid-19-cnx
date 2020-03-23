@@ -34,6 +34,8 @@ export const REPORT = {
   DISLIKE: 'REPORT_DISLIKE'
 };
 
+export const SUMMARY = 'SUMMARY';
+
 apiUrlProvider.set(GET_NEWS, '/news', 'https://demo6738459.mockable.io/');
 apiUrlProvider.set(GET_NEWS_BY_ID, '/news/:id');
 apiUrlProvider.set(AUTHENTICATION, '/authen');
@@ -56,5 +58,7 @@ apiUrlProvider.set(REPORT.DISLIKE, '/report/:id/dislike');
 apiUrlProvider.set(REPORT.UNLIKE, '/report/:id/unlike');
 apiUrlProvider.set(GET_REPORTS, '/report');
 apiUrlProvider.set(GET_REPORT_BY_ID, '/report/:id');
+
+apiUrlProvider.set(SUMMARY, '/summary');
 
 export default apiUrlProvider;
