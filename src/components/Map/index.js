@@ -94,6 +94,8 @@ const Map = () => {
       return;
     }
 
+    console.log('news', news);
+
     const map = mapRef.current;
 
     const infowindow = infoWindowRef.current;
