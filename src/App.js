@@ -10,6 +10,7 @@ import { Report as ReportProvider } from 'contexts/report.context';
 import { News as NewsProvider } from 'contexts/news.context';
 import 'firebase/auth';
 import 'firebase/messaging';
+import 'firebase/firestore';
 import GlobalStyled from './GlobalStyled';
 import theme from './styles/theme';
 import Router from './Router';

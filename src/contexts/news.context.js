@@ -1,7 +1,18 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import useFetch from 'utils/useFetch';
-import { getNews } from 'services/data';
+import useFirestore from 'utils/useFirestore';
+
+const parseNews = item => {
+  return {
+    time: item.time,
+    newsLink: item.news_links,
+    newsId: item.news_id,
+    location: item.location,
+    title: item.title,
+    id: item.id,
+    unknownLocation: item.unknown_location
+  };
+};
 
 const NewsContext = createContext();
 
@@ -20,7 +31,10 @@ const NewsPropTypes = {
 };
 
 const News = ({ children }) => {
-  const { data: news, loading } = useFetch(() => getNews(), null, []);
+  const { data: news, loading } = useFirestore(
+    db => db.collection('news'),
+    parseNews
+  );
 
   return (
     <NewsProvider

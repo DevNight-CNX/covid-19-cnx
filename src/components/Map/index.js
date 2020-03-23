@@ -2,8 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { renderToString } from 'react-dom/server';
 import styled from 'styled-components';
 import { useNews } from 'contexts/news.context';
-import useFetch from 'utils/useFetch';
-import { getCases } from 'services/case';
+import useFirestore from 'utils/useFirestore';
 import rippleIcon from './assets/ripple.svg';
 import newsIcon from './assets/news.svg';
 import mapStyles from './mapStyles';
@@ -21,9 +20,11 @@ const MapContainer = styled.div`
 const Map = () => {
   const mapRef = useRef(null);
   const infoWindowRef = useRef(null);
-  const { data: cases, loading } = useFetch(() => getCases(), null, []);
+
   const [visible, setVisible] = useState(false);
   const { news, newsLoading } = useNews();
+
+  const { data: cases, loading } = useFirestore(db => db.collection('cases'));
 
   useEffect(() => {
     const map = new window.google.maps.Map(document.getElementById('map'), {
@@ -61,6 +62,8 @@ const Map = () => {
 
     const infowindow = infoWindowRef.current;
 
+    const markers = [];
+
     cases.forEach(caseItem => {
       const coords = caseItem.location;
       const latLng = new window.google.maps.LatLng(coords.lat, coords.lng);
@@ -71,11 +74,19 @@ const Map = () => {
         icon: rippleIcon
       });
 
+      markers.push(marker);
+
       marker.addListener('click', function() {
         infowindow.setContent(renderToString(<CasePopup data={caseItem} />));
         infowindow.open(map, marker);
       });
     });
+
+    return () => {
+      markers.forEach(marker => {
+        marker.setMap(null);
+      });
+    };
   }, [loading, cases]);
 
   useEffect(() => {
@@ -87,7 +98,7 @@ const Map = () => {
 
     const infowindow = infoWindowRef.current;
 
-    console.log('news', news);
+    const markers = [];
 
     news.forEach(newsItem => {
       const coords = newsItem.location;
@@ -98,11 +109,19 @@ const Map = () => {
         icon: newsIcon
       });
 
+      markers.push(marker);
+
       marker.addListener('click', function() {
         infowindow.setContent(renderToString(<NewsPopup data={newsItem} />));
         infowindow.open(map, marker);
       });
     });
+
+    return () => {
+      markers.forEach(marker => {
+        marker.setMap(null);
+      });
+    };
   }, [newsLoading, news]);
 
   const handleOk = () => {
