@@ -3,12 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Typography from 'components/Typography';
 import SubmitReportButton from 'components/SubmitReportButton';
 import Button from 'components/Button';
-import {
-  Wrapper,
-  ButtonsWrapper,
-  WrapperCards,
-  EmptyState
-} from './index.view';
+import { Wrapper, ButtonsWrapper, WrapperCards } from './index.view';
 import eventTracker from 'utils/eventTracker';
 import ReliableReportNews from '../ReliableReport';
 import { useReport } from 'contexts/report.context';
@@ -25,17 +20,7 @@ const News = () => {
         ข่าวน่าเชื่อถือจากชุมชน
       </Typography>
       <WrapperCards>
-        {fetching ? (
-          <CardsLoading rows={2} />
-        ) : (
-          <>
-            {reliableReports.length ? (
-              <ReliableReportNews />
-            ) : (
-              <EmptyState>ไม่มีข้อมูล</EmptyState>
-            )}
-          </>
-        )}
+        {fetching ? <CardsLoading rows={2} /> : <ReliableReportNews />}
       </WrapperCards>
 
       <ButtonsWrapper>
