@@ -82,7 +82,9 @@ const LikeManager = ({ reportId, render, likeList = [], dislikeList = [] }) => {
     likeCount: getLikeCount(),
     dislikeCount: getDisLikeCount(),
     onLikeClick,
-    onDislikeClick
+    onDislikeClick,
+    like: LikeManager.status.like,
+    dislike: LikeManager.status.dislike
   });
 };
 

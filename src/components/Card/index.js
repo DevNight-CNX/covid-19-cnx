@@ -91,17 +91,19 @@ const CardCustom = ({
             dislikeCount,
             onLikeClick,
             onDislikeClick,
-            status
+            status,
+            like,
+            dislike
           }) => (
             <ActionWrapper>
               <Icons
-                src={status === 'LIKE' ? actionLike : likeIcon}
+                src={status === like ? actionLike : likeIcon}
                 alt="likeIcon"
                 onClick={() => onLikeClick()}
               />
               <CountWrapper>{likeCount}</CountWrapper>
               <Icons
-                src={status === 'DISLIKE' ? actionDislike : dislikeIcon}
+                src={status === dislike ? actionDislike : dislikeIcon}
                 alt="dislikeIcon"
                 onClick={() => onDislikeClick()}
               />
