@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from 'components/Card';
+import styled from 'styled-components';
 import { useReport } from 'contexts/report.context';
 import Slider from 'react-slick';
 import { isEmpty } from 'lodash';
@@ -11,7 +12,7 @@ const ReliableReportNews = () => {
   const settings = {
     className: '',
     dots: false,
-    fade: true,
+    fade: false,
     infinite: true,
     slidesToScroll: 1,
     adaptiveHeight: true,
@@ -20,7 +21,7 @@ const ReliableReportNews = () => {
   };
 
   return (
-    <Slider {...settings}>
+    <SliderCustom {...settings}>
       {reliableReports.map((report, i) => {
         if (i % 2) return null;
         const secReport = reliableReports[i + 1];
@@ -63,8 +64,15 @@ const ReliableReportNews = () => {
           </div>
         );
       })}
-    </Slider>
+    </SliderCustom>
   );
 };
 
 export default ReliableReportNews;
+
+const SliderCustom = styled(Slider)`
+  && {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+`;
