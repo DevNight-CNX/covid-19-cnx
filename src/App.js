@@ -36,6 +36,8 @@ export const FirebaseContext = createContext();
 
 const store = getStore();
 
+firebase.analytics();
+
 const App = () => {
   return (
     <Provider store={store}>
