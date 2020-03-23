@@ -15,7 +15,8 @@ export const getNews = id => {
           newsId: response.news_id,
           location: response.location,
           title: response.title,
-          id: response.id
+          id: response.id,
+          logo: response.logo
         }
       };
     });
@@ -29,7 +30,8 @@ export const getNews = id => {
           location: rawData.location,
           title: rawData.title,
           id: rawData.id,
-          unknownLocation: rawData.unknown_location
+          unknownLocation: rawData.unknown_location,
+          logo: rawData.logo
         };
       });
     });
