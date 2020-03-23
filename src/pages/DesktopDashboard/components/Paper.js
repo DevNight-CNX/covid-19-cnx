@@ -7,7 +7,8 @@ const Wrapper = styled.div`
 `;
 
 const Container = styled.div`
-  background: ${({ noBg }) => (noBg ? 'transparent' : '#ffffff')};
+  background: ${({ noBg, theme }) =>
+    noBg ? 'transparent' : theme.color.white};
   border-radius: 4px;
   overflow: hidden;
 `;
