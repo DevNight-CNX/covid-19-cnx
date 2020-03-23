@@ -85,7 +85,12 @@ const CardCustom = ({
               <LocationWrapper>
                 {location ? (
                   <>
-                    <Icons src={locationIcon} /> {address}
+                    <Icons
+                      src={locationIcon}
+                      alt="locationIcon"
+                      style={{ marginRight: 10 }}
+                    />
+                    {address}
                   </>
                 ) : null}
               </LocationWrapper>
