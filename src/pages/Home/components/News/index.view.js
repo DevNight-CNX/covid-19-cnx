@@ -17,4 +17,10 @@ const ButtonsWrapper = styled.div`
 const WrapperCards = styled.div`
   margin-top: 15px;
 `;
-export { Wrapper, ButtonsWrapper, WrapperCards };
+
+const EmptyState = styled.div`
+  height: 200px;
+  width: 100%;
+`;
+
+export { Wrapper, ButtonsWrapper, WrapperCards, EmptyState };
