@@ -37,7 +37,10 @@ const Router = () => {
   } else {
     return (
       <Switch>
-        <Route path="/home" component={DesktopPage} />
+        <Route
+          path={['/home', '/submit', '/report/:id', '/report']}
+          component={DesktopPage}
+        />
         <Route path="/policy" component={Policy} />
         <Route path="/" component={Landing} />
       </Switch>

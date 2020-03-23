@@ -17,7 +17,9 @@ class ScrollToTop extends Component {
   componentDidUpdate(prevProps) {
     const { isEnabled, location } = this.props;
     if (location !== prevProps.location && isEnabled) {
-      window.scrollTo(0, 0);
+      if (window.innerWidth <= 1100) {
+        window.scrollTo(0, 0);
+      }
     }
   }
 

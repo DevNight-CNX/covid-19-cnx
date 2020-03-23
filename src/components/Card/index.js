@@ -59,7 +59,7 @@ const CardCustom = ({
           onClick(report.id);
           eventTracker({ type: 'onClickedCard', id: report.id });
         }}
-        cover={image ? <img src={image} alt="example" /> : null}
+        cover={image ? <img src={image} alt={content} /> : null}
       >
         <Content>
           <Avatar src={avatar} />
@@ -138,5 +138,7 @@ CardsLoading.propTypes = {
 CardsLoading.defaultProps = {
   rows: 3
 };
-export default CardCustom;
+
 export { CardsLoading };
+
+export default CardCustom;
