@@ -20,6 +20,7 @@ import {
   LikeManagerWrapper
 } from './index.view';
 import eventTracker from 'utils/eventTracker';
+import { withRouter } from 'react-router-dom';
 
 const CardCustomPropTypes = {
   image: PropTypes.string,
@@ -34,7 +35,8 @@ const CardCustomPropTypes = {
   location: PropTypes.array,
   report: PropTypes.object,
   onClick: PropTypes.func,
-  address: PropTypes.string
+  address: PropTypes.string,
+  match: PropTypes.object
 };
 const CardCustomDefaultProps = {
   report: {}
@@ -52,7 +54,8 @@ const CardCustom = ({
   location,
   onClick,
   report,
-  address
+  address,
+  match
 }) => {
   return (
     <>
@@ -62,6 +65,7 @@ const CardCustom = ({
           eventTracker({ type: 'onClickedCard', id: report.id });
         }}
         cover={image ? <img src={image} alt={content} /> : null}
+        path={match.path}
       >
         <Content>
           <div>
@@ -156,4 +160,4 @@ CardsLoading.defaultProps = {
 
 export { CardsLoading };
 
-export default CardCustom;
+export default withRouter(CardCustom);
