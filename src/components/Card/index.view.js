@@ -22,6 +22,8 @@ const CardStyled = styled(Card)`
     background-color: ${({ theme }) => theme.color.neutralColor.background};
   }
   .ant-card-cover {
+    margin-right: 0px;
+    margin-left: 0px;
     ${({ isFull }) =>
       isFull &&
       css`
