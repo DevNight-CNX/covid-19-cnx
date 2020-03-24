@@ -7,11 +7,8 @@ import rippleIcon from './assets/ripple.svg';
 import newsIcon from './assets/news.svg';
 import mapStyles from './mapStyles';
 import { CasePopup, NewsPopup } from './components/InfoPopup';
-import { ReactComponent as ArenaIcon } from './assets/Arenaicon.svg';
-import { Button } from 'antd';
 import eventTracker from 'utils/eventTracker';
 import IconDetail from './components/IconDetail';
-import { Modal, ButtonCloseModal } from 'components/Modal';
 
 const MapContainer = styled.div`
   width: 100%;
@@ -101,8 +98,6 @@ const Map = () => {
       return;
     }
 
-    console.log('news', news);
-
     const map = mapRef.current;
 
     const infowindow = infoWindowRef.current;
@@ -133,74 +128,12 @@ const Map = () => {
     };
   }, [newsLoading, news]);
 
-  const handleOk = () => {
-    setVisible(false);
-  };
-
-  const onClickButton = () => {
-    setVisible(true);
-    eventTracker({ type: 'openDangerAreaModal', id: 'openDangerAreaModal' });
-  };
-
   return (
     <>
       <MapContainer id="map" />
-      <ModalButtonWrapper>
-        <ButtonModal icon={<IconArena />} onClick={() => onClickButton()}>
-          พื้นที่เสี่ยง
-        </ButtonModal>
-      </ModalButtonWrapper>
       <IconDetail />
-      <Modal
-        title="พื้นที่เสี่ยง"
-        visible={visible}
-        onOk={handleOk}
-        cancelButtonProps={{ style: { display: 'none' } }}
-        centered
-        footer={[
-          <ButtonCloseModal key="submit" onClick={() => setVisible(false)}>
-            ปิด
-          </ButtonCloseModal>
-        ]}
-      >
-        <p>
-          ข้อมูลพื้นที่เสี่ยงมาจากการยืนยันแหล่งข่าวของคนในพื้นที่จังหวัดเชียงใหม่
-          และจังหวัดใกล้เคียง
-          โดยจะถูกโหวตจากความน่าเชื่อถือจากคนในพื้นที่ด้วยกันเองเพื่อนำมาแสดงบนแผนที่จังหวัดเชียงใหม่
-        </p>
-      </Modal>
     </>
   );
 };
 
 export default Map;
-
-const ModalButtonWrapper = styled.div`
-  bottom: 35px;
-  left: 31px;
-  position: absolute;
-`;
-
-const ButtonModal = styled(Button)`
-  && {
-    ${({ theme }) => theme.typography.link()};
-    color: ${({ theme }) => theme.color.neutralColor.black};
-    max-width: 94px;
-    width: 100%;
-    height: 35px;
-    background: #ffffff;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-    border: none;
-    padding: 6px;
-    display: flex;
-    align-items: center;
-
-    :focus {
-      color: ${({ theme }) => theme.color.neutralColor.black};
-    }
-  }
-`;
-
-const IconArena = styled(ArenaIcon)`
-  margin-right: 10px;
-`;
