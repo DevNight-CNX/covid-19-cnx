@@ -88,7 +88,7 @@ const CountWrapper = styled.span`
 const TagLinkWrapper = styled.div`
   ${({ theme }) => theme.typography.link()};
   color: ${({ theme }) => theme.color.logicColor.info};
-  margin: 11px 11px 7px 16px;
+  margin: 11px 11px 0px 16px;
   max-width: 232px;
   width: 100%;
   overflow: hidden;
@@ -96,6 +96,7 @@ const TagLinkWrapper = styled.div`
 `;
 
 const LocationWrapper = styled.div`
+  margin-top: 7px;
   ${({ theme }) => theme.typography.link()};
   color: ${({ theme }) => theme.color.neutralColor.lightGray300};
   margin-left: 16px;
