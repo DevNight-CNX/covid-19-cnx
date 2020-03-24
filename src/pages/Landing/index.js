@@ -1,12 +1,13 @@
 import React from 'react';
-import Countdown from './CounterTimer';
+import CountDown from 'reactjs-countdown';
+import './counter.css';
 
 const Landing = () => {
   return (
-    <Countdown
-      timeTillDate="3 23 2020, 9:00 am"
-      timeFormat="MM DD YYYY, h:mm a"
-    />
+    <div className="content-countdown">
+      <h1>Covid-19-CNX</h1>
+      <CountDown deadline={'24 Mar 2020 14:00:00 GMT'} />
+    </div>
   );
 };
 
