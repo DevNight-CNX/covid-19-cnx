@@ -7,6 +7,10 @@ const Wrapper = styled.div`
   max-width: 680px;
   width: 100%;
   margin: 15px auto 36px;
+
+  @media only screen and (max-width: 768px) {
+    margin-top: 71px;
+  }
 `;
 
 const FullReport = () => {
