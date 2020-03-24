@@ -47,9 +47,12 @@ const CardCustomPropTypes = {
   match: PropTypes.object,
   isFull: PropTypes.bool
 };
+
 const CardCustomDefaultProps = {
-  report: {}
+  report: {},
+  onClick: () => {}
 };
+
 const CardCustom = ({
   image,
   another,
