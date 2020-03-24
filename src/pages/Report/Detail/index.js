@@ -8,11 +8,15 @@ import { GoBackHeader } from 'components/BarNavigation/navigation';
 const Container = styled.div`
   max-width: 680px;
   width: 100%;
-  margin: 15px auto 36px;
+  margin: 0px auto 36px;
 
   @media only screen and (max-width: 1100px) {
-    margin-top: 71px;
+    margin-top: 56px;
   }
+`;
+
+const LoadingWrapper = styled.div`
+  padding: 8px;
 `;
 
 const DetailPropTypes = { match: PropTypes.object };
@@ -61,7 +65,9 @@ const Detail = ({ match }) => {
             />
           </>
         ) : (
-          <CardsLoading rows={1} />
+          <LoadingWrapper>
+            <CardsLoading rows={1} />
+          </LoadingWrapper>
         )}
       </Container>
     </>
