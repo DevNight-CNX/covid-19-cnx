@@ -33,7 +33,7 @@ const Explanation = () => {
           <a href="mailto:cnx.democracy@gmail.com"> cnx.democracy@gmail.com</a>
         </p>
         <p>
-          ความรู้สู้ Covin-19 <br />
+          ความรู้สู้ COVID-19 <br />
           <a href="https://ddc.moph.go.th" target="_blank">
             https://ddc.moph.go.th
           </a>
