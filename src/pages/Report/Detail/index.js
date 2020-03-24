@@ -10,7 +10,7 @@ const Container = styled.div`
   width: 100%;
   margin: 15px auto 36px;
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1100px) {
     margin-top: 71px;
   }
 `;
