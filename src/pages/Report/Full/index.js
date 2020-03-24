@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 const FullReport = () => {
   return (
     <>
-      <GoBackHeader mxwidth="680px" />
+      <GoBackHeader mxwidth="680px" link={'/home'} />
       <Wrapper>
         <Container />
       </Wrapper>

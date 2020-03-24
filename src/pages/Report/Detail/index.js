@@ -35,7 +35,7 @@ const Detail = ({ match }) => {
 
   return (
     <>
-      <GoBackHeader mxwidth="680px" />
+      <GoBackHeader mxwidth="680px" link={'/report'} />
       <Container>
         {report ? (
           <>
