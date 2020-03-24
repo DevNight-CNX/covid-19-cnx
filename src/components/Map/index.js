@@ -7,11 +7,11 @@ import rippleIcon from './assets/ripple.svg';
 import newsIcon from './assets/news.svg';
 import mapStyles from './mapStyles';
 import { CasePopup, NewsPopup } from './components/InfoPopup';
-import Buttons from 'components/Button';
 import { ReactComponent as ArenaIcon } from './assets/Arenaicon.svg';
-import { Modal, Button } from 'antd';
+import { Button } from 'antd';
 import eventTracker from 'utils/eventTracker';
 import IconDetail from './components/IconDetail';
+import { Modal, ButtonCloseModal } from 'components/Modal';
 
 const MapContainer = styled.div`
   width: 100%;
@@ -151,7 +151,7 @@ const Map = () => {
         </ButtonModal>
       </ModalButtonWrapper>
       <IconDetail />
-      <ModalCustom
+      <Modal
         title="พื้นที่เสี่ยง"
         visible={visible}
         onOk={handleOk}
@@ -168,7 +168,7 @@ const Map = () => {
           และจังหวัดใกล้เคียง
           โดยจะถูกโหวตจากความน่าเชื่อถือจากคนในพื้นที่ด้วยกันเองเพื่อนำมาแสดงบนแผนที่จังหวัดเชียงใหม่
         </p>
-      </ModalCustom>
+      </Modal>
     </>
   );
 };
@@ -203,37 +203,4 @@ const ButtonModal = styled(Button)`
 
 const IconArena = styled(ArenaIcon)`
   margin-right: 10px;
-`;
-
-const ModalCustom = styled(Modal)`
-  p {
-    ${({ theme }) => theme.typography.body()};
-    color: ${({ theme }) => theme.color.neutralColor.black};
-    margin: 0;
-  }
-  .ant-modal-content {
-    .ant-modal-close {
-      display: none;
-    }
-    .ant-modal-header {
-      height: 57px;
-      display: flex;
-      align-items: center;
-      padding: 21px 30px 15px;
-      .ant-modal-title {
-        ${({ theme }) => theme.typography.body()};
-        color: ${({ theme }) => theme.color.neutralColor.black};
-      }
-    }
-    .ant-modal-body {
-      padding: 13px 32px 15px;
-    }
-  }
-`;
-
-const ButtonCloseModal = styled(Buttons)`
-  && {
-    width: 87px;
-    height: 36px;
-  }
 `;
