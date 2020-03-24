@@ -27,7 +27,7 @@ const Header = () => {
   useEffect(() => {
     getAllSummary().then(res =>
       setTime(
-        moment(res.เพิ่มวันที่, 'DD/MM/YYYY')
+        moment(res['เพิ่มวันที่'], 'DD/MM/YYYY')
           .startOf('day')
           .fromNow()
       )
