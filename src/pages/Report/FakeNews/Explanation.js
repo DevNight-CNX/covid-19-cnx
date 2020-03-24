@@ -30,7 +30,7 @@ const Explanation = () => {
         </p>
         <p>
           มีข้อเสนอแนะ ติดต่อได้ที่ <br />
-          <a href="mailto:cnx.democracy@gmail.com"> cnx.democracy@gmail.com</a>
+          <a href="mailto:covid19.cnx@gmail.com"> covid19.cnx@gmail.com</a>
         </p>
         <p>
           ความรู้สู้ COVID-19 <br />
