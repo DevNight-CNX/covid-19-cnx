@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import TextareaAutosize from 'react-textarea-autosize';
@@ -133,9 +133,6 @@ export const AutoComplete = ({
   onInputChange,
   isFetching
 }) => {
-  useEffect(() => {
-    console.log(isFetching);
-  }, [isFetching]);
   return (
     <Downshift
       onChange={selection => {
