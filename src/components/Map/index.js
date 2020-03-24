@@ -11,6 +11,7 @@ import Buttons from 'components/Button';
 import { ReactComponent as ArenaIcon } from './assets/Arenaicon.svg';
 import { Modal, Button } from 'antd';
 import eventTracker from 'utils/eventTracker';
+import IconDetail from './components/IconDetail';
 
 const MapContainer = styled.div`
   width: 100%;
@@ -149,6 +150,7 @@ const Map = () => {
           พื้นที่เสี่ยง
         </ButtonModal>
       </ModalButtonWrapper>
+      <IconDetail />
       <ModalCustom
         title="พื้นที่เสี่ยง"
         visible={visible}
