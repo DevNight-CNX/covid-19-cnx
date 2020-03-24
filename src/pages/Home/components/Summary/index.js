@@ -29,7 +29,11 @@ const Note = styled.span`
   margin: 0;
   margin-left: 8px;
   @media screen and (max-width: 600px) {
+    margin-top:  ${({ note }) => (note ? `0px` : `13px`)};
     margin-left: 0px;
+  }
+  @media screen and (max-width: 397px) {
+    margin-top:  ${({ note }) => (note ? `0px` : `26px`)};
   }
 `;
 
@@ -64,7 +68,7 @@ const SummaryItem = ({ title, icon, value, note }) => {
       <SummaryItemWrapper>
         <Title>
           {title}
-          <Note>{note}</Note>
+          <Note note={note}>{note}</Note>
         </Title>
         <ValueSection icon={icon}>
           <Value>{value}</Value>
@@ -88,15 +92,16 @@ const Summary = () => {
         note={data['โน๊ตผู้ติดเชื้อ']}
       />
       <SummaryItem
-        title="รักษาอยู่ใน รพ."
-        icon={hospitalIcon}
-        value={data['กำลังรักษา']}
-      />
-      <SummaryItem title="หายแล้ว" icon={userIcon} value={data['หายแล้ว']} />
-      <SummaryItem
         title="เสียชีวิต"
         icon={deadIcon}
         value={data['เสียชีวิต']}
+      />
+      <SummaryItem title="หายแล้ว" icon={userIcon} value={data['หายแล้ว']} />
+
+      <SummaryItem
+        title="รักษาอยู่ใน รพ."
+        icon={hospitalIcon}
+        value={data['กำลังรักษา']}
       />
     </>
   );

@@ -11,7 +11,9 @@ ExplanationWrapper.Title = styled.div`
   color: ${({ theme }) => theme.color.neutralColor.black};
   margin-bottom: 8px;
 `;
-ExplanationWrapper.Content = styled.div``;
+ExplanationWrapper.Content = styled.div`
+  color: ${({ theme }) => theme.color.neutralColor.black};
+`;
 
 const Explanation = () => {
   return (
