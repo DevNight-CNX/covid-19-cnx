@@ -24,7 +24,7 @@ const NewsContainer = styled.div`
 `;
 
 const SummaryWrapper = styled.div`
-  padding: 16px 24px;
+  padding-top: 8px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 16px 32px;
@@ -35,6 +35,17 @@ const FakeNewsReportWrapper = styled.div`
   margin-top: 3px;
 `;
 
+const InfoSummaryWrapper = styled.div`
+  display: grid;
+  padding: 16px 24px;
+`;
+
+const InfoSummary = styled.p`
+  ${({ theme }) => theme.typography.body()};
+  color: ${({ theme }) => theme.color.neutralColor.black};
+  margin: 0;
+`;
+
 export {
   Wrapper,
   Container,
@@ -42,5 +53,7 @@ export {
   HeaderWrapper,
   NewsContainer,
   SummaryWrapper,
-  FakeNewsReportWrapper
+  FakeNewsReportWrapper,
+  InfoSummaryWrapper,
+  InfoSummary
 };
