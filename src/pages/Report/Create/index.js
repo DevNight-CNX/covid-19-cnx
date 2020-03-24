@@ -95,7 +95,7 @@ const CreateReport = () => {
 
   return (
     <>
-      <CancelHeader label="รายงานข่าว" mxwidth="680px" link={'/home'} />
+      <CancelHeader label="รายงานข่าว" mxwidth="680px" link={'/'} />
       <Wrapper>
         <Form
           onSubmit={onSubmit}
