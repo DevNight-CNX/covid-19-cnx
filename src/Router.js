@@ -8,6 +8,7 @@ import DetailReport from './pages/Report/Detail';
 import Policy from './pages/Policy';
 import Home from './pages/Home';
 import DesktopPage from './pages/DesktopDashboard';
+import ErrorPage from 'pages/DesktopDashboard/pageError';
 
 const Router = () => {
   const history = useHistory();
@@ -42,6 +43,7 @@ const Router = () => {
           component={DesktopPage}
         />
         <Route path="/policy" component={Policy} />
+        <Route path="/error" component={ErrorPage} />
         <Route path="/" component={Landing} />
       </Switch>
     );
