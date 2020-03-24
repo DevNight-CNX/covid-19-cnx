@@ -29,7 +29,6 @@ const AuthManager = ({ children }) => {
             setIsLoggedIn(true);
             setToken(idToken);
             const decoded = jwt.decode(idToken, { complete: true });
-            console.log('decoded', decoded);
             setUserId(decoded.payload.user_id);
           });
       } else {
