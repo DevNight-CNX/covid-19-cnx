@@ -1,6 +1,5 @@
 import React from 'react';
 import CountDown from 'reactjs-countdown';
-import moment from 'moment';
 import './counter.css';
 
 const Landing = () => {
