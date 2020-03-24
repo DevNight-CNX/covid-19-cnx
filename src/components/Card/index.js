@@ -22,6 +22,14 @@ import {
 import eventTracker from 'utils/eventTracker';
 import { withRouter } from 'react-router-dom';
 
+const getSafeLink = url => {
+  if (!/^https?:\/\//i.test(url)) {
+    return 'https://' + url;
+  } else {
+    return url;
+  }
+};
+
 const CardCustomPropTypes = {
   image: PropTypes.string,
   another: PropTypes.string,
@@ -82,7 +90,11 @@ const CardCustom = ({
             </Container>
             {reference ? (
               <TagLinkWrapper>
-                <a href={`${reference}`} target="_blank">
+                <a
+                  href={`${getSafeLink(reference)}`}
+                  target="_blank"
+                  onClick={event => event.stopPropagation()}
+                >
                   {reference}
                 </a>
               </TagLinkWrapper>
