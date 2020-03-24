@@ -15,6 +15,10 @@ const Container = styled.div`
   }
 `;
 
+const LoadingWrapper = styled.div`
+  padding: 8px;
+`;
+
 const DetailPropTypes = { match: PropTypes.object };
 
 const Detail = ({ match }) => {
@@ -61,7 +65,9 @@ const Detail = ({ match }) => {
             />
           </>
         ) : (
-          <CardsLoading rows={1} />
+          <LoadingWrapper>
+            <CardsLoading rows={1} />
+          </LoadingWrapper>
         )}
       </Container>
     </>
