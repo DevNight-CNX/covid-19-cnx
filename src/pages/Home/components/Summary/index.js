@@ -92,15 +92,16 @@ const Summary = () => {
         note={data['โน๊ตผู้ติดเชื้อ']}
       />
       <SummaryItem
-        title="รักษาอยู่ใน รพ."
-        icon={hospitalIcon}
-        value={data['กำลังรักษา']}
-      />
-      <SummaryItem title="หายแล้ว" icon={userIcon} value={data['หายแล้ว']} />
-      <SummaryItem
         title="เสียชีวิต"
         icon={deadIcon}
         value={data['เสียชีวิต']}
+      />
+      <SummaryItem title="หายแล้ว" icon={userIcon} value={data['หายแล้ว']} />
+
+      <SummaryItem
+        title="รักษาอยู่ใน รพ."
+        icon={hospitalIcon}
+        value={data['กำลังรักษา']}
       />
     </>
   );
