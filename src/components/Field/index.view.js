@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import TextareaAutosize from 'react-textarea-autosize';
 import Downshift from 'downshift';
+import { Skeleton as AntdSkeleton } from 'antd';
 
 export const FieldLabel = styled.label`
   ${({ theme }) => theme.typography.content()}
@@ -122,10 +123,16 @@ export const Textarea = styled(TextareaAutosize)`
 const AutoCompletePropTypes = {
   items: PropTypes.array,
   onChange: PropTypes.func,
-  onInputChange: PropTypes.func
+  onInputChange: PropTypes.func,
+  isFetching: PropTypes.bool
 };
 
-export const AutoComplete = ({ items, onChange, onInputChange }) => {
+export const AutoComplete = ({
+  items,
+  onChange,
+  onInputChange,
+  isFetching
+}) => {
   return (
     <Downshift
       onChange={selection => {
@@ -149,19 +156,28 @@ export const AutoComplete = ({ items, onChange, onInputChange }) => {
             <FieldInput {...getInputProps()} />
             <ListWrapper {...getMenuProps()}>
               {isOpen
-                ? items.map((item, index) => (
-                    <List
-                      {...getItemProps({
-                        key: item.id,
-                        index,
-                        item,
-                        isActive: selectedItem === item,
-                        isHightlighted: highlightedIndex === index
-                      })}
-                    >
-                      {item.name}
-                    </List>
-                  ))
+                ? items.map((item, index) => {
+                    return isFetching ? (
+                      <Skeleton
+                        active
+                        title={false}
+                        paragraph={{ rows: 4 }}
+                        size="small"
+                      />
+                    ) : (
+                      <List
+                        {...getItemProps({
+                          key: item.id,
+                          index,
+                          item,
+                          isActive: selectedItem === item,
+                          isHightlighted: highlightedIndex === index
+                        })}
+                      >
+                        {item.name}
+                      </List>
+                    );
+                  })
                 : null}
             </ListWrapper>
           </AutoComplete.Wrapper>
@@ -205,4 +221,16 @@ const List = styled.div`
         theme.color.alternativeColors.blueRibbonLight};
       color: ${({ theme }) => theme.color.neutralColor.white};
     `}
+  cursor: pointer;
+`;
+
+const Skeleton = styled(AntdSkeleton)`
+  .ant-skeleton-paragraph {
+    padding: 16px !important;
+    padding-bottom: 0px !important;
+    margin: 0px !important;
+    li:nth-last-child(n) {
+      width: 100% !important;
+    }
+  }
 `;

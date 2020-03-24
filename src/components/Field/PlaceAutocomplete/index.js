@@ -9,6 +9,7 @@ const PlaceAutocompletePropTypes = {
 
 const PlaceAutocomplete = ({ onChange }) => {
   const [places, setPlaces] = useState([]);
+  const [isFetching, setIsFetching] = useState(false);
   const serviceRef = useRef();
 
   useEffect(() => {
@@ -19,6 +20,8 @@ const PlaceAutocomplete = ({ onChange }) => {
   }, []);
 
   const [debouncedCallback] = useDebouncedCallback(address => {
+    if (!address) setIsFetching(false);
+
     const request = {
       query: address,
       radius: 150000,
@@ -27,6 +30,7 @@ const PlaceAutocomplete = ({ onChange }) => {
 
     serviceRef.current.textSearch(request, (results, status) => {
       if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+        setIsFetching(false);
         setPlaces(
           results.map(result => {
             return {
@@ -39,6 +43,18 @@ const PlaceAutocomplete = ({ onChange }) => {
             };
           })
         );
+      } else {
+        setIsFetching(false);
+        setPlaces([
+          {
+            name: 'ไม่พบข้อมูล',
+            location: {
+              lat: null,
+              lng: null
+            },
+            id: null
+          }
+        ]);
       }
     });
   }, 500);
@@ -51,7 +67,9 @@ const PlaceAutocomplete = ({ onChange }) => {
       }}
       onInputChange={inputValue => {
         debouncedCallback(inputValue);
+        setIsFetching(true);
       }}
+      isFetching={isFetching}
     />
   );
 };
