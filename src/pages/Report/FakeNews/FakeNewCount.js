@@ -13,6 +13,7 @@ const Wrapper = styled.div`
   position: relative;
   text-align: center;
   cursor: pointer;
+  border-radius: 4px;
 `;
 
 const FakeNewCount = () => {

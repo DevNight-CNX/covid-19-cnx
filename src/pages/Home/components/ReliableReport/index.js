@@ -19,7 +19,7 @@ const ReliableReportNews = ({ match }) => {
     infinite: true,
     slidesToScroll: 1,
     adaptiveHeight: true,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 5000
   };
 
@@ -134,5 +134,8 @@ const SliderCustom = styled(Slider)`
   && {
     display: grid;
     grid-template-columns: 1fr;
+    .slick-list {
+      border-radius: 4px;
+    }
   }
 `;

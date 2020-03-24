@@ -8,10 +8,12 @@ const Wrapper = styled.div`
   display: grid;
   grid-row-gap: 16px;
   grid-template-columns: 1fr;
+  border-radius: 4px;
 `;
 
 const ReliableReportNewsWrapper = styled.div`
   background-color: ${({ theme }) => theme.color.neutralColor.white};
+  border-radius: 4px;
 `;
 
 const ReliableReport = () => {
