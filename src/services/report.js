@@ -10,6 +10,8 @@ import apiUrlProvider, {
 const anonymousImage =
   'https://firebasestorage.googleapis.com/v0/b/covid-19-cnx/o/Anonymous%20Profile.svg?alt=media&token=ef63c155-ac35-4104-ab9a-fdcf5f27e289';
 
+const anonymousDisplayName = 'Anonymous';
+
 export const createReport = ({
   position,
   content,
@@ -75,7 +77,7 @@ export const getReportList = () => {
         image: res.image,
         avatar: res.reporter?.photoURL || anonymousImage,
         header: {
-          another: res.reporter?.displayName || 'Anonymous',
+          another: res.reporter?.displayName || anonymousDisplayName,
           date: res.created
         },
         location: res.location,
@@ -99,7 +101,7 @@ export const getReportById = id => {
         image: response.image,
         avatar: response.reporter?.photoURL || anonymousImage,
         header: {
-          another: response.reporter?.displayName || 'Anonymous',
+          another: response.reporter?.displayName || anonymousDisplayName,
           date: response.created
         },
         location: response.location,
