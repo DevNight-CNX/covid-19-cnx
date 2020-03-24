@@ -39,7 +39,7 @@ const Map = () => {
       mapTypeControl: false,
       fullscreenControl: false,
       streetViewControl: false,
-      gestureHandling: 'greedy',
+      gestureHandling: 'cooperative',
       restriction: {
         latLngBounds: {
           north: 19.370793,
