@@ -218,7 +218,7 @@ class UploadImageHandler extends Component {
       render,
       readOnly
     } = this.props;
-    const maxSize = maxSizePropInMb * 1048576;
+    const maxSize = maxSizePropInMb ? maxSizePropInMb * 1048576 : undefined;
     const dataTestidKey = 'data-testid';
 
     return (
