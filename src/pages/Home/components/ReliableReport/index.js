@@ -19,7 +19,7 @@ const ReliableReportNews = ({ match }) => {
     infinite: true,
     slidesToScroll: 1,
     adaptiveHeight: true,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 5000
   };
 
@@ -103,6 +103,7 @@ const EmptyWrapper = styled.div`
   align-items: center;
   ${({ theme }) => theme.typography.body()};
   background-color: ${({ theme }) => theme.color.neutralColor.white};
+  border-radius: 4px;
 `;
 
 const EmptyTitle = styled.div`
@@ -134,5 +135,8 @@ const SliderCustom = styled(Slider)`
   && {
     display: grid;
     grid-template-columns: 1fr;
+    .slick-list {
+      border-radius: 4px;
+    }
   }
 `;
