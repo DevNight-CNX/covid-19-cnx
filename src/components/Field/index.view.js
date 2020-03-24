@@ -150,14 +150,15 @@ export const AutoComplete = ({
         isOpen,
         highlightedIndex,
         selectedItem
-      }) => (
-        <div>
-          <AutoComplete.Wrapper>
-            <FieldInput {...getInputProps()} />
-            <ListWrapper {...getMenuProps()}>
-              {isOpen
-                ? items.map((item, index) => {
-                    return isFetching ? (
+      }) => {
+        return (
+          <div>
+            <AutoComplete.Wrapper>
+              <FieldInput {...getInputProps()} />
+              <ListWrapper {...getMenuProps()}>
+                {isOpen ? (
+                  <>
+                    {isFetching ? (
                       <Skeleton
                         active
                         title={false}
@@ -165,24 +166,29 @@ export const AutoComplete = ({
                         size="small"
                       />
                     ) : (
-                      <List
-                        {...getItemProps({
-                          key: item.id,
-                          index,
-                          item,
-                          isActive: selectedItem === item,
-                          isHightlighted: highlightedIndex === index
-                        })}
-                      >
-                        {item.name}
-                      </List>
-                    );
-                  })
-                : null}
-            </ListWrapper>
-          </AutoComplete.Wrapper>
-        </div>
-      )}
+                      items.map((item, index) => {
+                        return (
+                          <List
+                            {...getItemProps({
+                              key: item.id,
+                              index,
+                              item,
+                              isActive: selectedItem === item,
+                              isHightlighted: highlightedIndex === index
+                            })}
+                          >
+                            {item.name}
+                          </List>
+                        );
+                      })
+                    )}
+                  </>
+                ) : null}
+              </ListWrapper>
+            </AutoComplete.Wrapper>
+          </div>
+        );
+      }}
     </Downshift>
   );
 };

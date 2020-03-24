@@ -17,8 +17,9 @@ const Detail = ({ match }) => {
   const [report, setReport] = useState();
 
   useEffect(() => {
+    setReport();
     getReport();
-  }, []);
+  }, [match.params.id]);
 
   const getReport = () => {
     getReportById(match.params.id).then(res => {
