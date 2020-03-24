@@ -2,6 +2,7 @@ import React from 'react';
 import { useReport } from 'contexts/report.context';
 import { List } from 'antd';
 import CardCustom, { CardsLoading } from 'components/Card';
+import styled from 'styled-components';
 
 const Container = ({ isFull }) => {
   const { reports, viewReportDetail, fetching } = useReport();
@@ -56,7 +57,21 @@ const Container = ({ isFull }) => {
     }
   };
 
-  return <List>{fetching ? <CardsLoading /> : showReports()}</List>;
+  return (
+    <List>
+      {fetching ? (
+        <CardsLoadingWrapper>
+          <CardsLoading />
+        </CardsLoadingWrapper>
+      ) : (
+        showReports()
+      )}
+    </List>
+  );
 };
 
 export default Container;
+
+const CardsLoadingWrapper = styled.div`
+  padding: 16px;
+`;
