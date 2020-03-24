@@ -24,7 +24,7 @@ const NewsContainer = styled.div`
 `;
 
 const SummaryWrapper = styled.div`
-  padding-top: 16px;
+  padding-top: 8px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 16px 32px;

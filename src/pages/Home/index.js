@@ -33,7 +33,7 @@ const Home = () => {
           <NewsCarousel />
         </NewsContainer>
         <InfoSummaryWrapper>
-          <InfoSummary>ข้อมูลผู้ป่วยอยู่ในประเทศไทย</InfoSummary>
+          <InfoSummary>ข้อมูลผู้ป่วยในประเทศไทย</InfoSummary>
           <SummaryWrapper>
             <Summary />
           </SummaryWrapper>

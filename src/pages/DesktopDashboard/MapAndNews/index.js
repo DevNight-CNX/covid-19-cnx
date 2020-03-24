@@ -23,7 +23,7 @@ const SummaryWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-column-gap: 18px;
-  padding-top: 24px;
+  padding-top: 8px;
 `;
 
 const InfoSummaryWrapper = styled.div`
@@ -50,7 +50,7 @@ const MapAndNews = () => {
         <NewsCarousel />
       </NewsContainer>
       <InfoSummaryWrapper>
-        <InfoSummary>ข้อมูลผู้ป่วยอยู่ในประเทศไทย</InfoSummary>
+        <InfoSummary>ข้อมูลผู้ป่วยในประเทศไทย</InfoSummary>
         <SummaryWrapper>
           <Summary />
         </SummaryWrapper>

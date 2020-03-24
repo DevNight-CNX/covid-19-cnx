@@ -12,7 +12,7 @@ const Title = styled.p`
   ${({ theme }) => theme.typography.body()}
   color: ${({ theme }) => theme.color.neutralColor.gray};
   margin-bottom: 8px;
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 600px) {
   display: grid;    
   }
 `;
@@ -27,7 +27,10 @@ const Note = styled.span`
   ${({ theme }) => theme.typography.caption()}
   color: ${({ theme }) => theme.color.gray};
   margin: 0;
-  margin-left: 4px;
+  margin-left: 8px;
+  @media screen and (max-width: 600px) {
+    margin-left: 0px;
+  }
 `;
 
 const ValueSection = styled.div`
@@ -63,7 +66,6 @@ const SummaryItem = ({ title, icon, value, note }) => {
           {title}
           <Note>{note}</Note>
         </Title>
-
         <ValueSection icon={icon}>
           <Value>{value}</Value>
         </ValueSection>
