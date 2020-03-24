@@ -98,9 +98,9 @@ const Report = props => {
     getReportList()
       .then(response => {
         setReports(response);
+        setFetching(false);
       })
-      .catch(err => console.error(`[Request Reports]: ${err}`))
-      .finally(() => {
+      .catch(() => {
         setFetching(false);
       });
   }, []);
