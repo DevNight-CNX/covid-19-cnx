@@ -36,7 +36,8 @@ const CardCustomPropTypes = {
   report: PropTypes.object,
   onClick: PropTypes.func,
   address: PropTypes.string,
-  match: PropTypes.object
+  match: PropTypes.object,
+  isFull: PropTypes.bool
 };
 const CardCustomDefaultProps = {
   report: {}
@@ -51,11 +52,11 @@ const CardCustom = ({
   id,
   likes,
   dislikes,
-  location,
   onClick,
   report,
   address,
-  match
+  match,
+  isFull
 }) => {
   return (
     <>
@@ -66,6 +67,7 @@ const CardCustom = ({
         }}
         cover={image ? <img src={image} alt={content} /> : null}
         path={match.path}
+        isFull={isFull}
       >
         <Content>
           <div>

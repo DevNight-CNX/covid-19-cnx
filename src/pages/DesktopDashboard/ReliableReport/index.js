@@ -10,10 +10,10 @@ const Wrapper = styled.div`
   grid-template-columns: 1fr;
 `;
 
-const ReliableReport = () => {
+const ReliableReport = ({ isFull }) => {
   return (
     <Wrapper>
-      <ReliableReportNews />
+      <ReliableReportNews isFull={isFull} />
       <FakeNewCount />
       <Explanation />
     </Wrapper>
