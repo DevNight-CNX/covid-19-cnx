@@ -64,7 +64,7 @@ const Report = props => {
   }, [reports]);
 
   const filterReliableReports = (reports = []) => {
-    const proveReliableNumber = 1;
+    const proveReliableNumber = 100;
 
     const reliables = reports
       .filter(
@@ -79,7 +79,7 @@ const Report = props => {
   };
 
   const filterFakeReports = (reports = []) => {
-    const proveFakeNumber = 1;
+    const proveFakeNumber = 100;
 
     const fakeReports = reports
       .filter(
