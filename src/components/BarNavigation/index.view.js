@@ -3,6 +3,13 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
   background: #fff;
   box-shadow: inset 0px -1px 0px #f0f0f0;
+
+  @media only screen and (max-width: 1100px) {
+    position: fixed;
+    z-index: 1;
+    top: 0px;
+    width: 100%;
+  }
 `;
 
 const Container = styled.div`

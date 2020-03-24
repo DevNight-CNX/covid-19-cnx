@@ -9,6 +9,10 @@ const Container = styled.div`
   max-width: 680px;
   width: 100%;
   margin: 15px auto 36px;
+
+  @media only screen and (max-width: 1100px) {
+    margin-top: 71px;
+  }
 `;
 
 const DetailPropTypes = { match: PropTypes.object };
