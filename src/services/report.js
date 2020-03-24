@@ -75,9 +75,9 @@ export const getReportList = () => {
       return {
         id: res.id,
         image: res.image,
-        avatar: res.reporter?.photoURL || anonymousImage,
+        avatar: prop('photoURL', res.reporter) || anonymousImage,
         header: {
-          another: res.reporter?.displayName || anonymousDisplayName,
+          another: prop('displayName', res.reporter) || anonymousDisplayName,
           date: res.created
         },
         location: res.location,
@@ -99,9 +99,10 @@ export const getReportById = id => {
       return {
         id: response.id,
         image: response.image,
-        avatar: response.reporter?.photoURL || anonymousImage,
+        avatar: prop('photoURL', response.reporter) || anonymousImage,
         header: {
-          another: response.reporter?.displayName || anonymousDisplayName,
+          another:
+            prop('displayName', response.reporter) || anonymousDisplayName,
           date: response.created
         },
         location: response.location,
