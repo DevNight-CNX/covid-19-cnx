@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
-import Landing from './pages/Landing';
 import CreateReport from './pages/Report/Create';
 import FullReport from './pages/Report/Full';
 import DetailReport from './pages/Report/Detail';
@@ -18,7 +17,7 @@ const Router = () => {
     undefined,
     matches => {
       if (matches) {
-        history.push('/home');
+        history.push('/');
       }
     }
   );
@@ -30,19 +29,17 @@ const Router = () => {
         <Route path="/policy" component={Policy} />
         <Route path="/report/:id" component={DetailReport} />
         <Route path="/report" component={FullReport} />
-        <Route path="/home" component={Home} />
-        <Route path="/" component={Landing} />
+        <Route path="/" component={Home} />
       </Switch>
     );
   } else {
     return (
       <Switch>
+        <Route path="/policy" component={Policy} />
         <Route
-          path={['/home', '/submit', '/report/:id', '/report']}
+          path={['/', '/submit', '/report/:id', '/report']}
           component={DesktopPage}
         />
-        <Route path="/policy" component={Policy} />
-        <Route path="/" component={Landing} />
       </Switch>
     );
   }
