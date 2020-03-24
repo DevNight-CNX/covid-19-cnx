@@ -22,7 +22,7 @@ const PreviewImage = styled.div`
   padding-bottom: 54%;
   background-size: contain;
   background-image: url(${({ src }) => src});
-  background-color: ${({ theme }) => theme.color.neutralColor.lightGray100};
+  background-color: ${({ theme }) => theme.color.neutralColor.background};
   background-repeat: no-repeat;
   background-position: center;
 `;
