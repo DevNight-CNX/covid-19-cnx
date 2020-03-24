@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
 import useFirestore from 'utils/useFirestore';
 
@@ -10,7 +10,8 @@ const parseNews = item => {
     location: item.location,
     title: item.title,
     id: item.id,
-    unknownLocation: item.unknown_location
+    unknownLocation: item.unknown_location,
+    logo: item.logo
   };
 };
 
