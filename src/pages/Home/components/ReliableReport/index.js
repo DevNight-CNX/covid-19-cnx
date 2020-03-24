@@ -103,6 +103,7 @@ const EmptyWrapper = styled.div`
   align-items: center;
   ${({ theme }) => theme.typography.body()};
   background-color: ${({ theme }) => theme.color.neutralColor.white};
+  border-radius: 4px;
 `;
 
 const EmptyTitle = styled.div`
