@@ -3,7 +3,7 @@ import { useReport } from 'contexts/report.context';
 import { List } from 'antd';
 import CardCustom, { CardsLoading } from 'components/Card';
 
-const Container = () => {
+const Container = ({ isFull }) => {
   const { reports, viewReportDetail, fetching } = useReport();
 
   const showReports = () => {
@@ -27,6 +27,7 @@ const Container = () => {
                 likes={report.likes}
                 address={report.address}
                 date={report.date}
+                isFull={isFull}
               />
             );
           })
@@ -48,6 +49,7 @@ const Container = () => {
                 likes={report.likes}
                 address={report.address}
                 date={report.date}
+                isFull={isFull}
               />
             );
           });

@@ -14,11 +14,11 @@ const ReliableReportNewsWrapper = styled.div`
   background-color: ${({ theme }) => theme.color.neutralColor.white};
 `;
 
-const ReliableReport = ({ isFull }) => {
+const ReliableReport = () => {
   return (
     <Wrapper>
       <ReliableReportNewsWrapper>
-        <ReliableReportNews isFull={isFull} />
+        <ReliableReportNews />
       </ReliableReportNewsWrapper>
       <FakeNewCount />
       <Explanation />

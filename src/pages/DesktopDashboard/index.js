@@ -4,7 +4,6 @@ import Paper from './components/Paper';
 import MapAndNews from './MapAndNews';
 import ReliableReport from './ReliableReport';
 import Report from './Report/index';
-import { useMediaQuery } from 'react-responsive';
 import { withRouter } from 'react-router-dom';
 
 const Wrapper = styled.div`
@@ -26,20 +25,7 @@ const Container = styled.div`
   grid-row-gap: 32px;
 `;
 
-const DesktopDashboard = ({ match }) => {
-  const isDesktop = useMediaQuery({
-    query: '(min-width: 1100px)'
-  });
-
-  const IsFull = () => {
-    if (isDesktop) {
-      return true;
-    } else if (match.path !== '/report/:id') {
-      return true;
-    }
-    return false;
-  };
-
+const DesktopDashboard = () => {
   return (
     <Wrapper>
       <Container>
@@ -50,7 +36,7 @@ const DesktopDashboard = ({ match }) => {
           <Report />
         </Paper>
         <Paper grid="aside" title="ข่าวน่าเชื่อถือจากชุมชน" noBg>
-          <ReliableReport isFull={IsFull()} />
+          <ReliableReport />
         </Paper>
       </Container>
     </Wrapper>

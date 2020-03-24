@@ -26,6 +26,13 @@ const Detail = ({ match }) => {
     });
   };
 
+  const IsFull = () => {
+    if (match.path !== '/report/:id') {
+      return true;
+    }
+    return false;
+  };
+
   return (
     <>
       <GoBackHeader mxwidth="680px" />
@@ -33,6 +40,7 @@ const Detail = ({ match }) => {
         {report ? (
           <>
             <CardCustom
+              isFull={IsFull()}
               image={report.image}
               header={report.header}
               content={report.content}
