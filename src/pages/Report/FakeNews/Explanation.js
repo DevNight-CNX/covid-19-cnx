@@ -32,7 +32,9 @@ const Explanation = () => {
         </p>
         <p>
           ความรู้สู้ Covin-19 <br />
-          <a href="https://ddc.moph.go.th">https://ddc.moph.go.th</a>
+          <a href="https://ddc.moph.go.th" target="_blank">
+            https://ddc.moph.go.th
+          </a>
         </p>
       </ExplanationWrapper.Content>
     </ExplanationWrapper>
