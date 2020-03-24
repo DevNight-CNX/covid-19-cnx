@@ -221,6 +221,7 @@ const List = styled.div`
         theme.color.alternativeColors.blueRibbonLight};
       color: ${({ theme }) => theme.color.neutralColor.white};
     `}
+  cursor: pointer;
 `;
 
 const Skeleton = styled(AntdSkeleton)`
