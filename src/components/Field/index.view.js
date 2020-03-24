@@ -151,7 +151,6 @@ export const AutoComplete = ({
         highlightedIndex,
         selectedItem
       }) => {
-        console.log(isOpen);
         return (
           <div>
             <AutoComplete.Wrapper>
