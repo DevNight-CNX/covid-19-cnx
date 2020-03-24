@@ -14,7 +14,7 @@ const MapContainer = styled.div`
 `;
 
 const HeaderWrapper = styled.header`
-  padding: 62px 24px 16px;
+  padding: 28px 24px 16px;
 `;
 
 const NewsContainer = styled.div`

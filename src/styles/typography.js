@@ -72,7 +72,7 @@ const typography = {
   bodySmall: createFontStyle(
     createFontFamilyKanit(),
     createFontSizeStyle(12),
-    createFontWeightStyle('300'),
+    createFontWeightStyle(400),
     createLineHeight('16px')
   ),
   bodySmallHighlight: createFontStyle(
