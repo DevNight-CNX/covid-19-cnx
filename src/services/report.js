@@ -7,7 +7,18 @@ import apiUrlProvider, {
   GET_REPORT_BY_ID
 } from 'constants/api-endpoints';
 
-export const createReport = ({ position, content, linkUrl, imageFile }) => {
+const anonymousImage =
+  'https://firebasestorage.googleapis.com/v0/b/covid-19-cnx/o/Anonymous%20Profile.svg?alt=media&token=ef63c155-ac35-4104-ab9a-fdcf5f27e289';
+
+const anonymousDisplayName = 'Anonymous';
+
+export const createReport = ({
+  position,
+  content,
+  linkUrl,
+  imageFile,
+  anonymous
+}) => {
   const url = apiUrlProvider.get(CREATE_REPORT);
   const body = {
     content,
@@ -17,7 +28,7 @@ export const createReport = ({ position, content, linkUrl, imageFile }) => {
     location: prop('location', position)
       ? JSON.stringify([position.location.lat, position.location.lng])
       : null,
-    anonymous: false
+    anonymous
   };
 
   return fetchPostFormData(url, body, true).then(response => {
@@ -64,9 +75,9 @@ export const getReportList = () => {
       return {
         id: res.id,
         image: res.image,
-        avatar: res.reporter.photoURL,
+        avatar: prop('photoURL', res.reporter) || anonymousImage,
         header: {
-          another: res.reporter.displayName,
+          another: prop('displayName', res.reporter) || anonymousDisplayName,
           date: res.created
         },
         location: res.location,
@@ -88,9 +99,10 @@ export const getReportById = id => {
       return {
         id: response.id,
         image: response.image,
-        avatar: response.reporter.photoURL,
+        avatar: prop('photoURL', response.reporter) || anonymousImage,
         header: {
-          another: response.reporter.displayName,
+          another:
+            prop('displayName', response.reporter) || anonymousDisplayName,
           date: response.created
         },
         location: response.location,

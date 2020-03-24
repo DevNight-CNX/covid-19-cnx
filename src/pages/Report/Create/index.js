@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { Form, Field } from 'react-final-form';
@@ -6,7 +6,8 @@ import {
   AdaptField,
   AdaptImageUploader,
   AdaptPlaceAutoComplete,
-  AdaptTextarea
+  AdaptTextarea,
+  AdaptToggle
 } from 'components/Field';
 import Button from 'components/Button';
 import useFirebaseAuthen from 'components/useFirebaseAuthen';
@@ -38,6 +39,24 @@ const Notice = styled.p`
   color: ${({ theme }) => theme.color.logicColor.warning};
 `;
 
+const PublicUser = styled.div`
+  width: 100%;
+  height: 50px;
+  box-sizing: border-box;
+  margin-bottom: 8px;
+  display: flex;
+  ${({ theme }) => theme.typography.content()}
+
+  && {
+    div {
+      margin: 0px;
+      label {
+        display: none;
+      }
+    }
+  }
+`;
+
 const CreateReport = () => {
   const { authentication } = useFirebaseAuthen();
   const history = useHistory();
@@ -48,7 +67,8 @@ const CreateReport = () => {
         content: values.content,
         linkUrl: values.link,
         imageFile: values.image,
-        position: values.address
+        position: values.address,
+        anonymous: values.publicUser || false
       })
         .then(res => {
           eventTracker({ type: 'submitReport', id: 'submitReportSuccess' });
@@ -117,6 +137,12 @@ const CreateReport = () => {
                   label="รูปภาพ"
                 />
               </FieldRow>
+              <PublicUser>
+                <label style={{ margin: '0px 8px 0px 0px' }}>
+                  {'Anonymous'}
+                </label>
+                <Field name="publicUser" component={AdaptToggle} />
+              </PublicUser>
               <Footer>
                 <Notice>
                   กรุณาตรวจสอบข้อมูล และที่มาของ แหล่งข่าวก่อนทำการยืนยัน

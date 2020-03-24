@@ -80,7 +80,7 @@ const CardCustom = ({
             </Container>
             {reference ? (
               <TagLinkWrapper>
-                <a href={`https://${reference}`} target="_blank">
+                <a href={`${reference}`} target="_blank">
                   {reference}
                 </a>
               </TagLinkWrapper>
