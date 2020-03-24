@@ -24,7 +24,7 @@ const TextWrapper = styled.div`
 `;
 
 const Title = styled.div`
-  ${({ theme }) => theme.typography.bodyLargeHighlight()}
+  ${({ theme }) => theme.typography.bodyLarge()}
   padding: 8px 16px 0px 68px;
   overflow: hidden;
   height: 80px;

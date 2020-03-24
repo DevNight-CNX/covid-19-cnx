@@ -29,7 +29,11 @@ const Note = styled.span`
   margin: 0;
   margin-left: 8px;
   @media screen and (max-width: 600px) {
+    margin-top:  ${({ note }) => (note ? `0px` : `13px`)};
     margin-left: 0px;
+  }
+  @media screen and (max-width: 375px) {
+    margin-top:  ${({ note }) => (note ? `0px` : `26px`)};
   }
 `;
 
@@ -64,7 +68,7 @@ const SummaryItem = ({ title, icon, value, note }) => {
       <SummaryItemWrapper>
         <Title>
           {title}
-          <Note>{note}</Note>
+          <Note note={note}>{note}</Note>
         </Title>
         <ValueSection icon={icon}>
           <Value>{value}</Value>
