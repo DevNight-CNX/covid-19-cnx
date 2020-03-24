@@ -11,6 +11,7 @@ import {
 } from './index.view';
 import ImageUploader from './ImageUploader';
 import PlaceAutocomplete from './PlaceAutocomplete';
+import { Switch } from 'antd';
 
 const makeAdaptField = Input =>
   makeFieldDecorator(
@@ -47,3 +48,7 @@ export const AdaptTextarea = makeAdaptField(Textarea);
 export const AdaptImageUploader = makeAdaptField(ImageUploader);
 
 export const AdaptPlaceAutoComplete = makeAdaptField(PlaceAutocomplete);
+
+export const AdaptToggle = makeAdaptField(({ onChange }) => (
+  <Switch defaultChecked={false} onChange={onChange} />
+));

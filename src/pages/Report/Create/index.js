@@ -6,13 +6,14 @@ import {
   AdaptField,
   AdaptImageUploader,
   AdaptPlaceAutoComplete,
-  AdaptTextarea
+  AdaptTextarea,
+  AdaptToggle
 } from 'components/Field';
 import Button from 'components/Button';
 import useFirebaseAuthen from 'components/useFirebaseAuthen';
 import { createReport } from 'services/report';
 import { required, isUrlValid } from 'utils/form/validators';
-import { notification, Switch } from 'antd';
+import { notification } from 'antd';
 import { CancelHeader } from 'components/BarNavigation/navigation';
 import eventTracker from 'utils/eventTracker';
 
@@ -41,9 +42,19 @@ const Notice = styled.p`
 const PublicUser = styled.div`
   width: 100%;
   height: 50px;
-  background-color: black;
   box-sizing: border-box;
   margin-bottom: 8px;
+  display: flex;
+  ${({ theme }) => theme.typography.content()}
+
+  && {
+    div {
+      margin: 0px;
+      label {
+        display: none;
+      }
+    }
+  }
 `;
 
 const CreateReport = () => {
@@ -56,7 +67,8 @@ const CreateReport = () => {
         content: values.content,
         linkUrl: values.link,
         imageFile: values.image,
-        position: values.address
+        position: values.address,
+        anonymous: values.publicUser || false
       })
         .then(res => {
           eventTracker({ type: 'submitReport', id: 'submitReportSuccess' });
@@ -126,12 +138,10 @@ const CreateReport = () => {
                 />
               </FieldRow>
               <PublicUser>
-                <Field
-                  name="publicUser"
-                  component={() => {
-                    return <Switch defaultChecked />;
-                  }}
-                />
+                <label style={{ margin: '0px 8px 0px 0px' }}>
+                  {'Anonymous'}
+                </label>
+                <Field name="publicUser" component={AdaptToggle} />
               </PublicUser>
               <Footer>
                 <Notice>
