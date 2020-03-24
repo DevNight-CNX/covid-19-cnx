@@ -19,7 +19,7 @@ const ReliableReportNews = ({ match }) => {
     infinite: true,
     slidesToScroll: 1,
     adaptiveHeight: true,
-    autoplay: false,
+    autoplay: true,
     autoplaySpeed: 5000
   };
 
@@ -40,7 +40,7 @@ const ReliableReportNews = ({ match }) => {
     <>
       {reliableReports.length ? (
         <SliderCustom {...settings}>
-          {reliableReports.map((report, i) => {
+          {reliableReports.reverse().map((report, i) => {
             if (i % 2) return null;
             const secReport = reliableReports[i + 1];
             return (
@@ -61,6 +61,7 @@ const ReliableReportNews = ({ match }) => {
                   likes={report.likes}
                   address={report.address}
                   isFull={IsFull()}
+                  date={report.date}
                 />
                 {!isEmpty(secReport) ? (
                   <Card
@@ -79,6 +80,7 @@ const ReliableReportNews = ({ match }) => {
                     likes={secReport.likes}
                     address={report.address}
                     isFull={IsFull()}
+                    date={report.date}
                   />
                 ) : null}
               </div>
