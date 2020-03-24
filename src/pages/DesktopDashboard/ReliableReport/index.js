@@ -10,10 +10,16 @@ const Wrapper = styled.div`
   grid-template-columns: 1fr;
 `;
 
+const ReliableReportNewsWrapper = styled.div`
+  background-color: ${({ theme }) => theme.color.neutralColor.white};
+`;
+
 const ReliableReport = () => {
   return (
     <Wrapper>
-      <ReliableReportNews />
+      <ReliableReportNewsWrapper>
+        <ReliableReportNews />
+      </ReliableReportNewsWrapper>
       <FakeNewCount />
       <Explanation />
     </Wrapper>

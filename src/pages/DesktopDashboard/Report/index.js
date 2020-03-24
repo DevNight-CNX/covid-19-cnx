@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import SubmitReportButton from 'components/SubmitReportButton';
 import CreateReport from 'pages/Report/Create';
 import ReportDetail from 'pages/Report/Detail';
@@ -18,14 +18,20 @@ const Content = styled.div`
   overflow-y: auto;
 `;
 
-const Report = () => {
+const Report = ({ match }) => {
+  const IsFull = () => {
+    if (match.path !== '/report/:id') {
+      return true;
+    }
+    return false;
+  };
   return (
     <>
       <Content>
         <Switch>
           <Route path="/submit" component={CreateReport} />
           <Route path="/report/:id" component={ReportDetail} />
-          <Route path="/" component={ReportList} />
+          <Route path="/" component={() => <ReportList isFull={IsFull} />} />
         </Switch>
       </Content>
       <Switch>
@@ -43,4 +49,4 @@ const Report = () => {
   );
 };
 
-export default Report;
+export default withRouter(Report);

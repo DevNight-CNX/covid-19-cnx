@@ -7,8 +7,10 @@ import { isEmpty } from 'lodash';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { ReactComponent as EmptyIcon } from './assets/subtract.svg';
+import { withRouter } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 
-const ReliableReportNews = () => {
+const ReliableReportNews = ({ match }) => {
   const { reliableReports, viewReportDetail } = useReport();
   const settings = {
     className: '',
@@ -19,6 +21,19 @@ const ReliableReportNews = () => {
     adaptiveHeight: true,
     autoplay: true,
     autoplaySpeed: 5000
+  };
+
+  const isDesktop = useMediaQuery({
+    query: '(min-width: 1100px)'
+  });
+
+  const IsFull = () => {
+    if (isDesktop) {
+      return true;
+    } else if (match.path !== '/report/:id') {
+      return true;
+    }
+    return false;
   };
 
   return (
@@ -45,6 +60,7 @@ const ReliableReportNews = () => {
                   dislikes={report.dislikes}
                   likes={report.likes}
                   address={report.address}
+                  isFull={IsFull()}
                 />
                 {!isEmpty(secReport) ? (
                   <Card
@@ -62,6 +78,7 @@ const ReliableReportNews = () => {
                     dislikes={secReport.dislikes}
                     likes={secReport.likes}
                     address={report.address}
+                    isFull={IsFull()}
                   />
                 ) : null}
               </div>
@@ -75,7 +92,7 @@ const ReliableReportNews = () => {
   );
 };
 
-export default ReliableReportNews;
+export default withRouter(ReliableReportNews);
 
 const EmptyWrapper = styled.div`
   height: 209px;
