@@ -15,13 +15,13 @@ class Countdown extends React.Component {
       const { timeTillDate, timeFormat } = this.props;
       const then = moment(timeTillDate, timeFormat);
       const now = moment();
-      const countdown = moment(then - now);
-      const days = countdown.format('D');
+      const countdown = moment(then.diff(now));
+
       const hours = countdown.format('HH');
       const minutes = countdown.format('mm');
       const seconds = countdown.format('ss');
 
-      this.setState({ days, hours, minutes, seconds });
+      this.setState({ hours, minutes, seconds });
     }, 1000);
   }
 
@@ -47,13 +47,6 @@ class Countdown extends React.Component {
         <h1>Covid-19-CNX</h1>
         <h3 style={{ marginBottom: '30px' }}>Release in</h3>
         <div className="countdown-wrapper">
-          {days && (
-            <div className="countdown-item">
-              <SVGCircle radius={daysRadius} />
-              {days}
-              <span>days</span>
-            </div>
-          )}
           {hours && (
             <div className="countdown-item">
               <SVGCircle radius={hoursRadius} />
