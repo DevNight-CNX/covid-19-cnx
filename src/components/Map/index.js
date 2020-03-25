@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { prop } from 'ramda';
 import { renderToString } from 'react-dom/server';
 import styled from 'styled-components';
 import { useNews } from 'contexts/news.context';
@@ -70,20 +71,26 @@ const Map = () => {
 
     cases.forEach(caseItem => {
       const coords = caseItem.location;
-      const latLng = new window.google.maps.LatLng(coords.lat, coords.lng);
-      const marker = new window.google.maps.Marker({
-        map,
-        position: latLng,
-        optimized: false,
-        icon: rippleIcon
-      });
 
-      markers.push(marker);
+      const lat = prop('lat', coords);
+      const lng = prop('lng', coords);
 
-      marker.addListener('click', function() {
-        infowindow.setContent(renderToString(<CasePopup data={caseItem} />));
-        infowindow.open(map, marker);
-      });
+      if (lat && lng) {
+        const latLng = new window.google.maps.LatLng(coords.lat, coords.lng);
+        const marker = new window.google.maps.Marker({
+          map,
+          position: latLng,
+          optimized: false,
+          icon: rippleIcon
+        });
+
+        markers.push(marker);
+
+        marker.addListener('click', function() {
+          infowindow.setContent(renderToString(<CasePopup data={caseItem} />));
+          infowindow.open(map, marker);
+        });
+      }
     });
 
     return () => {
@@ -106,19 +113,24 @@ const Map = () => {
 
     news.forEach(newsItem => {
       const coords = newsItem.location;
-      const latLng = new window.google.maps.LatLng(coords.lat, coords.lng);
-      const marker = new window.google.maps.Marker({
-        map,
-        position: latLng,
-        icon: newsIcon
-      });
+      const lat = prop('lat', coords);
+      const lng = prop('lng', coords);
 
-      markers.push(marker);
+      if (lat && lng) {
+        const latLng = new window.google.maps.LatLng(lat, lng);
+        const marker = new window.google.maps.Marker({
+          map,
+          position: latLng,
+          icon: newsIcon
+        });
 
-      marker.addListener('click', function() {
-        infowindow.setContent(renderToString(<NewsPopup data={newsItem} />));
-        infowindow.open(map, marker);
-      });
+        markers.push(marker);
+
+        marker.addListener('click', function() {
+          infowindow.setContent(renderToString(<NewsPopup data={newsItem} />));
+          infowindow.open(map, marker);
+        });
+      }
     });
 
     return () => {
