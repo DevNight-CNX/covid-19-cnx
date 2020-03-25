@@ -40,7 +40,7 @@ const News = ({ children }) => {
   return (
     <NewsProvider
       value={{
-        news,
+        news: news.filter(newsItem => !newsItem.unknownLocation),
         newsLoading: loading
       }}
     >
