@@ -36,6 +36,8 @@ export const REPORT = {
 
 export const SUMMARY = 'SUMMARY';
 
+export const SUMMARY_CNX = 'SUMMARY_CNX';
+
 apiUrlProvider.set(GET_NEWS, '/news', 'https://demo6738459.mockable.io/');
 apiUrlProvider.set(GET_NEWS_BY_ID, '/news/:id');
 apiUrlProvider.set(AUTHENTICATION, '/authen');
@@ -60,5 +62,7 @@ apiUrlProvider.set(GET_REPORTS, '/report');
 apiUrlProvider.set(GET_REPORT_BY_ID, '/report/:id');
 
 apiUrlProvider.set(SUMMARY, '/summary');
+
+apiUrlProvider.set(SUMMARY_CNX, '/cnxSummary');
 
 export default apiUrlProvider;

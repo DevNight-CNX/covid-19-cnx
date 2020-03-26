@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Switch } from 'antd';
 
 const Wrapper = styled.div``;
 const Container = styled.div`
@@ -41,9 +42,30 @@ const InfoSummaryWrapper = styled.div`
 `;
 
 const InfoSummary = styled.p`
-  ${({ theme }) => theme.typography.body()};
+  ${({ theme }) => theme.typography.bodyLarge()};
   color: ${({ theme }) => theme.color.neutralColor.black};
   margin: 0;
+`;
+
+const SwitchContainer = styled.div`
+  ${({ theme }) => theme.typography.bodyLarge()};
+  color: ${({ theme }) => theme.color.neutralColor.black};
+  display: flex;
+  justify-content: space-between;
+`;
+
+const SwitchStyled = styled(Switch)`
+  && {
+    max-width: 28px;
+    min-width: 28px;
+    width: 100%;
+    height: 16px;
+    margin-left: 8px;
+    ::after {
+      width: 12px;
+      height: 12px;
+    }
+  }
 `;
 
 export {
@@ -55,5 +77,7 @@ export {
   SummaryWrapper,
   FakeNewsReportWrapper,
   InfoSummaryWrapper,
-  InfoSummary
+  InfoSummary,
+  SwitchContainer,
+  SwitchStyled
 };

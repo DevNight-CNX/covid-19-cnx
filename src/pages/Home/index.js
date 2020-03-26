@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useState } from 'react';
 import Map from 'components/Map';
 import Summary from './components/Summary';
 import FakeNewsReport from 'pages/Report/FakeNews';
@@ -13,11 +13,15 @@ import {
   SummaryWrapper,
   FakeNewsReportWrapper,
   InfoSummaryWrapper,
-  InfoSummary
+  InfoSummary,
+  SwitchContainer,
+  SwitchStyled
 } from './index.view';
 const LazyNews = React.lazy(() => import('./components/News'));
 
 const Home = () => {
+  const [isShow, setIshow] = useState(false);
+
   return (
     <Wrapper>
       <Container>
@@ -33,9 +37,18 @@ const Home = () => {
           <NewsCarousel />
         </NewsContainer>
         <InfoSummaryWrapper>
-          <InfoSummary>ข้อมูลผู้ป่วยในประเทศไทย</InfoSummary>
+          <SwitchContainer>
+            <InfoSummary>รายงานข้อมูลผู้ป่วยใน</InfoSummary>
+            <p>
+              {isShow ? 'เชียงใหม่' : 'ประเทศไทย'}
+              <SwitchStyled
+                defaultChecked={isShow}
+                onChange={e => setIshow(e)}
+              />
+            </p>
+          </SwitchContainer>
           <SummaryWrapper>
-            <Summary />
+            <Summary isShow={isShow} />
           </SummaryWrapper>
         </InfoSummaryWrapper>
         <Suspense fallback={<div />}>

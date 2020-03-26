@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import useFetch from 'utils/useFetch';
-import { getSummary } from 'services/case';
+import { getSummary, getSummaryCNX } from 'services/case';
 import userIcon from './assets/user.svg';
 import hospitalIcon from './assets/hospital.svg';
 import virusIcon from './assets/virus.svg';
@@ -80,28 +80,33 @@ const SummaryItem = ({ title, icon, value, note }) => {
 SummaryItem.propTypes = SummaryItemPropTypes;
 SummaryItem.defaultProps = SummaryItemDefaultProps;
 
-const Summary = () => {
+const Summary = ({ isShow }) => {
   const { data } = useFetch(() => getSummary());
+  const { dataCNX } = useFetch(() => getSummaryCNX());
 
   return (
     <>
       <SummaryItem
         title="ติดเชื้อแล้ว"
         icon={virusIcon}
-        value={data['ผู้ติดเชื้อ']}
+        value={isShow ? dataCNX['ผู้ติดเชื้อ'] : data['ผู้ติดเชื้อ']}
         note={data['โน๊ตผู้ติดเชื้อ']}
       />
       <SummaryItem
         title="เสียชีวิต"
         icon={deadIcon}
-        value={data['เสียชีวิต']}
+        value={isShow ? dataCNX['เสียชีวิต'] : data['เสียชีวิต']}
       />
-      <SummaryItem title="หายแล้ว" icon={userIcon} value={data['หายแล้ว']} />
+      <SummaryItem
+        title="หายแล้ว"
+        icon={userIcon}
+        value={isShow ? dataCNX['หายแล้ว'] : data['หายแล้ว']}
+      />
 
       <SummaryItem
         title="รักษาอยู่ใน รพ."
         icon={hospitalIcon}
-        value={data['กำลังรักษา']}
+        value={isShow ? dataCNX['กำลังรักษา'] : data['กำลังรักษา']}
       />
     </>
   );
