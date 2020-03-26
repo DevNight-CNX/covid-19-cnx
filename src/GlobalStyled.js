@@ -12,6 +12,11 @@ const GlobalStyled = createGlobalStyle`
     .gm-style .gm-style-iw-d, .gm-style .gm-style-iw-c{
       max-height: none !important;
     }
+
+    .gm-style-iw-t button[aria-label="ปิด"] {
+      top: 2px !important;
+      right: 2px !important;
+    }
 `;
 
 export default GlobalStyled;
