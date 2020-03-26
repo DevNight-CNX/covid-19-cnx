@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import LinkPreview from '../../components/LinkPreView';
 
@@ -31,6 +32,11 @@ const NewsListWrapper = styled.div`
   }
 `;
 
+const ViewPropTypes = {
+  news: PropTypes.array,
+  onClickCard: PropTypes.func
+};
+
 const ViewSituationNews = ({ news, onClickCard }) => {
   return (
     <Wrapper>
@@ -46,5 +52,7 @@ const ViewSituationNews = ({ news, onClickCard }) => {
     </Wrapper>
   );
 };
+
+ViewSituationNews.propTypes = ViewPropTypes;
 
 export default ViewSituationNews;

@@ -25,7 +25,7 @@ const TextWrapper = styled.div`
 
 const Title = styled.div`
   ${({ theme }) => theme.typography.bodyLarge()}
-  padding: 8px 16px 0px 68px;
+  padding: 8px 16px 0px 90px;
   overflow: hidden;
   height: 80px;
   p {
@@ -38,7 +38,7 @@ const Title = styled.div`
 
 const Footer = styled.div`
   ${({ theme }) => theme.typography.body()}
-  padding: 8px 16px 0px 68px;
+  padding: 8px 16px 0px 90px;
   bottom: 0;
   width: 100%;
   position: absolute;
@@ -49,8 +49,8 @@ const Footer = styled.div`
 `;
 
 const LogoImage = styled.div`
-  width: 64px;
-  height: 64px;
+  width: 80px;
+  height: 80px;
   position: absolute;
   background-size: contain;
   background-position: center;
@@ -60,6 +60,9 @@ const LogoImage = styled.div`
   `};
   padding: 4px;
   box-sizing: border-box;
+  border-radius: 2px;
+  top: 10px;
+  left: 6px;
 `;
 
 const StyledDefaultImage = styled(DefaultImage)`
