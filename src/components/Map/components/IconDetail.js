@@ -46,7 +46,7 @@ const IconDetail = () => {
       </IconWrapper>
       <IconWrapper>
         <Icon src={hospitalIcon} width={21} />
-        <Detail>ผู้ป่วย</Detail>
+        <Detail>โรงพยาบาล</Detail>
       </IconWrapper>
     </Wrapper>
   );
