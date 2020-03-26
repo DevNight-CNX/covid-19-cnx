@@ -1,11 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
+import moment from 'moment';
 import { prop } from 'ramda';
 import { renderToString } from 'react-dom/server';
 import styled from 'styled-components';
 import { useNews } from 'contexts/news.context';
+import { useReport } from 'contexts/report.context';
 import useFirestore from 'utils/useFirestore';
 import hospitalIcon from './assets/hospital.svg';
 import newsIcon from './assets/news.svg';
+import rippleIcon from './assets/ripple.svg';
 import mapStyles from './mapStyles';
 import CasePopup from './components/CasePopup';
 import NewsPopup from './components/NewsPopup';
@@ -20,6 +23,7 @@ const Map = () => {
   const mapRef = useRef(null);
   const infoWindowRef = useRef(null);
   const { news, newsLoading } = useNews();
+  const { reports, fetching: reportsLoading } = useReport();
 
   const { data: cases, loading } = useFirestore(
     db => db.collection('cases_cnx'),
@@ -74,7 +78,7 @@ const Map = () => {
       const lng = prop('lng', coords);
 
       if (lat && lng) {
-        const latLng = new window.google.maps.LatLng(coords.lat, coords.lng);
+        const latLng = new window.google.maps.LatLng(lat, lng);
         const marker = new window.google.maps.Marker({
           map,
           position: latLng,
@@ -124,8 +128,22 @@ const Map = () => {
 
         markers.push(marker);
 
+        const getTime = () => {
+          const time = prop('seconds', newsItem.time);
+          return moment.unix(time).fromNow() === 'Invalid date'
+            ? null
+            : moment.unix(time).fromNow();
+        };
+
+        const parsedItem = {
+          ...newsItem,
+          time: getTime()
+        };
+
         marker.addListener('click', function() {
-          infowindow.setContent(renderToString(<NewsPopup data={newsItem} />));
+          infowindow.setContent(
+            renderToString(<NewsPopup data={parsedItem} />)
+          );
           infowindow.open(map, marker);
         });
       }
@@ -137,6 +155,130 @@ const Map = () => {
       });
     };
   }, [newsLoading, news]);
+
+  useEffect(() => {
+    if (reportsLoading) {
+      return;
+    }
+
+    console.log('reports', reports);
+
+    const map = mapRef.current;
+
+    const infowindow = infoWindowRef.current;
+
+    const markers = [];
+
+    reports
+      .filter(report => report.type === 'news')
+      .forEach(reportItem => {
+        const coords = reportItem.location || [];
+
+        const lat = coords[0];
+        const lng = coords[1];
+
+        if (lat && lng) {
+          const latLng = new window.google.maps.LatLng(lat, lng);
+          const marker = new window.google.maps.Marker({
+            map,
+            position: latLng,
+            icon: newsIcon
+          });
+
+          markers.push(marker);
+
+          const parsedItem = {
+            newsLink: reportItem.link,
+            unknownLocation: false,
+            location: {
+              lat: reportItem.location[0],
+              lng: reportItem.location[1]
+            },
+            address: reportItem.address,
+            title: reportItem.content,
+            time: moment(reportItem.time).fromNow()
+          };
+
+          console.log('parsedItem', parsedItem);
+
+          marker.addListener('click', function() {
+            infowindow.setContent(
+              renderToString(<NewsPopup data={parsedItem} />)
+            );
+            infowindow.open(map, marker);
+          });
+        }
+      });
+
+    return () => {
+      markers.forEach(marker => {
+        marker.setMap(null);
+      });
+      console.log('clear!');
+    };
+  }, [reportsLoading, reports]);
+
+  useEffect(() => {
+    if (reportsLoading) {
+      return;
+    }
+
+    console.log('reports', reports);
+
+    const map = mapRef.current;
+
+    const infowindow = infoWindowRef.current;
+
+    const markers = [];
+
+    reports
+      .filter(report => report.type === 'risk')
+      .forEach(reportItem => {
+        const coords = reportItem.location || [];
+
+        console.log('coords', coords);
+
+        const lat = coords[0];
+        const lng = coords[1];
+
+        if (lat && lng) {
+          const latLng = new window.google.maps.LatLng(lat, lng);
+          const marker = new window.google.maps.Marker({
+            map,
+            position: latLng,
+            icon: rippleIcon
+          });
+
+          markers.push(marker);
+
+          const parsedItem = {
+            newsLink: reportItem.link,
+            unknownLocation: false,
+            location: {
+              lat: reportItem.location[0],
+              lng: reportItem.location[1]
+            },
+            address: reportItem.address,
+            title: reportItem.content,
+            time: moment(reportItem.time).fromNow()
+          };
+
+          marker.addListener('click', function() {
+            infowindow.setContent(
+              renderToString(<NewsPopup data={parsedItem} />)
+            );
+            infowindow.open(map, marker);
+          });
+        }
+      });
+
+    return () => {
+      markers.forEach(marker => {
+        marker.setMap(null);
+      });
+      console.log('clear!');
+    };
+  }, [reportsLoading, reports]);
 
   return (
     <>

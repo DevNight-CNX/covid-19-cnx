@@ -58,15 +58,12 @@ const Container = styled.div`
   .description {
     ${({ theme }) => theme.typography.link()};
     color: ${({ theme }) => theme.color.neutralColor.black};
-  }
-
-  pre {
+    word-break: break-all;
+    word-break: break-word;
     padding-left: 16px;
     margin: 0;
     margin-top: 4px;
     width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
     white-space: pre-wrap;
   }
 `;
@@ -92,6 +89,10 @@ const TagLinkWrapper = styled.div`
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
+  > a {
+    word-break: break-all;
+    word-break: break-word;
+  }
 `;
 
 const LocationWrapper = styled.div`

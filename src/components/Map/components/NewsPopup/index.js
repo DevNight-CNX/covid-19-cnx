@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { prop } from 'ramda';
 import styled from 'styled-components';
 import moment from 'moment';
+import getSafeLink from 'utils/getSafeLink';
+import pinIcon from './assets/pin.svg';
 
 const Wrapper = styled.div`
   max-width: 300px;
@@ -96,28 +98,36 @@ const getStatusColor = type => {
   }
 };
 
-const StatusColor = styled.span`
-  color: ${({ type }) => {
-    return getStatusColor(type);
-  }};
+const AddressWrapper = styled.div`
+  padding-left: 20px;
+  background-image: url(${pinIcon});
+  background-position: 0 50%;
+  background-repeat: no-repeat;
+`;
+
+const Address = styled.p`
+  font-family: Kanit, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+  color: #636f7a;
 `;
 
 const NewsPopupPropTypes = {
-  data: PropTypes.object
+  data: PropTypes.shape({
+    time: PropTypes.string,
+    title: PropTypes.string,
+    unknownLocation: PropTypes.bool,
+    newsLink: PropTypes.string
+  })
 };
 
 const NewsPopup = ({ data = {} }) => {
-  const getTime = () => {
-    const time = prop('seconds', data.time);
-    return moment.unix(time).fromNow() === 'Invalid date'
-      ? null
-      : moment.unix(time).fromNow();
-  };
-
   return (
     <Wrapper>
       <NewsTitle>{data.title}</NewsTitle>
-      {getTime() ? <StatementDate>{getTime()}</StatementDate> : null}
+      {data.time ? <StatementDate>{data.time}</StatementDate> : null}
       {data.unknownLocation ? (
         <Status>
           <Status.UnknownLocation>
@@ -125,8 +135,13 @@ const NewsPopup = ({ data = {} }) => {
           </Status.UnknownLocation>
         </Status>
       ) : null}
+      {data.address ? (
+        <AddressWrapper>
+          <Address>{data.address}</Address>
+        </AddressWrapper>
+      ) : null}
       <LinkWrapper>
-        <Link href={data.newsLink} target="_blank">
+        <Link href={getSafeLink(data.newsLink)} target="_blank">
           ลิงก์ข่าว
         </Link>
       </LinkWrapper>

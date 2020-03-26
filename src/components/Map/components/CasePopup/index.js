@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import getSafeLink from 'utils/getSafeLink';
 import pinIcon from './assets/pin.svg';
 
 const Wrapper = styled.div`
@@ -125,7 +126,7 @@ const CasePopup = ({ data = {} }) => {
       <AddressWrapper>
         <Address>{data.address}</Address>
       </AddressWrapper>
-      <Link href={data.link} target="_blank">
+      <Link href={getSafeLink(data.link)} target="_blank">
         ลิงก์ข่าว
       </Link>
     </Wrapper>

@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { Form, Field } from 'react-final-form';
+import { Form, Field, FormSpy } from 'react-final-form';
 import {
   AdaptField,
   AdaptImageUploader,
   AdaptPlaceAutoComplete,
   AdaptTextarea,
-  AdaptToggle
+  AdaptToggle,
+  AdaptRadio
 } from 'components/Field';
 import Button from 'components/Button';
 import useFirebaseAuthen from 'components/useFirebaseAuthen';
 import { createReport } from 'services/report';
-import { required, isUrlValid } from 'utils/form/validators';
+import { required, isUrlValid, composeValidators } from 'utils/form/validators';
 import { notification } from 'antd';
 import { CancelHeader } from 'components/BarNavigation/navigation';
 import eventTracker from 'utils/eventTracker';
+import newsPreview from './assets/news.png';
+import riskPreview from './assets/risk.png';
 
 const Wrapper = styled.div`
   padding: 26px 24px;
@@ -34,6 +37,7 @@ const FieldRow = styled.div`
 const Footer = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 const Notice = styled.p`
@@ -47,9 +51,16 @@ const PublicUser = styled.div`
   width: 100%;
   height: 50px;
   box-sizing: border-box;
-  margin-bottom: 8px;
   display: flex;
+  align-items: center;
   ${({ theme }) => theme.typography.content()}
+  p {
+    display: none;
+  }
+
+  > label {
+    ${({ theme }) => theme.typography.content()}
+  }
 
   && {
     div {
@@ -64,6 +75,10 @@ const PublicUser = styled.div`
 const CreateReport = () => {
   const { authentication } = useFirebaseAuthen();
   const history = useHistory();
+  const [initialValues] = useState({
+    type: 'news'
+  });
+  const [typeValue, setTypeValue] = useState(null);
 
   const onSubmit = values => {
     if (authentication()) {
@@ -72,7 +87,8 @@ const CreateReport = () => {
         linkUrl: values.link,
         imageFile: values.image,
         position: values.address,
-        anonymous: values.publicUser || false
+        anonymous: values.publicUser || false,
+        type: values.type
       })
         .then(res => {
           eventTracker({ type: 'submitReport', id: 'submitReportSuccess' });
@@ -98,15 +114,35 @@ const CreateReport = () => {
       <CancelHeader label="รายงานข่าว" mxwidth="680px" link={'/'} />
       <Wrapper>
         <Form
+          initialValues={initialValues}
           onSubmit={onSubmit}
           render={({ handleSubmit, submitting }) => (
             <form onSubmit={handleSubmit}>
               <FieldRow>
                 <Field
-                  name="content"
-                  label="*เนื้อหา"
-                  component={AdaptTextarea}
-                  validate={required('เนื้อหา')}
+                  name="type"
+                  label="รายงานประเภท"
+                  component={AdaptRadio}
+                  items={[
+                    {
+                      value: 'news',
+                      label: 'แหล่งข่าว',
+                      preview: newsPreview
+                    },
+                    {
+                      value: 'risk',
+                      label: 'พื้นที่เสี่ยง',
+                      preview: riskPreview
+                    }
+                  ]}
+                />
+                <FormSpy
+                  subscription={{
+                    values: true
+                  }}
+                  onChange={values => {
+                    setTypeValue(values.type);
+                  }}
                 />
               </FieldRow>
               <FieldRow>
@@ -115,13 +151,28 @@ const CreateReport = () => {
                   label="Link อ้างอิงที่มาของข่าว"
                   component={AdaptField}
                   validate={isUrlValid}
+                  validate={composeValidators(
+                    isUrlValid,
+                    required(' Link อ้างอิงที่มาของข่าว')
+                  )}
                 />
               </FieldRow>
               <FieldRow>
                 <Field
                   name="address"
-                  label="ระบุพื้นที่สุ่มเสี่ยง"
+                  label={
+                    typeValue === 'news' ? 'สถานที่ตั้ง' : 'ระบุพื้นที่เสี่ยง'
+                  }
                   component={AdaptPlaceAutoComplete}
+                  validate={required('สถานที่ตั้ง')}
+                />
+              </FieldRow>
+              <FieldRow>
+                <Field
+                  name="content"
+                  label="คำบรรยาย"
+                  component={AdaptTextarea}
+                  validate={required('คำบรรยาย')}
                 />
               </FieldRow>
               <FieldRow>
@@ -141,16 +192,14 @@ const CreateReport = () => {
                   label="รูปภาพ"
                 />
               </FieldRow>
-              <PublicUser>
-                <label style={{ margin: '0px 8px 0px 0px' }}>
-                  {'Anonymous'}
-                </label>
-                <Field name="publicUser" component={AdaptToggle} />
-              </PublicUser>
+
               <Footer>
-                <Notice>
-                  กรุณาตรวจสอบข้อมูล และที่มาของ แหล่งข่าวก่อนทำการยืนยัน
-                </Notice>
+                <PublicUser>
+                  <label style={{ margin: '0px 16px 0px 0px' }}>
+                    {'Anonymous'}
+                  </label>
+                  <Field name="publicUser" component={AdaptToggle} />
+                </PublicUser>
                 <Button htmlType="submit" loading={submitting}>
                   ยืนยัน
                 </Button>

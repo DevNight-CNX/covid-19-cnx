@@ -6,7 +6,6 @@ const validFiles = ['image/jpeg', 'image/png'];
 
 const Uploader = styled.div`
   display: block;
-  width: 100%;
   padding: 14px 24px;
   ${({ theme }) => theme.typography.body()}
   border: 1px solid ${({ theme }) => theme.color.neutralColor.lightGray300};
@@ -27,26 +26,37 @@ const PreviewImage = styled.div`
   background-position: center;
 `;
 
+const Wrapper = styled.div`
+  width: 94px;
+`;
+
 const ImageUploader = props => {
   return (
-    <UploadImageHandler
-      validFiles={validFiles}
-      {...props}
-      render={({ getErrorProps, getPreviewImage, getIsLoading, readOnly }) => (
-        <>
-          <Uploader isError={getErrorProps().showError} readOnly={readOnly}>
-            Upload Picture
-          </Uploader>
-          {getPreviewImage() ? (
-            <PreviewImage
-              src={getPreviewImage()}
-              data-testid="upload-preview"
-            />
-          ) : null}
-          {getIsLoading() ? <p>Loadng...</p> : null}
-        </>
-      )}
-    />
+    <Wrapper>
+      <UploadImageHandler
+        validFiles={validFiles}
+        {...props}
+        render={({
+          getErrorProps,
+          getPreviewImage,
+          getIsLoading,
+          readOnly
+        }) => (
+          <>
+            <Uploader isError={getErrorProps().showError} readOnly={readOnly}>
+              Upload
+            </Uploader>
+            {getPreviewImage() ? (
+              <PreviewImage
+                src={getPreviewImage()}
+                data-testid="upload-preview"
+              />
+            ) : null}
+            {getIsLoading() ? <p>Loadng...</p> : null}
+          </>
+        )}
+      />
+    </Wrapper>
   );
 };
 
