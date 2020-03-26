@@ -1,0 +1,56 @@
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import { FirebaseContext } from 'App';
+
+const SummarysPropTypes = {};
+
+const SummarysContext = createContext();
+
+const SummarysProvider = SummarysContext.Provider;
+
+const useSummarys = () => {
+  const context = useContext(SummarysContext);
+  if (context === undefined) {
+    throw new Error('useSummarys must be used within a SummarysProvider');
+  }
+  return context;
+};
+
+const Summarys = ({ children }) => {
+  const firebase = useContext(FirebaseContext);
+  const [parseSummarys, setParseSummarys] = useState();
+  const [parseSummarysCNX, setParseSummarysCNX] = useState();
+
+  useEffect(() => {
+    const db = firebase.firestore();
+    db.collection('constants')
+      .doc('latest')
+      .get()
+      .then(doc => {
+        setParseSummarys(doc.data());
+      })
+      .then(() =>
+        db
+          .collection('constants_cnx')
+          .doc('latest')
+          .get()
+          .then(doc => {
+            setParseSummarysCNX(doc.data());
+          })
+      );
+  }, [firebase]);
+
+  return (
+    <SummarysProvider
+      value={{
+        summary: parseSummarys,
+        summary_cnx: parseSummarysCNX
+      }}
+    >
+      {children}
+    </SummarysProvider>
+  );
+};
+
+Summarys.propTypes = SummarysPropTypes;
+
+export { Summarys, useSummarys };

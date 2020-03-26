@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import useFetch from 'utils/useFetch';
@@ -9,6 +9,7 @@ import virusIcon from './assets/virus.svg';
 import deadIcon from './assets/dead.svg';
 import { Skeleton } from 'antd';
 import { useReport } from 'contexts/report.context';
+import { useSummarys } from 'contexts/summarys.context';
 
 const Title = styled.p`
   ${({ theme }) => theme.typography.body()}
@@ -97,32 +98,47 @@ SummaryItem.propTypes = SummaryItemPropTypes;
 SummaryItem.defaultProps = SummaryItemDefaultProps;
 
 const Summary = ({ isShow }) => {
-  const { data } = useFetch(() => getSummary());
-  const { dataCNX } = useFetch(() => getSummaryCNX());
+  const { summary, summary_cnx } = useSummarys();
 
   return (
     <>
       <SummaryItem
         title="ติดเชื้อแล้ว"
         icon={virusIcon}
-        value={isShow ? dataCNX['ผู้ติดเชื้อ'] : data['ผู้ติดเชื้อ']}
-        note={data['โน๊ตผู้ติดเชื้อ']}
+        value={
+          isShow
+            ? summary_cnx && summary_cnx.ผู้ติดเชื้อ
+            : summary && summary.ผู้ติดเชื้อ
+        }
+        note={summary && summary.โน๊ตผู้ติดเชื้อ}
       />
       <SummaryItem
         title="เสียชีวิต"
         icon={deadIcon}
-        value={isShow ? dataCNX['เสียชีวิต'] : data['เสียชีวิต']}
+        value={
+          isShow
+            ? summary_cnx && summary_cnx.เสียชีวิต
+            : summary && summary.เสียชีวิต
+        }
       />
       <SummaryItem
         title="หายแล้ว"
         icon={userIcon}
-        value={isShow ? dataCNX['หายแล้ว'] : data['หายแล้ว']}
+        value={
+          isShow
+            ? summary_cnx && summary_cnx.หายแล้ว
+            : summary && summary.หายแล้ว
+        }
       />
 
       <SummaryItem
         title="รักษาอยู่ใน รพ."
         icon={hospitalIcon}
-        value={isShow ? dataCNX['กำลังรักษา'] : data['กำลังรักษา']}
+        value={
+          isShow
+            ? summary_cnx && summary_cnx.กำลังรักษา
+            : summary && summary.กำลังรักษา
+        }
       />
     </>
   );
