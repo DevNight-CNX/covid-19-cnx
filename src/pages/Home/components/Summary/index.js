@@ -110,10 +110,10 @@ const Summary = ({ isShow }) => {
         icon={virusIcon}
         value={
           isShow
-            ? summary_cnx && summary_cnx.ผู้ติดเชื้อ
-            : summary && summary.ผู้ติดเชื้อ
+            ? summary_cnx && summary_cnx['ผู้ติดเชื้อ']
+            : summary && summary['ผู้ติดเชื้อ']
         }
-        note={summary && summary.โน๊ตผู้ติดเชื้อ}
+        note={summary && summary['โน๊ตผู้ติดเชื้อ']}
         isShow={isShow}
       />
       <SummaryItem
@@ -121,8 +121,8 @@ const Summary = ({ isShow }) => {
         icon={deadIcon}
         value={
           isShow
-            ? summary_cnx && summary_cnx.เสียชีวิต
-            : summary && summary.เสียชีวิต
+            ? summary_cnx && summary_cnx['เสียชีวิต']
+            : summary && summary['เสียชีวิต']
         }
       />
       <SummaryItem
@@ -130,8 +130,8 @@ const Summary = ({ isShow }) => {
         icon={userIcon}
         value={
           isShow
-            ? summary_cnx && summary_cnx.หายแล้ว
-            : summary && summary.หายแล้ว
+            ? summary_cnx && summary_cnx['หายแล้ว']
+            : summary && summary['หายแล้ว']
         }
       />
 
@@ -140,8 +140,8 @@ const Summary = ({ isShow }) => {
         icon={hospitalIcon}
         value={
           isShow
-            ? summary_cnx && summary_cnx.กำลังรักษา
-            : summary && summary.กำลังรักษา
+            ? summary_cnx && summary_cnx['กำลังรักษา']
+            : summary && summary['กำลังรักษา']
         }
       />
     </>
