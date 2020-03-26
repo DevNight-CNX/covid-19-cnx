@@ -4,6 +4,7 @@ import { useMediaQuery } from 'react-responsive';
 import CreateReport from './pages/Report/Create';
 import FullReport from './pages/Report/Full';
 import DetailReport from './pages/Report/Detail';
+import SituationNews from './pages/Report/Situation';
 import Policy from './pages/Policy';
 import Home from './pages/Home';
 import DesktopPage from './pages/DesktopDashboard';
@@ -29,6 +30,7 @@ const Router = () => {
         <Route path="/policy" component={Policy} />
         <Route path="/report/:id" component={DetailReport} />
         <Route path="/report" component={FullReport} />
+        <Route path="/situation" component={SituationNews} />
         <Route path="/" component={Home} />
       </Switch>
     );

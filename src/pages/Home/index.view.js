@@ -21,6 +21,7 @@ const NewsContainer = styled.div`
   width: 100%;
   position: relative;
   margin-top: 24px;
+  padding: 16px;
 `;
 
 const SummaryWrapper = styled.div`

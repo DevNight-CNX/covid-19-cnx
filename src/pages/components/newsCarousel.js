@@ -1,10 +1,12 @@
 import React, { useRef } from 'react';
-import { Carousel as AntdCarousel } from 'antd';
+import { useHistory } from 'react-router-dom';
+import { Carousel as AntdCarousel, Button } from 'antd';
 import styled from 'styled-components';
 import { useNews } from 'contexts/news.context';
 import LinkPreview from './LinkPreView';
 import { RightCircleOutlined, LeftCircleOutlined } from '@ant-design/icons';
 import eventTracker from 'utils/eventTracker';
+import Typography from 'components/Typography';
 
 const CarouselContent = styled.div`
   width: 100%;
@@ -12,6 +14,9 @@ const CarouselContent = styled.div`
   color: black;
   display: flex;
   justify-content: center;
+  @media only screen and (max-width: 768px) {
+    margin-bottom: 8px;
+  }
 `;
 
 const Carousel = styled(AntdCarousel)`
@@ -63,9 +68,35 @@ const PreviousButton = styled(LeftCircleOutlined)`
 
 const CarouselWrapper = styled.div`
   width: 100%;
+  @media only screen and (max-width: 767px) {
+    display: none !important;
+  }
 `;
 
+const NewsListWrapper = styled.div`
+  width: 100%;
+  > div:not(:first-child) {
+    margin-top: 8px;
+  }
+  @media only screen and (min-width: 768px) {
+    display: none !important;
+  }
+`;
+
+const ButtonsWrapper = styled.div`
+  text-align: right;
+  margin-top: 16px;
+`;
+
+const LinkButton = styled(Button)`
+  && {
+    ${({ theme }) => theme.typography.bodyLarge()};
+    color: ${({ theme }) => theme.color.primaryColor.blueRibbon};
+  }
+`;
 const NewsCarousel = () => {
+  const history = useHistory();
+
   const carousel = useRef(null);
 
   const { news } = useNews();
@@ -102,6 +133,33 @@ const NewsCarousel = () => {
           })}
         </Carousel>
       </CarouselWrapper>
+      {/* display only mobile */}
+      <NewsListWrapper>
+        <Typography variant="body" weight="normal">
+          ข่าวสถานการณ์ปัจจุบัน
+        </Typography>
+        {news.slice(0, 3).map((item, index) => {
+          return (
+            <CarouselContent key={index}>
+              <LinkPreview item={item} onClick={onClickCard} />
+            </CarouselContent>
+          );
+        })}
+        <ButtonsWrapper>
+          <LinkButton
+            type="link"
+            onClick={() => {
+              history.push('/situation');
+              eventTracker({
+                type: 'allSituationNewsClicked',
+                id: 'allSituationNewsClicked'
+              });
+            }}
+          >
+            อ่านทั้งหมด >
+          </LinkButton>
+        </ButtonsWrapper>
+      </NewsListWrapper>
     </Wrapper>
   );
 };

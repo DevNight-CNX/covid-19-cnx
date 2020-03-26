@@ -29,15 +29,15 @@ const Home = () => {
         <Map />
       </MapContainer>
       <Container>
-        <NewsContainer>
-          <NewsCarousel />
-        </NewsContainer>
         <InfoSummaryWrapper>
           <InfoSummary>ข้อมูลผู้ป่วยในประเทศไทย</InfoSummary>
           <SummaryWrapper>
             <Summary />
           </SummaryWrapper>
         </InfoSummaryWrapper>
+        <NewsContainer>
+          <NewsCarousel />
+        </NewsContainer>
         <Suspense fallback={<div />}>
           <LazyNews />
         </Suspense>
