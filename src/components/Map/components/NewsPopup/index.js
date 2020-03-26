@@ -102,49 +102,9 @@ const StatusColor = styled.span`
   }};
 `;
 
-const InfoPopupPropTypes = {
+const NewsPopupPropTypes = {
   data: PropTypes.object
 };
-
-const CasePopup = ({ data = {} }) => {
-  const getTime = () => {
-    const time = prop('seconds', data.statementDate);
-    return moment.unix(time).fromNow() === 'Invalid date'
-      ? null
-      : moment.unix(time).fromNow();
-  };
-
-  return (
-    <Wrapper>
-      {data.treatAt ? <Title>{data.treatAt}</Title> : null}
-      {getTime() ? <StatementDate>{getTime()}</StatementDate> : null}
-      <Nation>{data.nationality}</Nation>
-      <Identity>
-        อายุ {data.age} เพศ {data.gender}
-      </Identity>
-      <Status>
-        <Status.Title>สถานะ </Status.Title>
-        <StatusColor type={data.status}>{data.status}</StatusColor>
-      </Status>
-      {data.unknownLocation ? (
-        <Status>
-          <Status.UnknownLocation>
-            ไม่สามารถระบุตำแหน่งที่ชัดเจนได้
-          </Status.UnknownLocation>
-        </Status>
-      ) : null}
-      <LinkWrapper>
-        {data.references.map((ref, index) => (
-          <Link href={ref} target="_blank">
-            ลิงก์ข่าว {index + 1}
-          </Link>
-        ))}
-      </LinkWrapper>
-    </Wrapper>
-  );
-};
-
-CasePopup.propTypes = InfoPopupPropTypes;
 
 const NewsPopup = ({ data = {} }) => {
   const getTime = () => {
@@ -174,6 +134,6 @@ const NewsPopup = ({ data = {} }) => {
   );
 };
 
-NewsPopup.propTypes = InfoPopupPropTypes;
+NewsPopup.propTypes = NewsPopupPropTypes;
 
-export { NewsPopup, CasePopup };
+export default NewsPopup;

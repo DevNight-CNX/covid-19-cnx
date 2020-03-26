@@ -4,11 +4,11 @@ import { renderToString } from 'react-dom/server';
 import styled from 'styled-components';
 import { useNews } from 'contexts/news.context';
 import useFirestore from 'utils/useFirestore';
-import rippleIcon from './assets/ripple.svg';
+import hospitalIcon from './assets/hospital.svg';
 import newsIcon from './assets/news.svg';
 import mapStyles from './mapStyles';
-import { CasePopup, NewsPopup } from './components/InfoPopup';
-import eventTracker from 'utils/eventTracker';
+import CasePopup from './components/CasePopup';
+import NewsPopup from './components/NewsPopup';
 import IconDetail from './components/IconDetail';
 
 const MapContainer = styled.div`
@@ -19,12 +19,10 @@ const MapContainer = styled.div`
 const Map = () => {
   const mapRef = useRef(null);
   const infoWindowRef = useRef(null);
-
-  const [visible, setVisible] = useState(false);
   const { news, newsLoading } = useNews();
 
   const { data: cases, loading } = useFirestore(
-    db => db.collection('cases'),
+    db => db.collection('cases_cnx'),
     item => ({
       ...item,
       unknownLocation: item.unknown_location
@@ -81,7 +79,7 @@ const Map = () => {
           map,
           position: latLng,
           optimized: false,
-          icon: rippleIcon
+          icon: hospitalIcon
         });
 
         markers.push(marker);
