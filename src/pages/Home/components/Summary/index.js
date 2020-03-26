@@ -55,6 +55,11 @@ const SummaryItemWrapper = styled.div`
   padding: 16px;
 `;
 
+const SkeletonAvatarWarpper = styled.div`
+  display: flex;
+  width: 45px;
+`;
+
 const SummaryItemPropTypes = {
   title: PropTypes.string,
   icon: PropTypes.string,
@@ -74,13 +79,16 @@ const SummaryItem = ({ title, icon, value, note }) => {
           {title}
           <Note note={note}>{note}</Note>
         </Title>
-        <ValueSection icon={icon}>
-          {fetching ? (
+        {fetching ? (
+          <SkeletonAvatarWarpper>
             <Skeleton.Avatar active={fetching} size="small" shape="circle" />
-          ) : (
+            <Value>0</Value>
+          </SkeletonAvatarWarpper>
+        ) : (
+          <ValueSection icon={icon}>
             <Value>{value}</Value>
-          )}
-        </ValueSection>
+          </ValueSection>
+        )}
       </SummaryItemWrapper>
     </>
   );
