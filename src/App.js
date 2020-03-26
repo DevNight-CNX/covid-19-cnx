@@ -8,6 +8,8 @@ import 'firebase/analytics';
 import { Report as ReportProvider } from 'contexts/report.context';
 
 import { News as NewsProvider } from 'contexts/news.context';
+
+import { Summarys as SummarysProvider } from 'contexts/summarys.context';
 import 'firebase/auth';
 import 'firebase/messaging';
 import 'firebase/firestore';
@@ -49,14 +51,16 @@ const App = () => {
               <ThemeProvider theme={theme}>
                 <ReportProvider>
                   <NewsProvider>
-                    <ScrollToTop>
-                      <>
-                        <Router />
-                        <GlobalStyled />
-                        <RemoveFocusWhenNotTab />
-                        <LogRocketTracking />
-                      </>
-                    </ScrollToTop>
+                    <SummarysProvider>
+                      <ScrollToTop>
+                        <>
+                          <Router />
+                          <GlobalStyled />
+                          <RemoveFocusWhenNotTab />
+                          <LogRocketTracking />
+                        </>
+                      </ScrollToTop>
+                    </SummarysProvider>
                   </NewsProvider>
                 </ReportProvider>
               </ThemeProvider>
