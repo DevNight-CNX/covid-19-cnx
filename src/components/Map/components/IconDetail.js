@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import newsIcon from '../assets/news.svg';
 import hospitalIcon from '../assets/hospital.svg';
 import rippleIcon from '../assets/ripple.svg';
+import policeIcon from '../assets/police.svg';
 
 const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.color.white};
@@ -56,6 +57,14 @@ const IconDetail = () => {
       >
         <Icon src={rippleIcon} width={21} />
         <Detail>พื้นที่เสี่ยง</Detail>
+      </IconWrapper>
+      <IconWrapper
+        style={{
+          marginTop: 8
+        }}
+      >
+        <Icon src={policeIcon} width={21} />
+        <Detail>จุดคัดกรอง</Detail>
       </IconWrapper>
     </Wrapper>
   );

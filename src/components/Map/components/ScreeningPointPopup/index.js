@@ -17,43 +17,8 @@ const Date = styled.p`
   font-family: Kanit, Arial, sans-serif;
   font-size: 12px;
   line-height: 16px;
+  margin: 0;
   margin-top: 8px;
-`;
-
-const getStatusColor = type => {
-  switch (type) {
-    case 'หาย':
-      return '#34C759';
-    case 'รักษา':
-      return '#FFD600';
-    case 'เสียชีวิต':
-      return '#FF3B30';
-    default:
-      return '#000000';
-  }
-};
-
-const StatusColor = styled.span`
-  color: ${({ type }) => {
-    return getStatusColor(type);
-  }};
-`;
-
-const Dash = styled.p`
-  margin-bottom: 4px;
-  font-family: Kanit, Arial, sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 21px;
-`;
-
-const Title = styled.p`
-  font-family: Kanit, Arial, sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 21px;
   margin-bottom: 4px;
 `;
 
@@ -117,13 +82,9 @@ const CasePopup = ({ data = {} }) => {
 
   return (
     <Wrapper>
-      {data.address && <Title>{data.address}</Title>}
-      <Status>ผู้ติดเชื้อ {data.infected}</Status>
-      <Status>รักษาตัวในรw. {data.treated}</Status>
-      <Status>กลับบ้าน {data.healed}</Status>
-      <Status>เสียชีวิต {data.died}</Status>
-      {data.detail && <Detail>{data.detail}</Detail>}
       {getTime() ? <Date>{getTime()}</Date> : null}
+      <Status>จุดคัดกรองที่ {data.order}</Status>
+      {data.detail && <Detail>{data.detail}</Detail>}
       <AddressWrapper>
         <Address>{data.address}</Address>
       </AddressWrapper>
