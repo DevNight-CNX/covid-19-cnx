@@ -60,7 +60,7 @@ const SwitchStyled = styled(Switch)`
 `;
 
 const MapAndNews = () => {
-  const [isShow, setIshow] = useState(false);
+  const [isShow, setIshow] = useState(true);
 
   return (
     <div>
