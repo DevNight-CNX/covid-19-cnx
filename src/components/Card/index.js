@@ -20,15 +20,8 @@ import {
   LikeManagerWrapper
 } from './index.view';
 import eventTracker from 'utils/eventTracker';
+import getSafeLink from 'utils/getSafeLink';
 import { withRouter } from 'react-router-dom';
-
-const getSafeLink = url => {
-  if (!/^https?:\/\//i.test(url)) {
-    return 'https://' + url;
-  } else {
-    return url;
-  }
-};
 
 const CardCustomPropTypes = {
   image: PropTypes.string,

@@ -17,11 +17,13 @@ export const createReport = ({
   content,
   linkUrl,
   imageFile,
-  anonymous
+  anonymous,
+  type
 }) => {
   const url = apiUrlProvider.get(CREATE_REPORT);
   const body = {
     content,
+    type,
     image: imageFile,
     link: linkUrl,
     address: prop('name', position),
@@ -87,7 +89,8 @@ export const getReportList = () => {
         likes: res.likes,
         address: res.address,
         date: res.created,
-        index
+        index,
+        type: res.type
       };
     });
   });

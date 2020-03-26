@@ -6,7 +6,7 @@ const Wrapper = styled.div`
 
   @media only screen and (max-width: 1100px) {
     position: fixed;
-    z-index: 1;
+    z-index: 10;
     top: 0px;
     width: 100%;
   }

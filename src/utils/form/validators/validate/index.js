@@ -3,7 +3,17 @@
 import { curry } from 'ramda';
 import composeValidate from '../utils/composeValidate';
 
-export const requiredValidate = value => value && !!value.trim();
+export const requiredValidate = value => {
+  if (value) {
+    if (typeof value === 'string') {
+      return !!value.trim();
+    }
+
+    return !!value;
+  } else {
+    return false;
+  }
+};
 
 export const minLengthValidate = curry((length, valueArg) => {
   const value = valueArg || '';
