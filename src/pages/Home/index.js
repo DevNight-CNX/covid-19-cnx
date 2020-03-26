@@ -33,9 +33,6 @@ const Home = () => {
         <Map />
       </MapContainer>
       <Container>
-        <NewsContainer>
-          <NewsCarousel />
-        </NewsContainer>
         <InfoSummaryWrapper>
           <SwitchContainer>
             <InfoSummary>รายงานข้อมูลผู้ป่วยใน</InfoSummary>
@@ -51,6 +48,9 @@ const Home = () => {
             <Summary isShow={isShow} />
           </SummaryWrapper>
         </InfoSummaryWrapper>
+        <NewsContainer>
+          <NewsCarousel />
+        </NewsContainer>
         <Suspense fallback={<div />}>
           <LazyNews />
         </Suspense>
