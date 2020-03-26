@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 
 const useFetch = (service, defaultFilter, defaultValue = {}) => {
   const [data, setData] = useState(defaultValue);
+  const [dataCNX, setDataCNX] = useState(defaultValue);
+
   const [loading, setLoading] = useState(true);
   const [filter, setStateFilter] = useState(defaultFilter);
 
@@ -10,6 +12,7 @@ const useFetch = (service, defaultFilter, defaultValue = {}) => {
     service(filter)
       .then(data => {
         setData(data);
+        setDataCNX(data);
         setLoading(false);
       })
       .catch(error => {
@@ -23,6 +26,7 @@ const useFetch = (service, defaultFilter, defaultValue = {}) => {
 
   const clearData = () => {
     setData({});
+    setDataCNX({});
   };
 
   const setFilter = (updateFilter, isNotRefetch = false) => {
@@ -49,6 +53,8 @@ const useFetch = (service, defaultFilter, defaultValue = {}) => {
     data,
     loading,
     setData,
+    setDataCNX,
+    dataCNX,
     clearData,
     setLoading,
     setFilter,

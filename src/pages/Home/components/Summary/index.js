@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import useFetch from 'utils/useFetch';
-import { getSummary } from 'services/case';
+import { getSummary, getSummaryCNX } from 'services/case';
 import userIcon from './assets/user.svg';
 import hospitalIcon from './assets/hospital.svg';
 import virusIcon from './assets/virus.svg';
 import deadIcon from './assets/dead.svg';
+import { Skeleton } from 'antd';
+import { useReport } from 'contexts/report.context';
 
 const Title = styled.p`
   ${({ theme }) => theme.typography.body()}
@@ -53,6 +55,11 @@ const SummaryItemWrapper = styled.div`
   padding: 16px;
 `;
 
+const SkeletonAvatarWarpper = styled.div`
+  display: flex;
+  width: 45px;
+`;
+
 const SummaryItemPropTypes = {
   title: PropTypes.string,
   icon: PropTypes.string,
@@ -63,6 +70,8 @@ const SummaryItemDefaultProps = {
   value: '0'
 };
 const SummaryItem = ({ title, icon, value, note }) => {
+  const { fetching } = useReport();
+
   return (
     <>
       <SummaryItemWrapper>
@@ -70,9 +79,16 @@ const SummaryItem = ({ title, icon, value, note }) => {
           {title}
           <Note note={note}>{note}</Note>
         </Title>
-        <ValueSection icon={icon}>
-          <Value>{value}</Value>
-        </ValueSection>
+        {fetching ? (
+          <SkeletonAvatarWarpper>
+            <Skeleton.Avatar active={fetching} size="small" shape="circle" />
+            <Value>0</Value>
+          </SkeletonAvatarWarpper>
+        ) : (
+          <ValueSection icon={icon}>
+            <Value>{value}</Value>
+          </ValueSection>
+        )}
       </SummaryItemWrapper>
     </>
   );
@@ -80,28 +96,33 @@ const SummaryItem = ({ title, icon, value, note }) => {
 SummaryItem.propTypes = SummaryItemPropTypes;
 SummaryItem.defaultProps = SummaryItemDefaultProps;
 
-const Summary = () => {
+const Summary = ({ isShow }) => {
   const { data } = useFetch(() => getSummary());
+  const { dataCNX } = useFetch(() => getSummaryCNX());
 
   return (
     <>
       <SummaryItem
         title="ติดเชื้อแล้ว"
         icon={virusIcon}
-        value={data['ผู้ติดเชื้อ']}
+        value={isShow ? dataCNX['ผู้ติดเชื้อ'] : data['ผู้ติดเชื้อ']}
         note={data['โน๊ตผู้ติดเชื้อ']}
       />
       <SummaryItem
         title="เสียชีวิต"
         icon={deadIcon}
-        value={data['เสียชีวิต']}
+        value={isShow ? dataCNX['เสียชีวิต'] : data['เสียชีวิต']}
       />
-      <SummaryItem title="หายแล้ว" icon={userIcon} value={data['หายแล้ว']} />
+      <SummaryItem
+        title="หายแล้ว"
+        icon={userIcon}
+        value={isShow ? dataCNX['หายแล้ว'] : data['หายแล้ว']}
+      />
 
       <SummaryItem
         title="รักษาอยู่ใน รพ."
         icon={hospitalIcon}
-        value={data['กำลังรักษา']}
+        value={isShow ? dataCNX['กำลังรักษา'] : data['กำลังรักษา']}
       />
     </>
   );
