@@ -7,6 +7,8 @@ import userIcon from './assets/user.svg';
 import hospitalIcon from './assets/hospital.svg';
 import virusIcon from './assets/virus.svg';
 import deadIcon from './assets/dead.svg';
+import { Skeleton } from 'antd';
+import { useReport } from 'contexts/report.context';
 
 const Title = styled.p`
   ${({ theme }) => theme.typography.body()}
@@ -63,6 +65,8 @@ const SummaryItemDefaultProps = {
   value: '0'
 };
 const SummaryItem = ({ title, icon, value, note }) => {
+  const { fetching } = useReport();
+
   return (
     <>
       <SummaryItemWrapper>
@@ -71,7 +75,11 @@ const SummaryItem = ({ title, icon, value, note }) => {
           <Note note={note}>{note}</Note>
         </Title>
         <ValueSection icon={icon}>
-          <Value>{value}</Value>
+          {fetching ? (
+            <Skeleton.Avatar active={fetching} size="small" shape="circle" />
+          ) : (
+            <Value>{value}</Value>
+          )}
         </ValueSection>
       </SummaryItemWrapper>
     </>
