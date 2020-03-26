@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import { compose, prop } from 'ramda';
 import { Form, Field, FormSpy } from 'react-final-form';
 import {
   AdaptField,
@@ -109,6 +110,8 @@ const CreateReport = () => {
     }
   };
 
+  console.log('typeValue', typeValue);
+
   return (
     <>
       <CancelHeader label="รายงานข่าว" mxwidth="680px" link={'/'} />
@@ -140,8 +143,12 @@ const CreateReport = () => {
                   subscription={{
                     values: true
                   }}
-                  onChange={values => {
-                    setTypeValue(values.type);
+                  onChange={props => {
+                    const getType = compose(
+                      prop('type'),
+                      prop('values')
+                    );
+                    setTypeValue(getType(props));
                   }}
                 />
               </FieldRow>

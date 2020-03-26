@@ -161,8 +161,6 @@ const Map = () => {
       return;
     }
 
-    console.log('reports', reports);
-
     const map = mapRef.current;
 
     const infowindow = infoWindowRef.current;
@@ -199,8 +197,6 @@ const Map = () => {
             time: moment(reportItem.time).fromNow()
           };
 
-          console.log('parsedItem', parsedItem);
-
           marker.addListener('click', function() {
             infowindow.setContent(
               renderToString(<NewsPopup data={parsedItem} />)
@@ -214,7 +210,6 @@ const Map = () => {
       markers.forEach(marker => {
         marker.setMap(null);
       });
-      console.log('clear!');
     };
   }, [reportsLoading, reports]);
 
@@ -222,8 +217,6 @@ const Map = () => {
     if (reportsLoading) {
       return;
     }
-
-    console.log('reports', reports);
 
     const map = mapRef.current;
 
@@ -235,8 +228,6 @@ const Map = () => {
       .filter(report => report.type === 'risk')
       .forEach(reportItem => {
         const coords = reportItem.location || [];
-
-        console.log('coords', coords);
 
         const lat = coords[0];
         const lng = coords[1];
@@ -276,7 +267,6 @@ const Map = () => {
       markers.forEach(marker => {
         marker.setMap(null);
       });
-      console.log('clear!');
     };
   }, [reportsLoading, reports]);
 
