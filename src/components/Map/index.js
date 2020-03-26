@@ -5,13 +5,16 @@ import { renderToString } from 'react-dom/server';
 import styled from 'styled-components';
 import { useNews } from 'contexts/news.context';
 import { useReport } from 'contexts/report.context';
+import { useScreeningPoint } from 'contexts/screeningPoint.context';
 import useFirestore from 'utils/useFirestore';
 import hospitalIcon from './assets/hospital.svg';
 import newsIcon from './assets/news.svg';
 import rippleIcon from './assets/ripple.svg';
+import policeIcon from './assets/police.svg';
 import mapStyles from './mapStyles';
 import CasePopup from './components/CasePopup';
 import NewsPopup from './components/NewsPopup';
+import ScreeningPointPopup from './components/ScreeningPointPopup';
 import IconDetail from './components/IconDetail';
 
 const MapContainer = styled.div`
@@ -24,6 +27,7 @@ const Map = () => {
   const infoWindowRef = useRef(null);
   const { news, newsLoading } = useNews();
   const { reports, fetching: reportsLoading } = useReport();
+  const { screeningPoints, screeningPointsLoading } = useScreeningPoint();
 
   const { data: cases, loading } = useFirestore(
     db => db.collection('cases_cnx'),
@@ -269,6 +273,59 @@ const Map = () => {
       });
     };
   }, [reportsLoading, reports]);
+
+  useEffect(() => {
+    if (screeningPointsLoading) {
+      return;
+    }
+
+    const map = mapRef.current;
+
+    const infowindow = infoWindowRef.current;
+
+    const markers = [];
+
+    screeningPoints.forEach((screeningPointItem, index) => {
+      const coords = screeningPointItem.location;
+
+      const lat = prop('lat', coords);
+      const lng = prop('lng', coords);
+
+      if (lat && lng) {
+        const latLng = new window.google.maps.LatLng(lat, lng);
+        const marker = new window.google.maps.Marker({
+          map,
+          position: latLng,
+          icon: {
+            url: policeIcon,
+            size: new window.google.maps.Size(24, 24)
+          }
+        });
+
+        markers.push(marker);
+
+        const parsedScreeningPointItem = {
+          ...screeningPointItem,
+          order: index + 1
+        };
+
+        marker.addListener('click', function() {
+          infowindow.setContent(
+            renderToString(
+              <ScreeningPointPopup data={parsedScreeningPointItem} />
+            )
+          );
+          infowindow.open(map, marker);
+        });
+      }
+    });
+
+    return () => {
+      markers.forEach(marker => {
+        marker.setMap(null);
+      });
+    };
+  }, [screeningPointsLoading, screeningPoints]);
 
   return (
     <>
