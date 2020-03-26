@@ -43,7 +43,7 @@ const ViewSituationNews = ({ news, onClickCard }) => {
       <NewsListWrapper>
         {news.map((item, index) => {
           return (
-            <ListContent key={index}>
+            <ListContent key={`news${index}`}>
               <LinkPreview item={item} onClick={onClickCard} />
             </ListContent>
           );

@@ -68,7 +68,7 @@ const PreviousButton = styled(LeftCircleOutlined)`
 
 const CarouselWrapper = styled.div`
   width: 100%;
-  @media only screen and (max-width: 767px) {
+  @media only screen and (max-width: 1100px) {
     display: none !important;
   }
 `;
@@ -78,7 +78,7 @@ const NewsListWrapper = styled.div`
   > div:not(:first-child) {
     margin-top: 8px;
   }
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: 1100px) {
     display: none !important;
   }
 `;
