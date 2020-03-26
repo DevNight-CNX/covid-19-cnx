@@ -32,11 +32,11 @@ const Note = styled.span`
   margin: 0;
   margin-left: 8px;
   @media screen and (max-width: 600px) {
-    margin-top:  ${({ note }) => (note ? `0px` : `13px`)};
+    margin-top:  ${({ note, isShow }) => (note && !isShow ? `0px` : `13px`)};
     margin-left: 0px;
   }
   @media screen and (max-width: 397px) {
-    margin-top:  ${({ note }) => (note ? `0px` : `26px`)};
+    margin-top:  ${({ note, isShow }) => (note && !isShow ? `0px` : `26px`)};
   }
 `;
 
@@ -65,12 +65,13 @@ const SummaryItemPropTypes = {
   title: PropTypes.string,
   icon: PropTypes.string,
   value: PropTypes.string,
-  note: PropTypes.string
+  note: PropTypes.string,
+  isShow: PropTypes.bool
 };
 const SummaryItemDefaultProps = {
   value: '0'
 };
-const SummaryItem = ({ title, icon, value, note }) => {
+const SummaryItem = ({ title, icon, value, note, isShow }) => {
   const { fetching } = useReport();
 
   return (
@@ -78,7 +79,9 @@ const SummaryItem = ({ title, icon, value, note }) => {
       <SummaryItemWrapper>
         <Title>
           {title}
-          <Note note={note}>{note}</Note>
+          <Note note={note} isShow={isShow}>
+            {isShow ? null : note}
+          </Note>
         </Title>
         {fetching ? (
           <SkeletonAvatarWarpper>
@@ -111,6 +114,7 @@ const Summary = ({ isShow }) => {
             : summary && summary.ผู้ติดเชื้อ
         }
         note={summary && summary.โน๊ตผู้ติดเชื้อ}
+        isShow={isShow}
       />
       <SummaryItem
         title="เสียชีวิต"
