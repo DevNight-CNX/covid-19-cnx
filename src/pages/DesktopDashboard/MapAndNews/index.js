@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Map from 'components/Map';
 import NewsCarousel from 'pages/components/newsCarousel';
 import Header from 'pages/Home/components/Header';
 import Summary from 'pages/Home/components/Summary';
+import { Switch } from 'antd';
 
 const HeaderWrapper = styled.header`
   padding: 24px 16px 16px;
@@ -37,7 +38,30 @@ const InfoSummary = styled.p`
   margin: 0;
 `;
 
+const SwitchContainer = styled.div`
+  ${({ theme }) => theme.typography.bodyLarge()};
+  color: ${({ theme }) => theme.color.neutralColor.black};
+  display: flex;
+  justify-content: space-between;
+`;
+
+const SwitchStyled = styled(Switch)`
+  && {
+    max-width: 28px;
+    min-width: 28px;
+    width: 100%;
+    height: 16px;
+    margin-left: 8px;
+    ::after {
+      width: 12px;
+      height: 12px;
+    }
+  }
+`;
+
 const MapAndNews = () => {
+  const [isShow, setIshow] = useState(false);
+
   return (
     <div>
       <HeaderWrapper>
@@ -50,9 +74,15 @@ const MapAndNews = () => {
         <NewsCarousel />
       </NewsContainer>
       <InfoSummaryWrapper>
-        <InfoSummary>ข้อมูลผู้ป่วยในประเทศไทย</InfoSummary>
+        <SwitchContainer>
+          <InfoSummary>รายงานข้อมูลผู้ป่วยใน</InfoSummary>
+          <p>
+            {isShow ? 'เชียงใหม่' : 'ประเทศไทย'}
+            <SwitchStyled defaultChecked={isShow} onChange={e => setIshow(e)} />
+          </p>
+        </SwitchContainer>
         <SummaryWrapper>
-          <Summary />
+          <Summary isShow={isShow} />
         </SummaryWrapper>
       </InfoSummaryWrapper>
     </div>
