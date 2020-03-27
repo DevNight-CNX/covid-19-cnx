@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import LinkPreview from '../../components/LinkPreView';
+import LinkPreview from '../components/LinkPreView';
 
 const Wrapper = styled.div`
   position: relative;
@@ -20,9 +20,7 @@ const ListContent = styled.div`
   color: black;
   display: flex;
   justify-content: center;
-  @media only screen and (max-width: 768px) {
-    margin-bottom: 10px;
-  }
+  margin-bottom: 10px;
 `;
 
 const NewsListWrapper = styled.div`
