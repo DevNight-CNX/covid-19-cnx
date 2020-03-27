@@ -28,7 +28,6 @@ const Wrapper = styled.div`
   align-items: center;
 
   @media only screen and (max-width: 500px) {
-    min-width: 360px;
     max-width: 90vw;
     width: 100%;
   }

@@ -12,8 +12,8 @@ import newsIcon from './assets/news.svg';
 import rippleIcon from './assets/ripple.svg';
 import policeIcon from './assets/police.svg';
 import mapStyles from './mapStyles';
-import CasePopup from './components/CasePopup';
 import NewsPopup from './components/NewsPopup';
+import CasePopup from './components/CasePopup';
 import ScreeningPointPopup from './components/ScreeningPointPopup';
 import IconDetail from './components/IconDetail';
 

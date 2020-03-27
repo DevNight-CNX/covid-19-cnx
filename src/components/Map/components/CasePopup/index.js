@@ -8,7 +8,6 @@ import { OriginReference } from 'contexts/replaceurl';
 
 const Wrapper = styled.div`
   max-width: 300px;
-  min-width: 250px;
   color: #000000;
   padding: 0px 8px 8px;
 `;
