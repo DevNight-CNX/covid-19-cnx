@@ -62,7 +62,7 @@ const CardCustom = ({
   match,
   isFull
 }) => {
-  const cutString = reference => {
+  const OriginReference = reference => {
     const oldUrl = reference;
     const url = new URL(oldUrl);
     return url.origin;
@@ -97,7 +97,7 @@ const CardCustom = ({
                   target="_blank"
                   onClick={event => event.stopPropagation()}
                 >
-                  {cutString(reference)}
+                  {OriginReference(reference)}
                 </a>
               </TagLinkWrapper>
             ) : null}
