@@ -1,3 +1,6 @@
+/* stylelint-disable property-no-vendor-prefix */
+/* stylelint-disable value-no-vendor-prefix */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { prop } from 'ramda';
@@ -9,7 +12,7 @@ import pinIcon from './assets/pin.svg';
 const Wrapper = styled.div`
   max-width: 300px;
   color: #000000;
-  padding: 8px 24px;
+  padding: 8px 12px 8px 10px;
 `;
 
 const Text = styled.p`
@@ -60,14 +63,22 @@ const Title = styled.p`
 const NewsTitle = styled(Title)`
   font-size: 14px;
   line-height: 18px;
-  margin-bottom: 2px;
+  margin-bottom: 18px;
+  max-width: 40ch;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-height: 70px;
+  display: -webkit-box;
+  position: relative;
 `;
 
-const LinkWrapper = styled.div`
+const ReadMoreWrapper = styled.div`
   display: flex;
+  margin-left: auto;
 `;
 
-const Link = styled.a`
+const ReadMore = styled.a`
   font-family: Kanit, Arial, sans-serif;
   font-size: 12px;
   line-height: 16px;
@@ -76,6 +87,7 @@ const Link = styled.a`
   &:hover {
     text-decoration: underline;
   }
+  cursor: pointer;
 `;
 
 const StatementDate = styled.p`
@@ -83,6 +95,7 @@ const StatementDate = styled.p`
   font-family: Kanit, Arial, sans-serif;
   font-size: 12px;
   line-height: 16px;
+  margin-bottom: 4px;
 `;
 
 const getStatusColor = type => {
@@ -112,6 +125,27 @@ const Address = styled.p`
   font-size: 12px;
   line-height: 16px;
   color: #636f7a;
+  margin-bottom: 0px;
+`;
+
+const HeaderWrapper = styled.div`
+  display: flex;
+`;
+
+const FooterWrapper = styled.div`
+  display: flex;
+  position: relative;
+`;
+
+const Link = styled.a`
+  color: #8995a0;
+  font-family: Kanit, Arial, sans-serif;
+  font-size: 12px;
+  line-height: 16px;
+  margin-bottom: 4px;
+  :hover {
+    color: #8995a0;
+  }
 `;
 
 const NewsPopupPropTypes = {
@@ -119,15 +153,27 @@ const NewsPopupPropTypes = {
     time: PropTypes.string,
     title: PropTypes.string,
     unknownLocation: PropTypes.bool,
-    newsLink: PropTypes.string
-  })
+    newsLink: PropTypes.string,
+    address: PropTypes.string,
+    id: PropTypes.string,
+    type: PropTypes.string
+  }),
+  history: PropTypes.object
 };
 
 const NewsPopup = ({ data = {} }) => {
+  console.log(data);
   return (
     <Wrapper>
-      <NewsTitle>{data.title}</NewsTitle>
-      {data.time ? <StatementDate>{data.time}</StatementDate> : null}
+      <HeaderWrapper>
+        <StatementDate>
+          {data.time || null} {data.time && data.newsLink ? '•' : null}{' '}
+          <Link href={getSafeLink(data.newsLink)} target={'_blank'}>
+            www.google.com
+          </Link>
+        </StatementDate>
+      </HeaderWrapper>
+      <NewsTitle>{data.title} </NewsTitle>
       {data.unknownLocation ? (
         <Status>
           <Status.UnknownLocation>
@@ -135,16 +181,20 @@ const NewsPopup = ({ data = {} }) => {
           </Status.UnknownLocation>
         </Status>
       ) : null}
-      {data.address ? (
-        <AddressWrapper>
-          <Address>{data.address}</Address>
-        </AddressWrapper>
-      ) : null}
-      <LinkWrapper>
-        <Link href={getSafeLink(data.newsLink)} target="_blank">
-          ลิงก์ข่าว
-        </Link>
-      </LinkWrapper>
+      <FooterWrapper>
+        {data.address ? (
+          <AddressWrapper>
+            <Address>{data.address}</Address>
+          </AddressWrapper>
+        ) : null}
+        <ReadMoreWrapper>
+          {data.type === 'risk' ? null : (
+            <ReadMore href={`/report/${data.id}`} target={'_blank'}>
+              อ่านต่อ
+            </ReadMore>
+          )}
+        </ReadMoreWrapper>
+      </FooterWrapper>
     </Wrapper>
   );
 };
