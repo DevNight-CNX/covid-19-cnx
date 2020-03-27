@@ -41,7 +41,8 @@ const News = ({ children }) => {
     <NewsProvider
       value={{
         news: news.filter(newsItem => !newsItem.unknownLocation),
-        newsLoading: loading
+        newsLoading: loading,
+        unknowLocationNews: news.filter(newsItem => newsItem.unknownLocation)
       }}
     >
       {children}

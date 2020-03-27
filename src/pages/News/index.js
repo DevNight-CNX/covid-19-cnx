@@ -5,7 +5,7 @@ import ViewSituationNews from './index.view';
 import { GoBackHeader } from 'components/BarNavigation/navigation';
 
 const ShowAllNews = () => {
-  const { news } = useNews();
+  const { unknowLocationNews } = useNews();
   const onClickCard = (url, id) => {
     window.open(url);
     eventTracker({ type: 'cardNewsClicked', id });
@@ -13,7 +13,7 @@ const ShowAllNews = () => {
   return (
     <>
       <GoBackHeader mxwidth="680px" link={'/'} />
-      <ViewSituationNews news={news} onClickCard={onClickCard} />
+      <ViewSituationNews news={unknowLocationNews} onClickCard={onClickCard} />
     </>
   );
 };
