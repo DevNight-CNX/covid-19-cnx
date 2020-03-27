@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Map from 'components/Map';
-import NewsCarousel from 'pages/components/newsCarousel';
 import Header from 'pages/Home/components/Header';
 import Summary from 'pages/Home/components/Summary';
 import { Switch } from 'antd';
@@ -70,9 +69,6 @@ const MapAndNews = () => {
       <MapContainer>
         <Map />
       </MapContainer>
-      <NewsContainer>
-        <NewsCarousel />
-      </NewsContainer>
       <InfoSummaryWrapper>
         <SwitchContainer>
           <InfoSummary>รายงานข้อมูลผู้ป่วยใน</InfoSummary>

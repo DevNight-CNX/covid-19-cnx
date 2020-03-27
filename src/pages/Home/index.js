@@ -2,7 +2,7 @@ import React, { Suspense, useState } from 'react';
 import Map from 'components/Map';
 import Summary from './components/Summary';
 import FakeNewsReport from 'pages/Report/FakeNews';
-import NewsCarousel from 'pages/components/newsCarousel';
+import NewsList from 'pages/components/newsList';
 import Header from './components/Header';
 import {
   Wrapper,
@@ -49,7 +49,7 @@ const Home = () => {
           </SummaryWrapper>
         </InfoSummaryWrapper>
         <NewsContainer>
-          <NewsCarousel />
+          <NewsList />
         </NewsContainer>
         <Suspense fallback={<div />}>
           <LazyNews />

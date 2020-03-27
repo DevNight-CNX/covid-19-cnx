@@ -4,6 +4,7 @@ import Paper from './components/Paper';
 import MapAndNews from './MapAndNews';
 import ReliableReport from './ReliableReport';
 import Report from './Report/index';
+import SituationNews from './News';
 import { withRouter } from 'react-router-dom';
 
 const Wrapper = styled.div`
@@ -17,7 +18,7 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 0.6fr 0.4fr;
   grid-template-areas:
-    'map map'
+    'map news'
     'all-report aside';
   margin: 0 auto;
   max-width: 1152px;
@@ -34,6 +35,9 @@ const DesktopDashboard = () => {
         </Paper>
         <Paper grid="all-report" title="ข่าวทั้งหมด">
           <Report />
+        </Paper>
+        <Paper grid="news">
+          <SituationNews />
         </Paper>
         <Paper grid="aside" title="ข่าวน่าเชื่อถือจากชุมชน" noBg>
           <ReliableReport />
