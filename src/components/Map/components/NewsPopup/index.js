@@ -131,7 +131,7 @@ const Address = styled.p`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 210px;
+  width: 210px;
 `;
 
 const HeaderWrapper = styled.div`

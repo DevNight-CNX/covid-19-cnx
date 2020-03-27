@@ -18,7 +18,6 @@ const Date = styled.p`
   font-family: Kanit, Arial, sans-serif;
   font-size: 12px;
   line-height: 16px;
-  /* margin-top: 8px; */
   margin-bottom: 4px;
 `;
 

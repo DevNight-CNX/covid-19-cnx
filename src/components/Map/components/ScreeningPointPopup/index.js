@@ -37,6 +37,7 @@ const AddressWrapper = styled.div`
   background-image: url(${pinIcon});
   background-position: 0 50%;
   background-repeat: no-repeat;
+  margin-top: 14px;
 `;
 
 const Address = styled.p`
@@ -46,6 +47,10 @@ const Address = styled.p`
   font-size: 12px;
   line-height: 16px;
   color: #636f7a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 230px;
 `;
 
 const Detail = styled.pre`
