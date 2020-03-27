@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import moment from 'moment';
 import getSafeLink from 'utils/getSafeLink';
 import pinIcon from './assets/pin.svg';
+import { OriginReference } from 'contexts/replaceurl';
 
 const Wrapper = styled.div`
   max-width: 300px;
@@ -169,7 +170,7 @@ const NewsPopup = ({ data = {} }) => {
         <StatementDate>
           {data.time || null} {data.time && data.newsLink ? '•' : null}{' '}
           <Link href={getSafeLink(data.newsLink)} target={'_blank'}>
-            www.google.com
+            {OriginReference(data.newsLink)}
           </Link>
         </StatementDate>
       </HeaderWrapper>

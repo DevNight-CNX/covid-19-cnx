@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import getSafeLink from 'utils/getSafeLink';
 import pinIcon from './assets/pin.svg';
+import { OriginReference } from 'contexts/replaceurl';
 
 const Wrapper = styled.div`
   max-width: 300px;
@@ -142,13 +143,13 @@ const CasePopup = ({ data = {} }) => {
         <Date>
           {getTime()} {getTime() && data.link ? '•' : null}{' '}
           <Link href={getSafeLink(data.newsLink)} target={'_blank'}>
-            www.google.com
+            {OriginReference(data.newsLink)}
           </Link>
         </Date>
       </HeaderWrapper>
 
       {data.address && <Status>{data.address}</Status>}
-      <Status>ผู้ติดเชื้อ {data.infected}</Status>
+      <Status>ผู้ติดเชื้อสะสม {data.infected}</Status>
       <Status>รักษาตัวในรw. {data.treated}</Status>
       <Status>กลับบ้าน {data.healed}</Status>
       <Status>เสียชีวิต {data.died}</Status>
