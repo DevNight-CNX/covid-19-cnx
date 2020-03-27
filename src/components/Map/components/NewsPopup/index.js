@@ -193,7 +193,7 @@ const NewsPopup = ({ data = {} }) => {
           </AddressWrapper>
         ) : null}
         <ReadMoreWrapper>
-          {data.type ? null : (
+          {data.type ? (
             <>
               {data.title.length < 120 ? null : (
                 <ReadMore href={`/report/${data.id}`} target={'_blank'}>
@@ -201,7 +201,7 @@ const NewsPopup = ({ data = {} }) => {
                 </ReadMore>
               )}
             </>
-          )}
+          ) : null}
         </ReadMoreWrapper>
       </FooterWrapper>
     </Wrapper>

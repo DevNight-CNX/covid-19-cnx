@@ -178,7 +178,8 @@ const Map = () => {
         },
         address: item.address,
         title: item.content,
-        time: moment(item.date).fromNow()
+        time: moment(item.date).fromNow(),
+        type: item.type
       };
       return <NewsPopup data={parsedItem} />;
     },
@@ -216,7 +217,8 @@ const Map = () => {
         },
         address: item.address,
         title: item.content,
-        time: moment(item.date).fromNow()
+        time: moment(item.date).fromNow(),
+        type: item.type
       };
       return <NewsPopup data={parsedItem} />;
     },
