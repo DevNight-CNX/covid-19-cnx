@@ -4,12 +4,13 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import getSafeLink from 'utils/getSafeLink';
 import pinIcon from './assets/pin.svg';
+import { OriginReference } from 'contexts/replaceurl';
 
 const Wrapper = styled.div`
   max-width: 300px;
   min-width: 250px;
   color: #000000;
-  padding: 8px 8px;
+  padding: 0px 8px 8px;
 `;
 
 const Date = styled.p`
@@ -17,7 +18,7 @@ const Date = styled.p`
   font-family: Kanit, Arial, sans-serif;
   font-size: 12px;
   line-height: 16px;
-  margin-top: 8px;
+  margin-bottom: 4px;
 `;
 
 const getStatusColor = type => {
@@ -81,17 +82,7 @@ const Address = styled.p`
   font-size: 12px;
   line-height: 16px;
   color: #636f7a;
-`;
-
-const Link = styled.a`
-  font-family: Kanit, Arial, sans-serif;
-  font-size: 12px;
-  line-height: 16px;
-  color: #007aff;
-  margin-right: 8px;
-  &:hover {
-    text-decoration: underline;
-  }
+  margin-bottom: 0px;
 `;
 
 const Detail = styled.pre`
@@ -106,6 +97,27 @@ const Detail = styled.pre`
 const Unknown = styled.span`
   font-style: italic;
   color: #8995a0;
+`;
+
+const FooterWrapper = styled.div`
+  display: flex;
+  position: relative;
+  margin-top: 14px;
+`;
+
+const HeaderWrapper = styled.div`
+  display: flex;
+`;
+
+const Link = styled.a`
+  color: #8995a0;
+  font-family: Kanit, Arial, sans-serif;
+  font-size: 12px;
+  line-height: 16px;
+  margin-bottom: 4px;
+  :hover {
+    color: #8995a0;
+  }
 `;
 
 const CasePopupPropTypes = {
@@ -126,19 +138,26 @@ const CasePopup = ({ data = {} }) => {
 
   return (
     <Wrapper>
-      {data.address && <Title>{data.address}</Title>}
+      <HeaderWrapper>
+        <Date>
+          {getTime()} {getTime() && data.link ? '•' : null}{' '}
+          <Link href={getSafeLink(data.link)} target={'_blank'}>
+            {OriginReference({ reference: data.link, isShowhttps: false })}
+          </Link>
+        </Date>
+      </HeaderWrapper>
+
+      {data.address && <Status>{data.address}</Status>}
       <Status>ผู้ติดเชื้อสะสม {showUnknownWhenEmpty(data.infected)}</Status>
       <Status>รักษาตัวในรw. {showUnknownWhenEmpty(data.treated)}</Status>
       <Status>กลับบ้าน {showUnknownWhenEmpty(data.healed)}</Status>
       <Status>เสียชีวิต {showUnknownWhenEmpty(data.died)}</Status>
       {data.description && <Detail>{data.description}</Detail>}
-      {getTime() ? <Date>{getTime()}</Date> : null}
-      <AddressWrapper>
-        <Address>{data.address}</Address>
-      </AddressWrapper>
-      <Link href={getSafeLink(data.link)} target="_blank">
-        ลิงก์ข่าว
-      </Link>
+      <FooterWrapper>
+        <AddressWrapper>
+          <Address>{data.address}</Address>
+        </AddressWrapper>
+      </FooterWrapper>
     </Wrapper>
   );
 };

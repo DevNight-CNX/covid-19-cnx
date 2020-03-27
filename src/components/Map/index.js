@@ -145,7 +145,7 @@ const Map = () => {
     },
     item => {
       const getTime = () => {
-        const time = prop('seconds', item.time);
+        const time = prop('seconds', item.date);
         return moment.unix(time).fromNow() === 'Invalid date'
           ? null
           : moment.unix(time).fromNow();
@@ -178,7 +178,9 @@ const Map = () => {
         },
         address: item.address,
         title: item.content,
-        time: moment(item.time).fromNow()
+        time: moment(item.date).fromNow(),
+        type: item.type,
+        id: item.id
       };
       return <NewsPopup data={parsedItem} />;
     },
@@ -216,7 +218,9 @@ const Map = () => {
         },
         address: item.address,
         title: item.content,
-        time: moment(item.time).fromNow()
+        time: moment(item.date).fromNow(),
+        type: item.type,
+        id: item.id
       };
       return <NewsPopup data={parsedItem} />;
     },
