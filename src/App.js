@@ -25,6 +25,8 @@ import AuthManager from './components/AuthManager';
 import FcmManager from './components/FcmManager';
 import LogRocketTracking from 'LogRocketTracking';
 
+import 'url-polyfill';
+
 const firebaseConfig = {
   apiKey: 'AIzaSyCgcd4bi5rNnpC9Wi4Czqk9lPWFh7Sf7lw',
   authDomain: 'covid-19-cnx.firebaseapp.com',
