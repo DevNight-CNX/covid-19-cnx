@@ -51,7 +51,7 @@ const SkeletonWrapper = styled.div`
 `;
 
 const Situation = () => {
-  const { news, newsLoading } = useNews();
+  const { newsLoading, unknowLocationNews } = useNews();
   const onClickCard = (url, id) => {
     window.open(url);
     eventTracker({ type: 'cardNewsClicked', id });
@@ -91,7 +91,7 @@ const Situation = () => {
       </HeaderWrapper>
       <SituationNewsWrapper>
         {renderLoading()}
-        <SituationNews news={news} onClickCard={onClickCard} />
+        <SituationNews news={unknowLocationNews} onClickCard={onClickCard} />
       </SituationNewsWrapper>
     </Wrapper>
   );
