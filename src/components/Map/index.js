@@ -179,7 +179,8 @@ const Map = () => {
         address: item.address,
         title: item.content,
         time: moment(item.date).fromNow(),
-        type: item.type
+        type: item.type,
+        id: item.id
       };
       return <NewsPopup data={parsedItem} />;
     },
@@ -218,7 +219,8 @@ const Map = () => {
         address: item.address,
         title: item.content,
         time: moment(item.date).fromNow(),
-        type: item.type
+        type: item.type,
+        id: item.id
       };
       return <NewsPopup data={parsedItem} />;
     },
