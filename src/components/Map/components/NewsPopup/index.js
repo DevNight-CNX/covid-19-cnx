@@ -117,6 +117,7 @@ const AddressWrapper = styled.div`
   background-image: url(${pinIcon});
   background-position: 0 50%;
   background-repeat: no-repeat;
+  margin-right: 4px;
 `;
 
 const Address = styled.p`
@@ -127,6 +128,10 @@ const Address = styled.p`
   line-height: 16px;
   color: #636f7a;
   margin-bottom: 0px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 210px;
 `;
 
 const HeaderWrapper = styled.div`
