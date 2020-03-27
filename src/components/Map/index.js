@@ -17,28 +17,11 @@ import NewsPopup from './components/NewsPopup';
 import ScreeningPointPopup from './components/ScreeningPointPopup';
 import IconDetail from './components/IconDetail';
 
-const MapContainer = styled.div`
-  width: 100%;
-  height: 100%;
-`;
-
-const Map = () => {
+const useGoogleMap = (mapId = 'map') => {
   const mapRef = useRef(null);
   const infoWindowRef = useRef(null);
-  const { news, newsLoading } = useNews();
-  const { reports, fetching: reportsLoading } = useReport();
-  const { screeningPoints, screeningPointsLoading } = useScreeningPoint();
-
-  const { data: cases, loading } = useFirestore(
-    db => db.collection('cases_cnx'),
-    item => ({
-      ...item,
-      unknownLocation: item.unknown_location
-    })
-  );
-
   useEffect(() => {
-    const map = new window.google.maps.Map(document.getElementById('map'), {
+    const map = new window.google.maps.Map(document.getElementById(mapId), {
       center: { lat: 18.818218, lng: 98.9855059 },
       zoom: 11,
       styles: mapStyles,
@@ -64,19 +47,30 @@ const Map = () => {
     infoWindowRef.current = infowindow;
   }, []);
 
+  return {
+    getMap: () => mapRef.current,
+    getInfoWindow: () => infoWindowRef.current
+  };
+};
+
+const usePinInMap = (googleMap = {}, render = () => null, [data, loading]) => {
   useEffect(() => {
     if (loading) {
       return;
     }
 
-    const map = mapRef.current;
+    const map =
+      typeof googleMap.map === 'function' ? googleMap.map() : googleMap.map;
 
-    const infowindow = infoWindowRef.current;
+    const infowindow =
+      typeof googleMap.infoWindow === 'function'
+        ? googleMap.infoWindow()
+        : googleMap.infoWindow;
 
     const markers = [];
 
-    cases.forEach(caseItem => {
-      const coords = caseItem.location;
+    data.forEach((item, index) => {
+      const coords = item.location;
 
       const lat = prop('lat', coords);
       const lng = prop('lng', coords);
@@ -86,14 +80,13 @@ const Map = () => {
         const marker = new window.google.maps.Marker({
           map,
           position: latLng,
-          optimized: false,
-          icon: hospitalIcon
+          ...googleMap.marker
         });
 
         markers.push(marker);
 
         marker.addListener('click', function() {
-          infowindow.setContent(renderToString(<CasePopup data={caseItem} />));
+          infowindow.setContent(renderToString(render(item, index)));
           infowindow.open(map, marker);
         });
       }
@@ -104,228 +97,165 @@ const Map = () => {
         marker.setMap(null);
       });
     };
-  }, [loading, cases]);
+  }, [loading, data]);
+};
 
-  useEffect(() => {
-    if (newsLoading) {
-      return;
-    }
+const MapContainer = styled.div`
+  width: 100%;
+  height: 100%;
+`;
 
-    const map = mapRef.current;
+const Map = () => {
+  const { news, newsLoading } = useNews();
+  const { reports, fetching: reportsLoading } = useReport();
+  const { screeningPoints, screeningPointsLoading } = useScreeningPoint();
 
-    const infowindow = infoWindowRef.current;
+  const { getMap, getInfoWindow } = useGoogleMap();
 
-    const markers = [];
+  const { data: cases, loading } = useFirestore(
+    db => db.collection('cases_cnx'),
+    item => ({
+      ...item,
+      unknownLocation: item.unknown_location
+    })
+  );
 
-    news.forEach(newsItem => {
-      const coords = newsItem.location;
-      const lat = prop('lat', coords);
-      const lng = prop('lng', coords);
-
-      if (lat && lng) {
-        const latLng = new window.google.maps.LatLng(lat, lng);
-        const marker = new window.google.maps.Marker({
-          map,
-          position: latLng,
-          icon: newsIcon
-        });
-
-        markers.push(marker);
-
-        const getTime = () => {
-          const time = prop('seconds', newsItem.time);
-          return moment.unix(time).fromNow() === 'Invalid date'
-            ? null
-            : moment.unix(time).fromNow();
-        };
-
-        const parsedItem = {
-          ...newsItem,
-          time: getTime()
-        };
-
-        marker.addListener('click', function() {
-          infowindow.setContent(
-            renderToString(<NewsPopup data={parsedItem} />)
-          );
-          infowindow.open(map, marker);
-        });
+  usePinInMap(
+    {
+      map: getMap,
+      infoWindow: getInfoWindow,
+      marker: {
+        optimized: false,
+        icon: hospitalIcon
       }
-    });
+    },
+    item => {
+      return <CasePopup data={item} />;
+    },
+    [cases, loading]
+  );
 
-    return () => {
-      markers.forEach(marker => {
-        marker.setMap(null);
-      });
-    };
-  }, [newsLoading, news]);
+  usePinInMap(
+    {
+      map: getMap,
+      infoWindow: getInfoWindow,
+      marker: {
+        icon: newsIcon
+      }
+    },
+    item => {
+      const getTime = () => {
+        const time = prop('seconds', item.time);
+        return moment.unix(time).fromNow() === 'Invalid date'
+          ? null
+          : moment.unix(time).fromNow();
+      };
 
-  useEffect(() => {
-    if (reportsLoading) {
-      return;
-    }
+      const parsedItem = {
+        ...item,
+        time: getTime()
+      };
+      return <NewsPopup data={parsedItem} />;
+    },
+    [news, newsLoading]
+  );
 
-    const map = mapRef.current;
-
-    const infowindow = infoWindowRef.current;
-
-    const markers = [];
-
-    reports
-      .filter(report => report.type === 'news')
-      .forEach(reportItem => {
-        const coords = reportItem.location || [];
-
-        const lat = coords[0];
-        const lng = coords[1];
-
-        if (lat && lng) {
-          const latLng = new window.google.maps.LatLng(lat, lng);
-          const marker = new window.google.maps.Marker({
-            map,
-            position: latLng,
-            icon: newsIcon
-          });
-
-          markers.push(marker);
-
-          const parsedItem = {
-            newsLink: reportItem.link,
-            unknownLocation: false,
+  usePinInMap(
+    {
+      map: getMap,
+      infoWindow: getInfoWindow,
+      marker: {
+        icon: newsIcon
+      }
+    },
+    item => {
+      const parsedItem = {
+        newsLink: item.link,
+        unknownLocation: false,
+        location: {
+          lat: item.location[0],
+          lng: item.location[1]
+        },
+        address: item.address,
+        title: item.content,
+        time: moment(item.time).fromNow()
+      };
+      return <NewsPopup data={parsedItem} />;
+    },
+    [
+      reports
+        .filter(report => report.type === 'news')
+        .map(item => {
+          return {
+            ...item,
             location: {
-              lat: reportItem.location[0],
-              lng: reportItem.location[1]
-            },
-            address: reportItem.address,
-            title: reportItem.content,
-            time: moment(reportItem.time).fromNow()
+              lat: prop(0, item.location),
+              lng: prop(1, item.location)
+            }
           };
+        }),
+      reportsLoading
+    ]
+  );
 
-          marker.addListener('click', function() {
-            infowindow.setContent(
-              renderToString(<NewsPopup data={parsedItem} />)
-            );
-            infowindow.open(map, marker);
-          });
-        }
-      });
-
-    return () => {
-      markers.forEach(marker => {
-        marker.setMap(null);
-      });
-    };
-  }, [reportsLoading, reports]);
-
-  useEffect(() => {
-    if (reportsLoading) {
-      return;
-    }
-
-    const map = mapRef.current;
-
-    const infowindow = infoWindowRef.current;
-
-    const markers = [];
-
-    reports
-      .filter(report => report.type === 'risk')
-      .forEach(reportItem => {
-        const coords = reportItem.location || [];
-
-        const lat = coords[0];
-        const lng = coords[1];
-
-        if (lat && lng) {
-          const latLng = new window.google.maps.LatLng(lat, lng);
-          const marker = new window.google.maps.Marker({
-            map,
-            position: latLng,
-            icon: rippleIcon
-          });
-
-          markers.push(marker);
-
-          const parsedItem = {
-            newsLink: reportItem.link,
-            unknownLocation: false,
-            location: {
-              lat: reportItem.location[0],
-              lng: reportItem.location[1]
-            },
-            address: reportItem.address,
-            title: reportItem.content,
-            time: moment(reportItem.time).fromNow()
-          };
-
-          marker.addListener('click', function() {
-            infowindow.setContent(
-              renderToString(<NewsPopup data={parsedItem} />)
-            );
-            infowindow.open(map, marker);
-          });
-        }
-      });
-
-    return () => {
-      markers.forEach(marker => {
-        marker.setMap(null);
-      });
-    };
-  }, [reportsLoading, reports]);
-
-  useEffect(() => {
-    if (screeningPointsLoading) {
-      return;
-    }
-
-    const map = mapRef.current;
-
-    const infowindow = infoWindowRef.current;
-
-    const markers = [];
-
-    screeningPoints.forEach((screeningPointItem, index) => {
-      const coords = screeningPointItem.location;
-
-      const lat = prop('lat', coords);
-      const lng = prop('lng', coords);
-
-      if (lat && lng) {
-        const latLng = new window.google.maps.LatLng(lat, lng);
-        const marker = new window.google.maps.Marker({
-          map,
-          position: latLng,
-          icon: {
-            url: policeIcon,
-            size: new window.google.maps.Size(24, 24)
-          }
-        });
-
-        markers.push(marker);
-
-        const parsedScreeningPointItem = {
-          ...screeningPointItem,
-          order: index + 1
-        };
-
-        marker.addListener('click', function() {
-          infowindow.setContent(
-            renderToString(
-              <ScreeningPointPopup data={parsedScreeningPointItem} />
-            )
-          );
-          infowindow.open(map, marker);
-        });
+  usePinInMap(
+    {
+      map: getMap,
+      infoWindow: getInfoWindow,
+      marker: {
+        icon: rippleIcon
       }
-    });
+    },
+    item => {
+      const parsedItem = {
+        newsLink: item.link,
+        unknownLocation: false,
+        location: {
+          lat: item.location[0],
+          lng: item.location[1]
+        },
+        address: item.address,
+        title: item.content,
+        time: moment(item.time).fromNow()
+      };
+      return <NewsPopup data={parsedItem} />;
+    },
+    [
+      reports
+        .filter(report => report.type === 'risk')
+        .map(item => {
+          return {
+            ...item,
+            location: {
+              lat: prop(0, item.location),
+              lng: prop(1, item.location)
+            }
+          };
+        }),
+      reportsLoading
+    ]
+  );
 
-    return () => {
-      markers.forEach(marker => {
-        marker.setMap(null);
-      });
-    };
-  }, [screeningPointsLoading, screeningPoints]);
+  usePinInMap(
+    {
+      map: getMap,
+      infoWindow: getInfoWindow,
+      marker: {
+        icon: {
+          url: policeIcon,
+          size: new window.google.maps.Size(24, 24)
+        }
+      }
+    },
+    (item, index) => {
+      const parsedItem = {
+        ...item,
+        order: index + 1
+      };
+      return <ScreeningPointPopup data={parsedItem} />;
+    },
+    [screeningPoints, screeningPointsLoading]
+  );
 
   return (
     <>
