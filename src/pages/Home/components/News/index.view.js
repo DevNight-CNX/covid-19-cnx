@@ -10,8 +10,22 @@ const ButtonsWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 25px;
+  flex-wrap: wrap;
+
   > button:not(:first-child) {
-    margin-left: 15px;
+    margin-top: 15px;
+  }
+
+  @media screen and (min-width: 334px) {
+    > button:not(:first-child) {
+      margin-top: 0px;
+    }
+  }
+
+  @media screen and (min-width: 350px) {
+    > button:not(:first-child) {
+      margin-left: 15px;
+    }
   }
 `;
 const WrapperCards = styled.div`

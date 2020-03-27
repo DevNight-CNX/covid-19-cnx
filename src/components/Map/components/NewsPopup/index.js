@@ -77,6 +77,7 @@ const NewsTitle = styled(Title)`
 const ReadMoreWrapper = styled.div`
   display: flex;
   margin-left: auto;
+  flex: 1 0 auto;
 `;
 
 const ReadMore = styled.a`
@@ -118,6 +119,7 @@ const AddressWrapper = styled.div`
   background-position: 0 50%;
   background-repeat: no-repeat;
   margin-right: 4px;
+  width: calc(100% - 40px);
 `;
 
 const Address = styled.p`
@@ -131,7 +133,6 @@ const Address = styled.p`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 210px;
 `;
 
 const HeaderWrapper = styled.div`
