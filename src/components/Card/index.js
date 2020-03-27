@@ -62,6 +62,12 @@ const CardCustom = ({
   match,
   isFull
 }) => {
+  const cutString = reference => {
+    const oldUrl = reference;
+    const url = new URL(oldUrl);
+    return url.origin;
+  };
+
   return (
     <>
       <CardStyled
@@ -91,7 +97,7 @@ const CardCustom = ({
                   target="_blank"
                   onClick={event => event.stopPropagation()}
                 >
-                  {reference.split('/')[2]}
+                  {cutString(reference)}
                 </a>
               </TagLinkWrapper>
             ) : null}
