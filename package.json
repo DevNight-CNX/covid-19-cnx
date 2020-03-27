@@ -52,6 +52,7 @@
     "size-limit": "^4.4.0",
     "slick-carousel": "^1.8.1",
     "styled-components": "^4.3.2",
+    "url-polyfill": "^1.1.8",
     "use-debounce": "^3.4.0",
     "warning": "^4.0.3"
   },
