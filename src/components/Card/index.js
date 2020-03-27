@@ -97,7 +97,7 @@ const CardCustom = ({
                   target="_blank"
                   onClick={event => event.stopPropagation()}
                 >
-                  {reference.split('/')[2]}
+                  {OriginReference(reference)}
                 </a>
               </TagLinkWrapper>
             ) : null}
