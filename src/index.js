@@ -4,6 +4,7 @@ import moment from 'moment';
 import 'moment/locale/th';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import 'url-polyfill';
 
 moment.locale('th');
 
