@@ -20,7 +20,7 @@ import {
 const LazyNews = React.lazy(() => import('./components/News'));
 
 const Home = () => {
-  const [isShow, setIshow] = useState(false);
+  const [isShow, setIshow] = useState(true);
 
   return (
     <Wrapper>

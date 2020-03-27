@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Carousel as AntdCarousel, Button } from 'antd';
+import { Carousel as AntdCarousel, Button, Skeleton } from 'antd';
 import styled from 'styled-components';
 import { useNews } from 'contexts/news.context';
 import LinkPreview from './LinkPreView';
@@ -48,7 +48,7 @@ const NextButton = styled(RightCircleOutlined)`
   margin-right: 10px;
   transform: translateX(45px);
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1100px) {
     display: none !important;
   }
 `;
@@ -61,7 +61,7 @@ const PreviousButton = styled(LeftCircleOutlined)`
   margin-left: 10px;
   transform: translateX(-45px);
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1100px) {
     display: none !important;
   }
 `;
@@ -94,12 +94,23 @@ const LinkButton = styled(Button)`
     color: ${({ theme }) => theme.color.primaryColor.blueRibbon};
   }
 `;
+
+const SkeletonWrapper = styled.div`
+  border: 1px solid ${({ theme }) => theme.color.neutralColor.lightGray100};
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 18px 24px;
+  max-width: 498px;
+  margin: 0 auto;
+  margin-bottom: 8px;
+`;
+
 const NewsCarousel = () => {
   const history = useHistory();
 
   const carousel = useRef(null);
 
-  const { news } = useNews();
+  const { news, newsLoading } = useNews();
 
   const onNext = () => {
     carousel.current.next();
@@ -112,6 +123,22 @@ const NewsCarousel = () => {
   const onClickCard = (url, id) => {
     window.open(url);
     eventTracker({ type: 'carouselClicked', id });
+  };
+
+  const renderLoading = () => {
+    if (newsLoading) {
+      return (
+        <>
+          <SkeletonWrapper>
+            <Skeleton title={false} />
+          </SkeletonWrapper>
+          <SkeletonWrapper>
+            <Skeleton title={false} />
+          </SkeletonWrapper>
+        </>
+      );
+    }
+    return null;
   };
 
   return (
@@ -138,6 +165,7 @@ const NewsCarousel = () => {
         <Typography variant="body" weight="normal">
           ข่าวสถานการณ์ปัจจุบัน
         </Typography>
+        {renderLoading()}
         {news.slice(0, 3).map((item, index) => {
           return (
             <CarouselContent key={index}>
@@ -145,20 +173,22 @@ const NewsCarousel = () => {
             </CarouselContent>
           );
         })}
-        <ButtonsWrapper>
-          <LinkButton
-            type="link"
-            onClick={() => {
-              history.push('/situation');
-              eventTracker({
-                type: 'allSituationNewsClicked',
-                id: 'allSituationNewsClicked'
-              });
-            }}
-          >
-            อ่านทั้งหมด >
-          </LinkButton>
-        </ButtonsWrapper>
+        {news.length > 0 ? (
+          <ButtonsWrapper>
+            <LinkButton
+              type="link"
+              onClick={() => {
+                history.push('/situation');
+                eventTracker({
+                  type: 'allSituationNewsClicked',
+                  id: 'allSituationNewsClicked'
+                });
+              }}
+            >
+              อ่านทั้งหมด >
+            </LinkButton>
+          </ButtonsWrapper>
+        ) : null}
       </NewsListWrapper>
     </Wrapper>
   );
