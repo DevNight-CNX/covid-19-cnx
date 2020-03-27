@@ -24,6 +24,7 @@ import './i18n';
 import AuthManager from './components/AuthManager';
 import FcmManager from './components/FcmManager';
 import LogRocketTracking from 'LogRocketTracking';
+import env from 'utils/env';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCgcd4bi5rNnpC9Wi4Czqk9lPWFh7Sf7lw',
@@ -40,7 +41,9 @@ export const FirebaseContext = createContext();
 
 const store = getStore();
 
-firebase.analytics();
+if (!env.isServerLocalhost()) {
+  firebase.analytics();
+}
 
 const App = () => {
   return (
