@@ -96,7 +96,7 @@ const Link = styled.a`
 
 const Detail = styled.pre`
   font-family: Kanit, Arial, sans-serif;
-  font-style: normal;
+  font-style: italic;
   font-weight: normal;
   font-size: 14px;
   line-height: 25px;
