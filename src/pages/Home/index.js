@@ -20,7 +20,7 @@ import {
 const LazyNews = React.lazy(() => import('./components/News'));
 
 const Home = () => {
-  const [isShow, setIshow] = useState(true);
+  const [isFilterInChiangmai, setIsFilterInChiangmai] = useState(true);
 
   return (
     <Wrapper>
@@ -37,15 +37,15 @@ const Home = () => {
           <SwitchContainer>
             <InfoSummary>รายงานข้อมูลผู้ป่วยใน</InfoSummary>
             <p>
-              {isShow ? 'เชียงใหม่' : 'ประเทศไทย'}
+              {isFilterInChiangmai ? 'เชียงใหม่' : 'ประเทศไทย'}
               <SwitchStyled
-                defaultChecked={isShow}
-                onChange={e => setIshow(e)}
+                defaultChecked={isFilterInChiangmai}
+                onChange={e => setIsFilterInChiangmai(e)}
               />
             </p>
           </SwitchContainer>
           <SummaryWrapper>
-            <Summary isShow={isShow} />
+            <Summary isFilterInChiangmai={isFilterInChiangmai} />
           </SummaryWrapper>
         </InfoSummaryWrapper>
         <NewsContainer>
