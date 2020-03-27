@@ -96,11 +96,16 @@ const Link = styled.a`
 
 const Detail = styled.pre`
   font-family: Kanit, Arial, sans-serif;
-  font-style: normal;
+  font-style: italic;
   font-weight: normal;
   font-size: 14px;
   line-height: 25px;
   white-space: pre-wrap;
+`;
+
+const Unknown = styled.span`
+  font-style: italic;
+  color: #8995a0;
 `;
 
 const CasePopupPropTypes = {
@@ -115,14 +120,18 @@ const CasePopup = ({ data = {} }) => {
       : moment(time).fromNow();
   };
 
+  const showUnknownWhenEmpty = data => {
+    return Number(data) === -1 ? <Unknown>ไม่ทราบ</Unknown> : data;
+  };
+
   return (
     <Wrapper>
       {data.address && <Title>{data.address}</Title>}
-      <Status>ผู้ติดเชื้อ {data.infected}</Status>
-      <Status>รักษาตัวในรw. {data.treated}</Status>
-      <Status>กลับบ้าน {data.healed}</Status>
-      <Status>เสียชีวิต {data.died}</Status>
-      {data.detail && <Detail>{data.detail}</Detail>}
+      <Status>ผู้ติดเชื้อสะสม {showUnknownWhenEmpty(data.infected)}</Status>
+      <Status>รักษาตัวในรw. {showUnknownWhenEmpty(data.treated)}</Status>
+      <Status>กลับบ้าน {showUnknownWhenEmpty(data.healed)}</Status>
+      <Status>เสียชีวิต {showUnknownWhenEmpty(data.died)}</Status>
+      {data.description && <Detail>{data.description}</Detail>}
       {getTime() ? <Date>{getTime()}</Date> : null}
       <AddressWrapper>
         <Address>{data.address}</Address>
