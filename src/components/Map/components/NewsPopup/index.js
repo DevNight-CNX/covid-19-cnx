@@ -193,10 +193,14 @@ const NewsPopup = ({ data = {} }) => {
           </AddressWrapper>
         ) : null}
         <ReadMoreWrapper>
-          {data.type === 'risk' ? null : (
-            <ReadMore href={`/report/${data.id}`} target={'_blank'}>
-              อ่านต่อ
-            </ReadMore>
+          {data.type ? null : (
+            <>
+              {data.title.length < 120 ? null : (
+                <ReadMore href={`/report/${data.id}`} target={'_blank'}>
+                  อ่านต่อ
+                </ReadMore>
+              )}
+            </>
           )}
         </ReadMoreWrapper>
       </FooterWrapper>

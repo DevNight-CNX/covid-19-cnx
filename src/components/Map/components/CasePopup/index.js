@@ -141,18 +141,18 @@ const CasePopup = ({ data = {} }) => {
       <HeaderWrapper>
         <Date>
           {getTime()} {getTime() && data.link ? '•' : null}{' '}
-          <Link href={getSafeLink(data.newsLink)} target={'_blank'}>
-            {OriginReference({ reference: data.newsLink, isShowhttps: false })}
+          <Link href={getSafeLink(data.link)} target={'_blank'}>
+            {OriginReference({ reference: data.link, isShowhttps: false })}
           </Link>
         </Date>
       </HeaderWrapper>
 
       {data.address && <Status>{data.address}</Status>}
-      <Status>ผู้ติดเชื้อสะสม {data.infected}</Status>
-      <Status>รักษาตัวในรw. {data.treated}</Status>
-      <Status>กลับบ้าน {data.healed}</Status>
-      <Status>เสียชีวิต {data.died}</Status>
-      {data.detail && <Detail>{data.detail}</Detail>}
+      <Status>ผู้ติดเชื้อสะสม {showUnknownWhenEmpty(data.infected)}</Status>
+      <Status>รักษาตัวในรw. {showUnknownWhenEmpty(data.treated)}</Status>
+      <Status>กลับบ้าน {showUnknownWhenEmpty(data.healed)}</Status>
+      <Status>เสียชีวิต {showUnknownWhenEmpty(data.died)}</Status>
+      {data.description && <Detail>{data.description}</Detail>}
       <FooterWrapper>
         <AddressWrapper>
           <Address>{data.address}</Address>
