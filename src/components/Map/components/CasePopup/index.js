@@ -143,7 +143,7 @@ const CasePopup = ({ data = {} }) => {
         <Date>
           {getTime()} {getTime() && data.link ? '•' : null}{' '}
           <Link href={getSafeLink(data.newsLink)} target={'_blank'}>
-            {OriginReference(data.newsLink)}
+            {OriginReference({ reference: data.newsLink, isShowhttps: false })}
           </Link>
         </Date>
       </HeaderWrapper>

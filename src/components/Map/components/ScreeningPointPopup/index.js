@@ -84,15 +84,13 @@ const CasePopup = ({ data = {} }) => {
       : moment(time).fromNow();
   };
 
-  console.log(data.link);
-
   return (
     <Wrapper>
       <HeaderWrapper>
         <Date>
           {getTime()} {getTime() && data.link ? '•' : null}{' '}
           <Link href={getSafeLink(data.link)} target="_blank">
-            {OriginReference(data.link)}
+            {OriginReference({ reference: data.link, isShowhttps: false })}
           </Link>
         </Date>
       </HeaderWrapper>

@@ -163,14 +163,13 @@ const NewsPopupPropTypes = {
 };
 
 const NewsPopup = ({ data = {} }) => {
-  console.log(data);
   return (
     <Wrapper>
       <HeaderWrapper>
         <StatementDate>
           {data.time || null} {data.time && data.newsLink ? '•' : null}{' '}
           <Link href={getSafeLink(data.newsLink)} target={'_blank'}>
-            {OriginReference(data.newsLink)}
+            {OriginReference({ reference: data.newsLink, isShowhttps: false })}
           </Link>
         </StatementDate>
       </HeaderWrapper>

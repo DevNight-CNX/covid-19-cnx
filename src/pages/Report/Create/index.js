@@ -110,8 +110,6 @@ const CreateReport = () => {
     }
   };
 
-  console.log('typeValue', typeValue);
-
   return (
     <>
       <CancelHeader label="รายงานข่าว" mxwidth="680px" link={'/'} />
