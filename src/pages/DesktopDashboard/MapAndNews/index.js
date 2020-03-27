@@ -60,7 +60,7 @@ const SwitchStyled = styled(Switch)`
 `;
 
 const MapAndNews = () => {
-  const [isShow, setIshow] = useState(true);
+  const [isFilterInChiangmai, setIsFilterInChiangmai] = useState(true);
 
   return (
     <div>
@@ -77,12 +77,15 @@ const MapAndNews = () => {
         <SwitchContainer>
           <InfoSummary>รายงานข้อมูลผู้ป่วยใน</InfoSummary>
           <p>
-            {isShow ? 'เชียงใหม่' : 'ประเทศไทย'}
-            <SwitchStyled defaultChecked={isShow} onChange={e => setIshow(e)} />
+            {isFilterInChiangmai ? 'เชียงใหม่' : 'ประเทศไทย'}
+            <SwitchStyled
+              defaultChecked={isFilterInChiangmai}
+              onChange={e => setIsFilterInChiangmai(e)}
+            />
           </p>
         </SwitchContainer>
         <SummaryWrapper>
-          <Summary isShow={isShow} />
+          <Summary isFilterInChiangmai={isFilterInChiangmai} />
         </SummaryWrapper>
       </InfoSummaryWrapper>
     </div>

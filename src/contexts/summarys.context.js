@@ -43,7 +43,7 @@ const Summarys = ({ children }) => {
     <SummarysProvider
       value={{
         summary: parseSummarys,
-        summary_cnx: parseSummarysCNX
+        summarycnx: parseSummarysCNX
       }}
     >
       {children}

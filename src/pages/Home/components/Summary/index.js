@@ -100,8 +100,8 @@ const SummaryItem = ({ title, icon, value, note, isShow }) => {
 SummaryItem.propTypes = SummaryItemPropTypes;
 SummaryItem.defaultProps = SummaryItemDefaultProps;
 
-const Summary = ({ isShow }) => {
-  const { summary, summary_cnx } = useSummarys();
+const Summary = ({ isFilterInChiangmai }) => {
+  const { summary, summarycnx } = useSummarys();
 
   return (
     <>
@@ -109,19 +109,19 @@ const Summary = ({ isShow }) => {
         title="ติดเชื้อแล้ว"
         icon={virusIcon}
         value={
-          isShow
-            ? summary_cnx && summary_cnx['ผู้ติดเชื้อ']
+          isFilterInChiangmai
+            ? summarycnx && summarycnx['ผู้ติดเชื้อ']
             : summary && summary['ผู้ติดเชื้อ']
         }
         note={summary && summary['โน๊ตผู้ติดเชื้อ']}
-        isShow={isShow}
+        isShow={isFilterInChiangmai}
       />
       <SummaryItem
         title="เสียชีวิต"
         icon={deadIcon}
         value={
-          isShow
-            ? summary_cnx && summary_cnx['เสียชีวิต']
+          isFilterInChiangmai
+            ? summarycnx && summarycnx['เสียชีวิต']
             : summary && summary['เสียชีวิต']
         }
       />
@@ -129,8 +129,8 @@ const Summary = ({ isShow }) => {
         title="หายแล้ว"
         icon={userIcon}
         value={
-          isShow
-            ? summary_cnx && summary_cnx['หายแล้ว']
+          isFilterInChiangmai
+            ? summarycnx && summarycnx['หายแล้ว']
             : summary && summary['หายแล้ว']
         }
       />
@@ -139,8 +139,8 @@ const Summary = ({ isShow }) => {
         title="รักษาอยู่ใน รพ."
         icon={hospitalIcon}
         value={
-          isShow
-            ? summary_cnx && summary_cnx['กำลังรักษา']
+          isFilterInChiangmai
+            ? summarycnx && summarycnx['กำลังรักษา']
             : summary && summary['กำลังรักษา']
         }
       />
