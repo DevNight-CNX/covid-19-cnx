@@ -118,11 +118,11 @@ const CasePopup = ({ data = {} }) => {
   return (
     <Wrapper>
       {data.address && <Title>{data.address}</Title>}
-      <Status>ผู้ติดเชื้อ {data.infected}</Status>
+      <Status>ผู้ติดเชื้อสะสม {data.infected}</Status>
       <Status>รักษาตัวในรw. {data.treated}</Status>
       <Status>กลับบ้าน {data.healed}</Status>
       <Status>เสียชีวิต {data.died}</Status>
-      {data.detail && <Detail>{data.detail}</Detail>}
+      {data.description && <Detail>{data.description}</Detail>}
       {getTime() ? <Date>{getTime()}</Date> : null}
       <AddressWrapper>
         <Address>{data.address}</Address>
