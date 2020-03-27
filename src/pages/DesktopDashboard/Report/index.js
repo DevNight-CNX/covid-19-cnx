@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import SubmitReportButton from 'components/SubmitReportButton';
@@ -18,6 +18,26 @@ const Content = styled.div`
   overflow-y: auto;
 `;
 
+const ReportDetailWrapper = props => {
+  useEffect(() => {
+    const reportDetailSection = document.getElementById(
+      'report-detail-section-desktop'
+    );
+    if (reportDetailSection) {
+      window.scrollTo({
+        top: reportDetailSection.offsetTop,
+        left: 0,
+        behavior: 'smooth'
+      });
+    }
+  }, []);
+  return (
+    <div id="report-detail-section-desktop">
+      <ReportDetail {...props} />
+    </div>
+  );
+};
+
 const Report = ({ match }) => {
   const IsFull = () => {
     if (match.path !== '/report/:id') {
@@ -30,7 +50,7 @@ const Report = ({ match }) => {
       <Content>
         <Switch>
           <Route path="/submit" component={CreateReport} />
-          <Route path="/report/:id" component={ReportDetail} />
+          <Route path="/report/:id" component={ReportDetailWrapper} />
           <Route path="/" component={() => <ReportList isFull={IsFull} />} />
         </Switch>
       </Content>
