@@ -26,7 +26,15 @@ const Summarys = ({ children }) => {
       .doc('latest')
       .get()
       .then(doc => {
-        setParseSummarys(doc.data());
+        const data = doc.data();
+        const getWordForNote = () => {
+          const re = /\((.*?)\)/g;
+          return re.exec(data['โน๊ตผู้ติดเชื้อ'])[1];
+        };
+        setParseSummarys({
+          ...data,
+          ['โน๊ตผู้ติดเชื้อ']: getWordForNote()
+        });
       })
       .then(() =>
         db
