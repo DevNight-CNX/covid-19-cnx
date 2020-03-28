@@ -65,6 +65,7 @@ const Container = styled.div`
     margin-top: 4px;
     width: 100%;
     white-space: pre-wrap;
+    overflow: visible;
   }
 `;
 

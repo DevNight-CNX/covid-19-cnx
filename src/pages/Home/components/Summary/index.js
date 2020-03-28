@@ -8,6 +8,7 @@ import hospitalIcon from './assets/hospital.svg';
 import virusIcon from './assets/virus.svg';
 import deadIcon from './assets/dead.svg';
 import { Skeleton } from 'antd';
+import { prop } from 'ramda';
 import { useReport } from 'contexts/report.context';
 import { useSummarys } from 'contexts/summarys.context';
 
@@ -103,6 +104,8 @@ SummaryItem.defaultProps = SummaryItemDefaultProps;
 const Summary = ({ isFilterInChiangmai }) => {
   const { summary, summarycnx } = useSummarys();
 
+  console.log('summarycnx', summarycnx);
+
   return (
     <>
       <SummaryItem
@@ -110,19 +113,22 @@ const Summary = ({ isFilterInChiangmai }) => {
         icon={virusIcon}
         value={
           isFilterInChiangmai
-            ? summarycnx && summarycnx['ผู้ติดเชื้อ']
-            : summary && summary['ผู้ติดเชื้อ']
+            ? prop('ผู้ติดเชื้อ', summarycnx)
+            : prop('ผู้ติดเชื้อ', summary)
         }
-        note={summary && summary['โน๊ตผู้ติดเชื้อ']}
-        isShow={isFilterInChiangmai}
+        note={
+          isFilterInChiangmai
+            ? prop('โน๊ตผู้ติดเชื้อ', summarycnx)
+            : prop('โน๊ตผู้ติดเชื้อ', summary)
+        }
       />
       <SummaryItem
         title="เสียชีวิต"
         icon={deadIcon}
         value={
           isFilterInChiangmai
-            ? summarycnx && summarycnx['เสียชีวิต']
-            : summary && summary['เสียชีวิต']
+            ? prop('เสียชีวิต', summarycnx)
+            : prop('เสียชีวิต', summary)
         }
       />
       <SummaryItem
@@ -130,8 +136,8 @@ const Summary = ({ isFilterInChiangmai }) => {
         icon={userIcon}
         value={
           isFilterInChiangmai
-            ? summarycnx && summarycnx['หายแล้ว']
-            : summary && summary['หายแล้ว']
+            ? prop('หายแล้ว', summarycnx)
+            : prop('หายแล้ว', summary)
         }
       />
 
@@ -140,8 +146,8 @@ const Summary = ({ isFilterInChiangmai }) => {
         icon={hospitalIcon}
         value={
           isFilterInChiangmai
-            ? summarycnx && summarycnx['กำลังรักษา']
-            : summary && summary['กำลังรักษา']
+            ? prop('กำลังรักษา', summarycnx)
+            : prop('กำลังรักษา', summary)
         }
       />
     </>
