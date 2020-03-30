@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - develop
 
 jobs:
   build-and-deploy-firebase:
@@ -23,6 +24,6 @@ jobs:
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
-          args: deploy --only hosting
+          args: deploy --only hosting -P ${GITHUB_REF#refs/heads/}
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
