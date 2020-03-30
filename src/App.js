@@ -25,6 +25,7 @@ import AuthManager from './components/AuthManager';
 import FcmManager from './components/FcmManager';
 import LogRocketTracking from 'LogRocketTracking';
 import env from 'utils/env';
+import '../node_modules/react-vis/dist/style.css';
 
 const firebaseConfig = JSON.parse(env.get('FIREBASE'));
 
