@@ -32,3 +32,14 @@ const configurationEnv = Object.keys(configuration).reduce((acc, key) => {
 }, '');
 
 fs.writeFileSync('./.env.production', configurationEnv);
+
+const content = fs.readFileSync('./firebase-messaging-sw.js', {
+  encoding: 'UTF-8'
+});
+
+const replacedContent = content.replace(
+  "'@firebase-config'",
+  configuration['REACT_APP_FIREBASE']
+);
+
+fs.writeFileSync('./public/firebase-messaging-sw.js', replacedContent);

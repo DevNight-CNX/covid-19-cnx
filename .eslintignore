@@ -3,3 +3,4 @@ vendor
 server
 build
 /public
+/firebase-messaging-sw.js
