@@ -34,3 +34,4 @@ report\.20190516\.105034\.28\.0\.001\.json
 
 coverage
 jest_html_reporters.html
+public/firebase-messaging-sw.js

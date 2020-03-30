@@ -26,14 +26,7 @@ import FcmManager from './components/FcmManager';
 import LogRocketTracking from 'LogRocketTracking';
 import env from 'utils/env';
 
-const firebaseConfig = {
-  apiKey: 'AIzaSyCgcd4bi5rNnpC9Wi4Czqk9lPWFh7Sf7lw',
-  authDomain: 'covid-19-cnx.firebaseapp.com',
-  projectId: 'covid-19-cnx',
-  appId: '1:354956353010:web:a7040da3fd713c516b5f6b',
-  measurementId: 'G-0BNFH5Q9KM',
-  messagingSenderId: '354956353010'
-};
+const firebaseConfig = JSON.parse(env.get('FIREBASE'));
 
 firebase.initializeApp(firebaseConfig);
 

@@ -1,14 +1,12 @@
 {
   "develop": {
     "REACT_APP_SERVER": "development",
-    "REACT_APP_API_URL": "https://us-central1-covid-19-cnx.cloudfunctions.net"
-  },
-  "staging": {
-    "REACT_APP_SERVER": "staging",
-    "REACT_APP_API_URL": "https://us-central1-covid-19-cnx.cloudfunctions.net"
+    "REACT_APP_API_URL": "https://us-central1-covid-19-cnx.cloudfunctions.net",
+    "REACT_APP_FIREBASE": "{\"apiKey\": \"AIzaSyBfIYk6Dc9tXR3GpE5ZZMHG1KTqhAjR64E\", \"authDomain\": \"covid-19-cnx-develop.firebaseapp.com\", \"projectId\": \"covid-19-cnx-develop\", \"messagingSenderId\": \"770190676166\", \"appId\": \"1:770190676166:web:5a73f0fba3d22045a947c7\", \"measurementId\": \"G-601BE6BSK3\"}"
   },
   "master": {
     "REACT_APP_SERVER": "production",
-    "REACT_APP_API_URL": "https://us-central1-covid-19-cnx.cloudfunctions.net"
+    "REACT_APP_API_URL": "https://us-central1-covid-19-cnx.cloudfunctions.net",
+    "REACT_APP_FIREBASE": "{\"apiKey\": \"AIzaSyCgcd4bi5rNnpC9Wi4Czqk9lPWFh7Sf7lw\", \"authDomain\": \"covid-19-cnx.firebaseapp.com\", \"projectId\": \"covid-19-cnx\", \"appId\": \"1:354956353010:web:a7040da3fd713c516b5f6b\", \"measurementId\": \"G-0BNFH5Q9KM\", \"messagingSenderId\": \"354956353010\"}"
   }
 }
