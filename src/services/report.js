@@ -114,7 +114,8 @@ export const getReportById = id => {
         dislikes: response.dislikes,
         likes: response.likes,
         date: response.created,
-        address: response.address
+        address: response.address,
+        type: response.type
       };
     }
   );

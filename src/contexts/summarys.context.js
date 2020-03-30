@@ -28,8 +28,12 @@ const Summarys = ({ children }) => {
       .then(doc => {
         const data = doc.data();
         const getWordForNote = () => {
-          const re = /\((.*?)\)/g;
-          return re.exec(data['โน๊ตผู้ติดเชื้อ'])[1];
+          try {
+            const re = /\((.*?)\)/g;
+            return re.exec(data['โน๊ตผู้ติดเชื้อ'])[1];
+          } catch (e) {
+            return data['โน๊ตผู้ติดเชื้อ'];
+          }
         };
         setParseSummarys({
           ...data,
