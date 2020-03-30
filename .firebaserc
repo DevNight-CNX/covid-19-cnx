@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "covid-19-cnx"
+    "master": "covid-19-cnx",
+    "develop": "covid-19-cnx-develop"
   }
 }
