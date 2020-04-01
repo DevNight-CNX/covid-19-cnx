@@ -16,7 +16,7 @@ const Wrapper = styled.div`
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: 0.6fr 0.4fr;
+  grid-template-columns: 6fr 4fr;
   grid-template-areas:
     'map news'
     'all-report aside';
