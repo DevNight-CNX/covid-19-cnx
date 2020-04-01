@@ -9,7 +9,7 @@ import { withRouter } from 'react-router-dom';
 
 const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.color.neutralColor.lightGray100};
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   padding: 24px 48px 32px;
 `;
