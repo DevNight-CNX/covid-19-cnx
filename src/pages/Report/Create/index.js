@@ -18,6 +18,7 @@ import { required, isUrlValid, composeValidators } from 'utils/form/validators';
 import { notification } from 'antd';
 import { CancelHeader } from 'components/BarNavigation/navigation';
 import eventTracker from 'utils/eventTracker';
+import useResponsive from 'utils/useResponsive';
 import newsPreview from './assets/news.png';
 import riskPreview from './assets/risk.png';
 
@@ -25,6 +26,7 @@ const Wrapper = styled.div`
   padding: 26px 24px;
   max-width: 680px;
   margin: auto !important;
+  position: relative;
 
   @media only screen and (max-width: 1100px) {
     margin-top: 56px !important;
@@ -39,6 +41,18 @@ const Footer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  ${({ isPlaceFixed, theme }) =>
+    isPlaceFixed
+      ? `
+        position: sticky;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        padding: 8px 16px;
+        background-color: ${theme.color.white};
+      `
+      : null}
 `;
 
 const Notice = styled.p`
@@ -110,9 +124,16 @@ const CreateReport = () => {
     }
   };
 
+  const { isDesktop } = useResponsive();
+
   return (
     <>
-      <CancelHeader label="รายงานข่าว" mxwidth="680px" link={'/'} />
+      <CancelHeader
+        label="รายงานข่าว"
+        mxwidth="680px"
+        link={'/'}
+        isPlaceFixed={isDesktop}
+      />
       <Wrapper>
         <Form
           initialValues={initialValues}
@@ -198,7 +219,7 @@ const CreateReport = () => {
                 />
               </FieldRow>
 
-              <Footer>
+              <Footer isPlaceFixed={isDesktop}>
                 <PublicUser>
                   <label style={{ margin: '0px 16px 0px 0px' }}>
                     {'Anonymous'}

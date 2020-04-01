@@ -5,11 +5,11 @@ import { ReactComponent as CloseIcon } from './assets/close.svg';
 import { ReactComponent as BackIcon } from './assets/back.svg';
 import { Wrapper, Container, Title, BackLink } from './index.view';
 
-const CancelHeader = ({ icon: Icon, label, link, mxwidth }) => {
+const CancelHeader = ({ icon: Icon, label, link, mxwidth, isPlaceFixed }) => {
   const { goBack, push } = useHistory();
   const customizedLink = () => (link ? push(link) : goBack());
   return (
-    <Wrapper>
+    <Wrapper isPlaceFixed={isPlaceFixed}>
       <Container mxwidth={mxwidth}>
         <Title>
           {Icon ? <Icon /> : null} {label}
@@ -34,11 +34,11 @@ CancelHeader.defaultProps = {
   mxwidth: 'auto'
 };
 
-const GoBackHeader = ({ label, link, mxwidth }) => {
+const GoBackHeader = ({ label, link, mxwidth, isPlaceFixed }) => {
   const { goBack, push } = useHistory();
   const customizedLink = () => (link ? push(link) : goBack());
   return (
-    <Wrapper>
+    <Wrapper isPlaceFixed={isPlaceFixed}>
       <Container mxwidth={mxwidth}>
         <BackLink onClick={customizedLink}>
           <BackIcon />
