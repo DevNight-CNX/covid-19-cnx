@@ -7,6 +7,7 @@ import styled, { css } from 'styled-components';
 
 import { Card as AntdCard } from 'antd';
 import { ReactComponent as DefaultImage } from './assets/defaultImage.svg';
+import { originReference } from 'contexts/replaceurl';
 
 const Card = styled(AntdCard)`
   width: 100%;
@@ -25,7 +26,7 @@ const TextWrapper = styled.div`
 
 const Title = styled.div`
   ${({ theme }) => theme.typography.bodyLarge()}
-  padding: 8px 16px 0px 90px;
+  padding: 37px 16px 0px 16px;
   overflow: hidden;
   height: 80px;
   p {
@@ -36,10 +37,11 @@ const Title = styled.div`
   }
 `;
 
-const Footer = styled.div`
-  ${({ theme }) => theme.typography.body()}
-  padding: 8px 16px 0px 90px;
-  bottom: 0;
+const LinkWrapper = styled.div`
+  ${({ theme }) => theme.typography.caption()}
+  color: ${({ theme }) => theme.color.neutralColor.lightGray300};
+  padding: 16px 16px 0px 16px;
+  top: 0;
   width: 100%;
   position: absolute;
   padding-bottom: 4px;
@@ -49,8 +51,8 @@ const Footer = styled.div`
 `;
 
 const LogoImage = styled.div`
-  width: 80px;
-  height: 80px;
+  width: 16px;
+  height: 16px;
   position: absolute;
   background-size: contain;
   background-position: center;
@@ -58,30 +60,32 @@ const LogoImage = styled.div`
   ${props => css`
     background-image: url(${props.src});
   `};
-  padding: 4px;
   box-sizing: border-box;
   border-radius: 2px;
-  top: 10px;
-  left: 6px;
+  top: 14px;
+  right: 16px;
 `;
 
 const StyledDefaultImage = styled(DefaultImage)`
   padding: 4px;
-  width: 64px;
-  height: 64px;
+  width: 16px;
+  height: 16px;
   position: absolute;
   box-sizing: border-box;
 `;
 
 const LinkPreview = ({ item, onClick }) => {
+  const { newsLink } = item;
   return (
     <Card onClick={() => onClick(item.newsLink, item.id)}>
       <TextWrapper>
+        <LinkWrapper>
+          {originReference({ reference: newsLink, isShowhttps: true })}
+        </LinkWrapper>
         {item.logo ? <LogoImage src={item.logo} /> : <StyledDefaultImage />}
         <Title>
           <p>{item.title}</p>
         </Title>
-        <Footer>{item.newsLink}</Footer>
       </TextWrapper>
     </Card>
   );
