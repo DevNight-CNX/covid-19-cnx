@@ -22,7 +22,7 @@ import {
 import eventTracker from 'utils/eventTracker';
 import getSafeLink from 'utils/getSafeLink';
 import { withRouter } from 'react-router-dom';
-import { OriginReference } from 'contexts/replaceurl';
+import { originReference } from 'contexts/replaceurl';
 
 const CardCustomPropTypes = {
   image: PropTypes.string,
@@ -92,7 +92,7 @@ const CardCustom = ({
                   target="_blank"
                   onClick={event => event.stopPropagation()}
                 >
-                  {OriginReference({ reference, isShowhttps: true })}
+                  {originReference({ reference, isShowhttps: true })}
                 </a>
               </TagLinkWrapper>
             ) : null}

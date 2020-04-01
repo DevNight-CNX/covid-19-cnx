@@ -7,6 +7,7 @@ import styled, { css } from 'styled-components';
 
 import { Card as AntdCard } from 'antd';
 import { ReactComponent as DefaultImage } from './assets/defaultImage.svg';
+import { originReference } from 'contexts/replaceurl';
 
 const Card = styled(AntdCard)`
   width: 100%;
@@ -74,11 +75,13 @@ const StyledDefaultImage = styled(DefaultImage)`
 `;
 
 const LinkPreview = ({ item, onClick }) => {
-  const url = new URL(item.newsLink);
+  const { newsLink } = item;
   return (
     <Card onClick={() => onClick(item.newsLink, item.id)}>
       <TextWrapper>
-        <LinkWrapper>{url.hostname}</LinkWrapper>
+        <LinkWrapper>
+          {originReference({ reference: newsLink, isShowhttps: true })}
+        </LinkWrapper>
         {item.logo ? <LogoImage src={item.logo} /> : <StyledDefaultImage />}
         <Title>
           <p>{item.title}</p>
