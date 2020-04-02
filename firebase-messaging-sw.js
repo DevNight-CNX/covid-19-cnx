@@ -8,12 +8,7 @@ importScripts(
 
 // Initialize the Firebase app in the service worker by passing in the
 // messagingSenderId.
-firebase.initializeApp({
-  messagingSenderId: '354956353010',
-  projectId: 'covid-19-cnx',
-  apiKey: 'AIzaSyCgcd4bi5rNnpC9Wi4Czqk9lPWFh7Sf7lw',
-  appId: '1:354956353010:web:a7040da3fd713c516b5f6b'
-});
+firebase.initializeApp('@firebase-config');
 
 // Retrieve an instance of Firebase Messaging so that it can handle background
 // messages.

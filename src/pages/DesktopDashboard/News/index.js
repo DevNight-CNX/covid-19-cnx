@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import SituationNews from 'pages/News/index.view';
 import eventTracker from 'utils/eventTracker';
 import { useNews } from 'contexts/news.context';
+import useResponsive from 'utils/useResponsive';
 import { Skeleton } from 'antd';
 
 const Wrapper = styled.div`
@@ -27,6 +28,16 @@ const HeaderWrapper = styled.div`
   z-index: 10;
   width: 448px;
   height: 60px;
+
+  ${({ isPlaceFixed }) =>
+    isPlaceFixed
+      ? `
+    position: sticky;
+    left: 0;
+    top: 0;
+    right: 0;
+  `
+      : null}
 `;
 
 const Container = styled.div`
@@ -52,6 +63,8 @@ const SkeletonWrapper = styled.div`
 
 const Situation = () => {
   const { newsLoading, unknowLocationNews } = useNews();
+  const { isDesktop } = useResponsive();
+
   const onClickCard = (url, id) => {
     window.open(url);
     eventTracker({ type: 'cardNewsClicked', id });
@@ -86,7 +99,7 @@ const Situation = () => {
 
   return (
     <Wrapper>
-      <HeaderWrapper>
+      <HeaderWrapper isPlaceFixed={isDesktop}>
         <Container mxwidth="680px">ข่าวสถานการณ์ปัจจุบัน</Container>
       </HeaderWrapper>
       <SituationNewsWrapper>

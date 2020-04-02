@@ -9,14 +9,14 @@ import { withRouter } from 'react-router-dom';
 
 const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.color.neutralColor.lightGray100};
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   padding: 24px 48px 32px;
 `;
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: 0.6fr 0.4fr;
+  grid-template-columns: 6fr 4fr;
   grid-template-areas:
     'map news'
     'all-report aside';

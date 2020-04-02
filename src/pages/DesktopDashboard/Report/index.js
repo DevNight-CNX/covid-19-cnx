@@ -14,7 +14,7 @@ const Footer = styled.footer`
 `;
 
 const Content = styled.div`
-  max-height: 720px;
+  max-height: 620px;
   overflow-y: auto;
 `;
 
@@ -45,9 +45,21 @@ const Report = ({ match }) => {
     }
     return false;
   };
+
+  const onSubmitClick = () => {
+    const reportSection = document.getElementById('report-section-desktop');
+    if (reportSection) {
+      window.scrollTo({
+        top: reportSection.offsetTop,
+        left: 0,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <>
-      <Content>
+      <Content id="report-section-desktop">
         <Switch>
           <Route path="/submit" component={CreateReport} />
           <Route path="/report/:id" component={ReportDetailWrapper} />
@@ -60,7 +72,7 @@ const Report = ({ match }) => {
           path="/"
           render={() => (
             <Footer>
-              <SubmitReportButton />
+              <SubmitReportButton onClick={onSubmitClick} />
             </Footer>
           )}
         />

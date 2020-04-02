@@ -1,6 +1,6 @@
 import getSafeLink from 'utils/getSafeLink';
 
-export const OriginReference = ({ reference, isShowhttps }) => {
+export const originReference = ({ reference, isShowhttps }) => {
   try {
     const oldUrl = getSafeLink(reference);
     const url = new URL(oldUrl);

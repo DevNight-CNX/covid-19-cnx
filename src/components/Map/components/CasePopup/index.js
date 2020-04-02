@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import getSafeLink from 'utils/getSafeLink';
+import { originReference } from 'contexts/replaceurl';
 import pinIcon from './assets/pin.svg';
-import { OriginReference } from 'contexts/replaceurl';
 
 const Wrapper = styled.div`
   max-width: 300px;
@@ -141,7 +141,7 @@ const CasePopup = ({ data = {} }) => {
         <Date>
           {getTime()} {getTime() && data.link ? '•' : null}{' '}
           <Link href={getSafeLink(data.link)} target={'_blank'}>
-            {OriginReference({ reference: data.link, isShowhttps: false })}
+            {originReference({ reference: data.link, isShowhttps: false })}
           </Link>
         </Date>
       </HeaderWrapper>
