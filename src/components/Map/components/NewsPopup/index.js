@@ -3,12 +3,10 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { prop } from 'ramda';
 import styled from 'styled-components';
-import moment from 'moment';
 import getSafeLink from 'utils/getSafeLink';
-import pinIcon from './assets/pin.svg';
 import { originReference } from 'contexts/replaceurl';
+import pinIcon from './assets/pin.svg';
 
 const Wrapper = styled.div`
   max-width: 300px;
@@ -21,17 +19,6 @@ const Text = styled.p`
   font-size: 16px;
   font-weight: bold;
   color: #000000;
-`;
-
-const Nation = styled(Text)`
-  font-size: 14px;
-  margin-bottom: 0px;
-`;
-
-const Identity = styled(Text)`
-  font-size: 14px;
-  color: #636f7a;
-  font-weight: normal;
 `;
 
 const Status = styled(Text)`
