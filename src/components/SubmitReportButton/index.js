@@ -1,14 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import Button from 'components/Button';
 import { ReactComponent as AddNewsIcon } from './assets/AddNews.svg';
 import eventTracker from 'utils/eventTracker';
 
-const SubmitReportButton = () => {
+const SubmitReportButtonPropTypes = {
+  onClick: PropTypes.func
+};
+
+const SubmitReportButton = ({ onClick }) => {
   const history = useHistory();
-  const onClickButton = () => {
+  const onClickButton = event => {
     eventTracker({ type: 'reportNewsClicked', id: 'reportNewsClicked' });
     history.push('/submit');
+
+    if (onClick) {
+      onClick(event);
+    }
   };
 
   return (
@@ -17,5 +26,7 @@ const SubmitReportButton = () => {
     </Button>
   );
 };
+
+SubmitReportButton.propTypes = SubmitReportButtonPropTypes;
 
 export default SubmitReportButton;

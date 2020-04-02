@@ -104,8 +104,6 @@ SummaryItem.defaultProps = SummaryItemDefaultProps;
 const Summary = ({ isFilterInChiangmai }) => {
   const { summary, summarycnx } = useSummarys();
 
-  console.log('summarycnx', summarycnx);
-
   return (
     <>
       <SummaryItem

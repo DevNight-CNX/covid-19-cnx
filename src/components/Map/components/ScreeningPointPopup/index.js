@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import getSafeLink from 'utils/getSafeLink';
-import pinIcon from './assets/pin.svg';
 import { originReference } from 'contexts/replaceurl';
+import pinIcon from './assets/pin.svg';
 
 const Wrapper = styled.div`
   max-width: 300px;
