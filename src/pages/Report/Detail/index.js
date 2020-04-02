@@ -4,6 +4,7 @@ import CardCustom, { CardsLoading } from 'components/Card';
 import { getReportById } from 'services/report';
 import styled from 'styled-components';
 import { GoBackHeader } from 'components/BarNavigation/navigation';
+import useResponsive from 'utils/useResponsive';
 
 const Container = styled.div`
   max-width: 680px;
@@ -23,6 +24,7 @@ const DetailPropTypes = { match: PropTypes.object };
 
 const Detail = ({ match }) => {
   const [report, setReport] = useState();
+  const { isDesktop } = useResponsive();
 
   useEffect(() => {
     setReport();
@@ -44,7 +46,7 @@ const Detail = ({ match }) => {
 
   return (
     <>
-      <GoBackHeader mxwidth="680px" link={'/report'} />
+      <GoBackHeader mxwidth="680px" link={'/report'} isPlaceFixed={isDesktop} />
       <Container>
         {report ? (
           <>

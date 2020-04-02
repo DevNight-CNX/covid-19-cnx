@@ -14,7 +14,7 @@ const Footer = styled.footer`
 `;
 
 const Content = styled.div`
-  max-height: 720px;
+  max-height: 620px;
   overflow-y: auto;
 `;
 
