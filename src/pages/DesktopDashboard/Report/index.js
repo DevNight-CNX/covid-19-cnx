@@ -23,7 +23,6 @@ const ReportDetailWrapper = props => {
     const reportDetailSection = document.getElementById(
       'report-detail-section-desktop'
     );
-    console.log('reportDetailSection', reportDetailSection);
     if (reportDetailSection) {
       window.scrollTo({
         top: reportDetailSection.offsetTop,
