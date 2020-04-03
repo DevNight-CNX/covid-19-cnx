@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import {
   XYPlot,
   LineMarkSeries,
@@ -8,8 +8,14 @@ import {
   YAxis
 } from 'react-vis';
 import moment from 'moment';
+import { FirebaseContext } from 'App';
 
 const Graph = () => {
+  const firebase = useContext(FirebaseContext);
+  const [constantCNX, setConstantCNX] = useState([]);
+
+  useEffect(() => {}, []);
+
   const data = [
     { x: 0, y: 8 },
     { x: 1, y: 5 },
