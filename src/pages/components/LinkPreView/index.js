@@ -67,11 +67,12 @@ const LogoImage = styled.div`
 `;
 
 const StyledDefaultImage = styled(DefaultImage)`
-  padding: 4px;
   width: 16px;
   height: 16px;
   position: absolute;
   box-sizing: border-box;
+  top: 14px;
+  right: 16px;
 `;
 
 const LinkPreview = ({ item, onClick }) => {
