@@ -129,4 +129,22 @@ const Report = props => {
     />
   );
 };
-export { Report, useReport };
+
+const parseReportToCard = data => {
+  return {
+    key: data.id,
+    image: data.image,
+    header: data.header,
+    content: data.content,
+    avatar: data.avatar,
+    reference: data.link,
+    another: data.header.another,
+    id: data.id,
+    dislikes: data.dislikes,
+    likes: data.likes,
+    address: data.address,
+    date: data.date
+  };
+};
+
+export { Report, useReport, parseReportToCard };
