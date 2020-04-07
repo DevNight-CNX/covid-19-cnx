@@ -35,7 +35,6 @@ const CardCustomPropTypes = {
   likes: PropTypes.array,
   dislikes: PropTypes.array,
   location: PropTypes.array,
-  report: PropTypes.object,
   onClick: PropTypes.func,
   address: PropTypes.string,
   match: PropTypes.object,
@@ -43,7 +42,6 @@ const CardCustomPropTypes = {
 };
 
 const CardCustomDefaultProps = {
-  report: {},
   onClick: () => {}
 };
 
@@ -58,20 +56,17 @@ const CardCustom = ({
   likes,
   dislikes,
   onClick,
-  report,
   address,
-  match,
   isFull
 }) => {
   return (
     <>
       <CardStyled
         onClick={() => {
-          onClick(report.id);
-          eventTracker({ type: 'onClickedCard', id: report.id });
+          onClick(id);
+          eventTracker({ type: 'onClickedCard', id });
         }}
         cover={image ? <img src={image} alt={content} /> : null}
-        path={match.path}
         isFull={isFull}
       >
         <Content>

@@ -95,7 +95,7 @@ const NewsCarousel = () => {
     <Wrapper>
       <NewsListWrapper>
         <Typography variant="body" weight="normal">
-          ข่าวสถานการณ์ปัจจุบัน
+          ข่าวจากชุมชน
         </Typography>
         {renderLoading()}
         {news.slice(0, 3).map((item, index) => {

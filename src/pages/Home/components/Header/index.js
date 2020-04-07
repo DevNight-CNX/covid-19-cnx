@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
-import { getAllSummary } from 'services/summary';
+import { useSummarys } from 'contexts/summarys.context';
 
 const Headline = styled.h1`
   ${({ theme }) => theme.typography.subtitle()}
@@ -22,17 +22,13 @@ const Notice = styled.p`
 `;
 
 const Header = () => {
-  const [time, setTime] = useState('');
+  const { summary } = useSummarys();
 
-  useEffect(() => {
-    getAllSummary().then(res =>
-      setTime(
-        moment(res['เพิ่มวันที่'], 'DD/MM/YYYY')
-          .startOf('day')
-          .fromNow()
-      )
-    );
-  }, []);
+  const time = summary
+    ? moment(summary['เพิ่มวันที่'], 'DD/MM/YYYY')
+        .startOf('day')
+        .fromNow()
+    : '';
 
   return (
     <>

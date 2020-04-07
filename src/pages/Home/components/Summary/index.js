@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import useFetch from 'utils/useFetch';
-import { getSummary, getSummaryCNX } from 'services/case';
 import userIcon from './assets/user.svg';
 import hospitalIcon from './assets/hospital.svg';
 import virusIcon from './assets/virus.svg';
@@ -69,9 +67,11 @@ const SummaryItemPropTypes = {
   note: PropTypes.string,
   isShow: PropTypes.bool
 };
+
 const SummaryItemDefaultProps = {
   value: '0'
 };
+
 const SummaryItem = ({ title, icon, value, note, isShow }) => {
   const { fetching } = useReport();
 
@@ -98,8 +98,13 @@ const SummaryItem = ({ title, icon, value, note, isShow }) => {
     </>
   );
 };
+
 SummaryItem.propTypes = SummaryItemPropTypes;
 SummaryItem.defaultProps = SummaryItemDefaultProps;
+
+const SummaryPropTypes = {
+  isFilterInChiangmai: PropTypes.bool
+};
 
 const Summary = ({ isFilterInChiangmai }) => {
   const { summary, summarycnx } = useSummarys();
@@ -151,5 +156,7 @@ const Summary = ({ isFilterInChiangmai }) => {
     </>
   );
 };
+
+Summary.propTypes = SummaryPropTypes;
 
 export default Summary;

@@ -1,7 +1,10 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { FirebaseContext } from 'App';
 
-const SummarysPropTypes = {};
+const SummarysPropTypes = {
+  children: PropTypes.node
+};
 
 const SummarysContext = createContext();
 
