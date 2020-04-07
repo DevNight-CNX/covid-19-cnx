@@ -17,7 +17,7 @@ const News = () => {
   return (
     <Wrapper>
       <Typography variant="body" weight="normal">
-        ข่าวน่าเชื่อถือจากชุมชน
+        ข่าวจากชุมชน
       </Typography>
       <WrapperCards>
         {fetching ? <CardsLoading rows={2} /> : <RecentReport />}
