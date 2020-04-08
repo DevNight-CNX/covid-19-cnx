@@ -4,6 +4,7 @@ import Map from 'components/Map';
 import Header from 'pages/Home/components/Header';
 import Summary from 'pages/Home/components/Summary';
 import { Switch } from 'antd';
+import Graph from 'pages/Home/components/Summary/graph';
 
 const HeaderWrapper = styled.header`
   padding: 24px 16px 16px;
@@ -58,6 +59,14 @@ const SwitchStyled = styled(Switch)`
   }
 `;
 
+const GraphSummary = styled.div`
+  width: '100%';
+  height: '150px';
+  display: 'flex';
+  justify-content: 'center';
+  align-items: 'center';
+`;
+
 const MapAndNews = () => {
   const [isFilterInChiangmai, setIsFilterInChiangmai] = useState(true);
 
@@ -80,6 +89,9 @@ const MapAndNews = () => {
             />
           </p>
         </SwitchContainer>
+        <GraphSummary>
+          <Graph isFilterInChiangmai={isFilterInChiangmai} />
+        </GraphSummary>
         <SummaryWrapper>
           <Summary isFilterInChiangmai={isFilterInChiangmai} />
         </SummaryWrapper>

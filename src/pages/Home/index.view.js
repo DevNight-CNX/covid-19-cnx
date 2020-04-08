@@ -69,6 +69,15 @@ const SwitchStyled = styled(Switch)`
   }
 `;
 
+const GraphSummary = styled.div`
+  width: '100%';
+  height: '150px';
+  display: 'flex';
+  justify-content: 'center';
+  align-items: 'center';
+  /* transform: translateX(-20px); */
+`;
+
 export {
   Wrapper,
   Container,
@@ -80,5 +89,6 @@ export {
   InfoSummaryWrapper,
   InfoSummary,
   SwitchContainer,
-  SwitchStyled
+  SwitchStyled,
+  GraphSummary
 };

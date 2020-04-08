@@ -15,8 +15,10 @@ import {
   InfoSummaryWrapper,
   InfoSummary,
   SwitchContainer,
-  SwitchStyled
+  SwitchStyled,
+  GraphSummary
 } from './index.view';
+import Graph from './components/Summary/graph';
 const LazyNews = React.lazy(() => import('./components/News'));
 
 const Home = () => {
@@ -44,6 +46,9 @@ const Home = () => {
               />
             </p>
           </SwitchContainer>
+          <GraphSummary>
+            <Graph isFilterInChiangmai={isFilterInChiangmai} />
+          </GraphSummary>
           <SummaryWrapper>
             <Summary isFilterInChiangmai={isFilterInChiangmai} />
           </SummaryWrapper>

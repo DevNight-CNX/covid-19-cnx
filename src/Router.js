@@ -8,7 +8,6 @@ import SituationNews from './pages/News';
 import Policy from './pages/Policy';
 import Home from './pages/Home';
 import DesktopPage from './pages/DesktopDashboard';
-import Graph from 'pages/graph';
 
 const Router = () => {
   const history = useHistory();
@@ -33,7 +32,6 @@ const Router = () => {
   } else {
     return (
       <Switch>
-        <Route path="/graph" component={Graph} />
         <Route path="/policy" component={Policy} />
         <Route
           path={['/', '/submit', '/report/:id', '/report']}
