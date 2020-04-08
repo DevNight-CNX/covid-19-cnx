@@ -22,6 +22,7 @@ const ConstantSummarys = ({ children }) => {
   const firebase = useContext(FirebaseContext);
   const [constantSummarys, setConstantSummarys] = useState([]);
   const [constantSummarysCNX, setConstantSummarysCNX] = useState([]);
+
   const oneDay = 86400000;
 
   useEffect(() => {
