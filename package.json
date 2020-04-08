@@ -1,6 +1,6 @@
 {
   "name": "boilerplate-frontend-v2",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.0.3",
