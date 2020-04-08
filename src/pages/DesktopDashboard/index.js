@@ -33,7 +33,7 @@ const DesktopDashboard = () => {
         <Paper grid="map">
           <MapAndNews />
         </Paper>
-        <Paper grid="all-report" title="ข่าวทั้งหมด">
+        <Paper grid="all-report" title="ข่าวจากชุมชน">
           <Report />
         </Paper>
         <Paper grid="news">

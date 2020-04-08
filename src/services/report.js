@@ -71,52 +71,38 @@ export const unlikeReport = id => {
   });
 };
 
+const parseReport = response => ({
+  id: response.id,
+  image: response.image,
+  avatar: prop('photoURL', response.reporter) || anonymousImage,
+  header: {
+    another: prop('displayName', response.reporter) || anonymousDisplayName,
+    date: response.created
+  },
+  location: response.location,
+  content: response.content,
+  link: response.link,
+  dislikes: response.dislikes,
+  likes: response.likes,
+  address: response.address,
+  date: response.created,
+  index: response.index,
+  type: response.type
+});
+
 export const getReportList = () => {
   return fetchGet(apiUrlProvider.get(GET_REPORTS)).then(response => {
     return response.data.map((res, index) => {
-      return {
-        id: res.id,
-        image: res.image,
-        avatar: prop('photoURL', res.reporter) || anonymousImage,
-        header: {
-          another: prop('displayName', res.reporter) || anonymousDisplayName,
-          date: res.created
-        },
-        location: res.location,
-        content: res.content,
-        link: res.link,
-        dislikes: res.dislikes,
-        likes: res.likes,
-        address: res.address,
-        date: res.created,
-        index,
-        type: res.type
-      };
+      return parseReport({
+        ...res,
+        index
+      });
     });
   });
 };
 
 export const getReportById = id => {
-  return fetchGet(apiUrlProvider.get(GET_REPORT_BY_ID, { id })).then(
-    response => {
-      return {
-        id: response.id,
-        image: response.image,
-        avatar: prop('photoURL', response.reporter) || anonymousImage,
-        header: {
-          another:
-            prop('displayName', response.reporter) || anonymousDisplayName,
-          date: response.created
-        },
-        location: response.location,
-        content: response.content,
-        link: response.link,
-        dislikes: response.dislikes,
-        likes: response.likes,
-        date: response.created,
-        address: response.address,
-        type: response.type
-      };
-    }
+  return fetchGet(apiUrlProvider.get(GET_REPORT_BY_ID, { id })).then(response =>
+    parseReport(response)
   );
 };

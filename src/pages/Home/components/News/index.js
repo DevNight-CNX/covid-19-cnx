@@ -5,7 +5,7 @@ import SubmitReportButton from 'components/SubmitReportButton';
 import Button from 'components/Button';
 import { Wrapper, ButtonsWrapper, WrapperCards } from './index.view';
 import eventTracker from 'utils/eventTracker';
-import ReliableReportNews from '../ReliableReport';
+import RecentReport from 'pages/Report/Recent';
 import { useReport } from 'contexts/report.context';
 import { CardsLoading } from 'components/Card';
 
@@ -17,10 +17,10 @@ const News = () => {
   return (
     <Wrapper>
       <Typography variant="body" weight="normal">
-        ข่าวน่าเชื่อถือจากชุมชน
+        ข่าวจากชุมชน
       </Typography>
       <WrapperCards>
-        {fetching ? <CardsLoading rows={2} /> : <ReliableReportNews />}
+        {fetching ? <CardsLoading rows={2} /> : <RecentReport />}
       </WrapperCards>
 
       <ButtonsWrapper>

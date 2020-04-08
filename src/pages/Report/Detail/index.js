@@ -5,6 +5,7 @@ import { getReportById } from 'services/report';
 import styled from 'styled-components';
 import { GoBackHeader } from 'components/BarNavigation/navigation';
 import useResponsive from 'utils/useResponsive';
+import { parseReportToCard } from 'contexts/report.context';
 
 const Container = styled.div`
   max-width: 680px;
@@ -50,21 +51,7 @@ const Detail = ({ match }) => {
       <Container>
         {report ? (
           <>
-            <CardCustom
-              isFull={IsFull()}
-              image={report.image}
-              header={report.header}
-              content={report.content}
-              avatar={report.avatar}
-              reference={report.link}
-              location={report.location}
-              another={report.header.another}
-              id={report.id}
-              dislikes={report.dislikes}
-              likes={report.likes}
-              date={report.date}
-              address={report.address}
-            />
+            <CardCustom isFull={IsFull()} {...parseReportToCard(report)} />
           </>
         ) : (
           <LoadingWrapper>
