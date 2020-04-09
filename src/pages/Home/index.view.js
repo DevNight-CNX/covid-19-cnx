@@ -75,7 +75,6 @@ const GraphSummary = styled.div`
   display: 'flex';
   justify-content: 'center';
   align-items: 'center';
-  /* transform: translateX(-20px); */
 `;
 
 export {
