@@ -53,7 +53,39 @@ const useGoogleMap = (mapId = 'map') => {
   };
 };
 
-const usePinInMap = (googleMap = {}, render = () => null, [data, loading]) => {
+const usePinInMap = (
+  markerRef,
+  googleMap = {},
+  render = () => null,
+  [data, loading]
+) => {
+  const addMarkerToMap = (map, { lat, lng }) => {
+    const sameLocationMarker = markerRef.current.find(
+      ({ lat: markerLat, lng: markerLng }) => {
+        return markerLat == lat && markerLng == lng;
+      }
+    );
+
+    let mapLat = lat;
+    let mapLng = lng;
+
+    if (sameLocationMarker) {
+      mapLat = lat + 0.0003;
+      mapLng = lng + 0.0003;
+    }
+
+    const latLng = new window.google.maps.LatLng(mapLat, mapLng);
+    const marker = new window.google.maps.Marker({
+      map,
+      position: latLng,
+      ...googleMap.marker
+    });
+
+    markerRef.current = [...markerRef.current, { lat: mapLat, lng: mapLng }];
+
+    return marker;
+  };
+
   useEffect(() => {
     if (loading) {
       return;
@@ -76,12 +108,7 @@ const usePinInMap = (googleMap = {}, render = () => null, [data, loading]) => {
       const lng = prop('lng', coords);
 
       if (lat && lng) {
-        const latLng = new window.google.maps.LatLng(lat, lng);
-        const marker = new window.google.maps.Marker({
-          map,
-          position: latLng,
-          ...googleMap.marker
-        });
+        const marker = addMarkerToMap(map, { lat, lng });
 
         markers.push(marker);
 
@@ -95,6 +122,9 @@ const usePinInMap = (googleMap = {}, render = () => null, [data, loading]) => {
     return () => {
       markers.forEach(marker => {
         marker.setMap(null);
+        markerRef.current = markerRef.current.filter(({ lat, lng }) => {
+          return lat != marker.position.lat() || lng != marker.position.lng();
+        });
       });
     };
   }, [loading, data]);
@@ -109,6 +139,7 @@ const Map = () => {
   const { news, newsLoading } = useNews();
   const { reports, fetching: reportsLoading } = useReport();
   const { screeningPoints, screeningPointsLoading } = useScreeningPoint();
+  const markerRef = useRef([]);
 
   const { getMap, getInfoWindow } = useGoogleMap();
 
@@ -121,6 +152,7 @@ const Map = () => {
   );
 
   usePinInMap(
+    markerRef,
     {
       map: getMap,
       infoWindow: getInfoWindow,
@@ -136,6 +168,7 @@ const Map = () => {
   );
 
   usePinInMap(
+    markerRef,
     {
       map: getMap,
       infoWindow: getInfoWindow,
@@ -161,6 +194,7 @@ const Map = () => {
   );
 
   usePinInMap(
+    markerRef,
     {
       map: getMap,
       infoWindow: getInfoWindow,
@@ -201,6 +235,7 @@ const Map = () => {
   );
 
   usePinInMap(
+    markerRef,
     {
       map: getMap,
       infoWindow: getInfoWindow,
@@ -241,6 +276,7 @@ const Map = () => {
   );
 
   usePinInMap(
+    markerRef,
     {
       map: getMap,
       infoWindow: getInfoWindow,
