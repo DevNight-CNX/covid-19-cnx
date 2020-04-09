@@ -22,8 +22,8 @@ const useGoogleMap = (mapId = 'map') => {
   const infoWindowRef = useRef(null);
   useEffect(() => {
     const map = new window.google.maps.Map(document.getElementById(mapId), {
-      center: { lat: 18.818218, lng: 98.9855059 },
-      zoom: 11,
+      center: { lat: 18.788218, lng: 98.9855059 },
+      zoom: 13.2,
       styles: mapStyles,
       zoomControl: false,
       mapTypeControl: false,
