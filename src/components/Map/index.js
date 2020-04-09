@@ -62,7 +62,9 @@ const usePinInMap = (
   const addMarkerToMap = (map, { lat, lng }) => {
     const sameLocationMarker = markerRef.current.find(
       ({ lat: markerLat, lng: markerLng }) => {
-        return markerLat == lat && markerLng == lng;
+        return (
+          Number(markerLat) === Number(lat) && Number(markerLng) === Number(lng)
+        );
       }
     );
 
@@ -70,8 +72,8 @@ const usePinInMap = (
     let mapLng = lng;
 
     if (sameLocationMarker) {
-      mapLat = lat + 0.0003;
-      mapLng = lng + 0.0003;
+      mapLat = Number(lat) + 0.00012;
+      mapLng = Number(lng) + 0.00012;
     }
 
     const latLng = new window.google.maps.LatLng(mapLat, mapLng);
