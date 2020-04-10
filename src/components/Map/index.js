@@ -145,6 +145,14 @@ const Map = () => {
 
   const { getMap, getInfoWindow } = useGoogleMap();
 
+  useEffect(() => {
+    const map = getMap();
+    map.addListener('click', () => {
+      const infoWindow = getInfoWindow();
+      infoWindow.close();
+    });
+  }, []);
+
   const { data: cases, loading } = useFirestore(
     db => db.collection('cases_cnx'),
     item => ({
