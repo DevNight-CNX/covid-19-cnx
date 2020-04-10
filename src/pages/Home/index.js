@@ -18,7 +18,7 @@ import {
   SwitchStyled,
   GraphSummary
 } from './index.view';
-import Graph from './components/Summary/graph';
+import Graph from './components/Graph';
 const LazyNews = React.lazy(() => import('./components/News'));
 
 const Home = () => {

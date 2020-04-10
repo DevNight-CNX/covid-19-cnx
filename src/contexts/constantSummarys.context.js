@@ -27,48 +27,40 @@ const ConstantSummarys = ({ children }) => {
 
   useEffect(() => {
     const db = firebase.firestore();
-    db.collection('constants')
-      .get()
-      .then(doc => {
-        doc.docs.map((res, index) => {
-          return (
-            index + 1 !== doc.docs.length &&
-            setConstantSummarys(constantSummarys => {
-              const data = res.data();
-              const pasreConstants = {
-                data,
-                x: oneDay,
-                y: data['ผู้ติดเชื้อ'],
-                id: doc.docs[index].id
-              };
-              return [...constantSummarys, pasreConstants];
-            })
-          );
-        });
-      })
-      .then(() =>
-        db
-          .collection('constants_cnx')
-          .get()
-          .then(doc =>
-            doc.docs.map((res, index) => {
-              return (
-                index + 1 !== doc.docs.length &&
-                setConstantSummarysCNX(constantSummarysCNX => {
-                  const data = res.data();
-                  const pasreConstantsCNX = {
-                    data,
-                    x: oneDay,
-                    y: data['ผู้ติดเชื้อ'],
-                    id: doc.docs[index].id
-                  };
-                  return [...constantSummarysCNX, pasreConstantsCNX];
-                })
-              );
-            })
-          )
-      )
-      .catch(error => console.error(error));
+    const constants = [];
+    const constantsCNX = [];
+
+    db.collection('constants').onSnapshot(querySnapshot => {
+      querySnapshot
+        .docChanges()
+        .filter(change => change.doc.id !== 'latest')
+        .map(({ doc }) =>
+          constants.push({
+            data: doc.data(),
+            id: doc.id,
+            x: oneDay,
+            y: doc.data()['ผู้ติดเชื้อ']
+          })
+        );
+
+      setConstantSummarys(constants);
+    });
+
+    db.collection('constants_cnx').onSnapshot(querySnapshot => {
+      querySnapshot
+        .docChanges()
+        .filter(change => change.doc.id !== 'latest')
+        .map(({ doc }) =>
+          constantsCNX.push({
+            data: doc.data(),
+            id: doc.id,
+            x: oneDay,
+            y: doc.data()['ผู้ติดเชื้อ']
+          })
+        );
+
+      setConstantSummarysCNX(constantsCNX);
+    });
   }, []);
 
   return (

@@ -4,7 +4,7 @@ import Map from 'components/Map';
 import Header from 'pages/Home/components/Header';
 import Summary from 'pages/Home/components/Summary';
 import { Switch } from 'antd';
-import Graph from 'pages/Home/components/Summary/graph';
+import Graph from 'pages/Home/components/Graph';
 
 const HeaderWrapper = styled.header`
   padding: 24px 16px 16px;
