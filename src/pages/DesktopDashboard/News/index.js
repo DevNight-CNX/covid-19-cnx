@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   grid-row-gap: 16px;
   grid-template-columns: 1fr;
   border-radius: 4px;
-  height: 748px;
+  height: 913px;
   overflow-y: auto;
 `;
 

@@ -22,8 +22,8 @@ const useGoogleMap = (mapId = 'map') => {
   const infoWindowRef = useRef(null);
   useEffect(() => {
     const map = new window.google.maps.Map(document.getElementById(mapId), {
-      center: { lat: 18.818218, lng: 98.9855059 },
-      zoom: 11,
+      center: { lat: 18.788218, lng: 98.9855059 },
+      zoom: 13.2,
       styles: mapStyles,
       zoomControl: false,
       mapTypeControl: false,
@@ -53,7 +53,41 @@ const useGoogleMap = (mapId = 'map') => {
   };
 };
 
-const usePinInMap = (googleMap = {}, render = () => null, [data, loading]) => {
+const usePinInMap = (
+  markerRef,
+  googleMap = {},
+  render = () => null,
+  [data, loading]
+) => {
+  const addMarkerToMap = (map, { lat, lng }) => {
+    const sameLocationMarker = markerRef.current.find(
+      ({ lat: markerLat, lng: markerLng }) => {
+        return (
+          Number(markerLat) === Number(lat) && Number(markerLng) === Number(lng)
+        );
+      }
+    );
+
+    let mapLat = lat;
+    let mapLng = lng;
+
+    if (sameLocationMarker) {
+      mapLat = Number(lat) + 0.00012;
+      mapLng = Number(lng) + 0.00012;
+    }
+
+    const latLng = new window.google.maps.LatLng(mapLat, mapLng);
+    const marker = new window.google.maps.Marker({
+      map,
+      position: latLng,
+      ...googleMap.marker
+    });
+
+    markerRef.current = [...markerRef.current, { lat: mapLat, lng: mapLng }];
+
+    return marker;
+  };
+
   useEffect(() => {
     if (loading) {
       return;
@@ -76,12 +110,7 @@ const usePinInMap = (googleMap = {}, render = () => null, [data, loading]) => {
       const lng = prop('lng', coords);
 
       if (lat && lng) {
-        const latLng = new window.google.maps.LatLng(lat, lng);
-        const marker = new window.google.maps.Marker({
-          map,
-          position: latLng,
-          ...googleMap.marker
-        });
+        const marker = addMarkerToMap(map, { lat, lng });
 
         markers.push(marker);
 
@@ -95,6 +124,9 @@ const usePinInMap = (googleMap = {}, render = () => null, [data, loading]) => {
     return () => {
       markers.forEach(marker => {
         marker.setMap(null);
+        markerRef.current = markerRef.current.filter(({ lat, lng }) => {
+          return lat != marker.position.lat() || lng != marker.position.lng();
+        });
       });
     };
   }, [loading, data]);
@@ -109,8 +141,17 @@ const Map = () => {
   const { news, newsLoading } = useNews();
   const { reports, fetching: reportsLoading } = useReport();
   const { screeningPoints, screeningPointsLoading } = useScreeningPoint();
+  const markerRef = useRef([]);
 
   const { getMap, getInfoWindow } = useGoogleMap();
+
+  useEffect(() => {
+    const map = getMap();
+    map.addListener('click', () => {
+      const infoWindow = getInfoWindow();
+      infoWindow.close();
+    });
+  }, []);
 
   const { data: cases, loading } = useFirestore(
     db => db.collection('cases_cnx'),
@@ -121,6 +162,7 @@ const Map = () => {
   );
 
   usePinInMap(
+    markerRef,
     {
       map: getMap,
       infoWindow: getInfoWindow,
@@ -136,6 +178,7 @@ const Map = () => {
   );
 
   usePinInMap(
+    markerRef,
     {
       map: getMap,
       infoWindow: getInfoWindow,
@@ -161,6 +204,7 @@ const Map = () => {
   );
 
   usePinInMap(
+    markerRef,
     {
       map: getMap,
       infoWindow: getInfoWindow,
@@ -201,6 +245,7 @@ const Map = () => {
   );
 
   usePinInMap(
+    markerRef,
     {
       map: getMap,
       infoWindow: getInfoWindow,
@@ -241,6 +286,7 @@ const Map = () => {
   );
 
   usePinInMap(
+    markerRef,
     {
       map: getMap,
       infoWindow: getInfoWindow,

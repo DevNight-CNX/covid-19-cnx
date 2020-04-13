@@ -1,6 +1,6 @@
 {
   "name": "boilerplate-frontend-v2",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.0.3",
@@ -43,6 +43,7 @@
     "react-scripts": "3.2.0",
     "react-slick": "^0.25.2",
     "react-textarea-autosize": "^7.1.2",
+    "react-vis": "^1.11.7",
     "reactjs-countdown": "^0.0.8",
     "redux": "^4.0.4",
     "redux-actions": "^2.6.5",
