@@ -36,8 +36,8 @@ const ThaiGraph = () => {
   const yDomain = () => {
     if (parsedData.length) {
       return [
-        Number(prop('y', parsedData[0]) || 0) - 50,
-        Number(prop('y', parsedData[Math.abs(parsedData.length - 1)]) || 0) + 50
+        Number(prop('y', parsedData[0]) || 0) - 10,
+        Number(prop('y', parsedData[Math.abs(parsedData.length - 1)]) || 0) + 10
       ];
     } else {
       return [0, 2000];
