@@ -33,7 +33,9 @@ const GraphView = ({ rawData, yDomain, parsedData, getDifferenceInfected }) => {
       setWidth(isDesktop ? 640 : window.innerWidth - 48);
     };
     window.addEventListener('resize', handleResize);
-    window.addEventListener('scroll', () => setHintValue(null));
+    window.addEventListener('scroll', () =>
+      !isDesktop ? setHintValue(null) : null
+    );
   }, []);
 
   const oneDay = 86400000;
