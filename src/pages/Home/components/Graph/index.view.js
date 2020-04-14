@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
   XYPlot,
@@ -25,12 +25,21 @@ const GraphView = ({ rawData, yDomain, parsedData, getDifferenceInfected }) => {
   const { isDesktop } = useResponsive();
   const [hintValue, setHintValue] = useState();
   const [hintIndex, setHintIndex] = useState(0);
+  const [width, setWidth] = useState(isDesktop ? 640 : window.innerWidth - 48);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(isDesktop ? 640 : window.innerWidth - 48);
+    };
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('scroll', () =>
+      !isDesktop ? setHintValue(null) : null
+    );
+  }, []);
 
   const oneDay = 86400000;
 
   const dayRange = isDesktop ? 8 * oneDay : 4 * oneDay;
-
-  const graphWidth = () => (isDesktop ? 640 : window.innerWidth - 48);
 
   const timestamp = () => new Date(prop('id', rawData[0])).setHours(0, 0, 0, 0);
 
@@ -39,7 +48,7 @@ const GraphView = ({ rawData, yDomain, parsedData, getDifferenceInfected }) => {
   return (
     <XYPlot
       height={149}
-      width={graphWidth()}
+      width={width}
       xDomain={[timestamp(), timestamp() + dayRange]}
       yDomain={yDomain()}
       xType="time"
