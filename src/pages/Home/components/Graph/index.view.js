@@ -11,7 +11,6 @@ import moment from 'moment';
 import { prop } from 'ramda';
 import useResponsive from 'utils/useResponsive';
 import styled from 'styled-components';
-import ReactResizeDetector from 'react-resize-detector';
 
 const HintContent = styled.div`
   background-color: rgba(32, 33, 36, 1);
