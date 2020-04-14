@@ -10027,7 +10027,7 @@ locate-path@^5.0.0:
   dependencies:
     p-locate "^4.1.0"
 
-lodash-es@^4.17.11, lodash-es@^4.17.15:
+lodash-es@^4.17.11:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.15.tgz#21bd96839354412f23d7a10340e5eac6ee455d78"
   integrity sha512-rlrc3yU3+JNOpZ9zj5pQtxnx2THmvRykwL4Xlxoa8I9lHBlVbbyPhgyPMioxVZ4NqyxaVVtaJnzsyOidQIhyyQ==
@@ -13107,7 +13107,7 @@ quickselect@^2.0.0:
   resolved "https://registry.yarnpkg.com/quickselect/-/quickselect-2.0.0.tgz#f19680a486a5eefb581303e023e98faaf25dd018"
   integrity sha512-RKJ22hX8mHe3Y6wH/N3wCM6BWtjaxIyyUIkpHOvfFnxdI4yD4tBXEBKSbriGujF6jnSVkJrffuo6vxACiSSxIw==
 
-raf-schd@^4.0.0, raf-schd@^4.0.2:
+raf-schd@^4.0.0:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/raf-schd/-/raf-schd-4.0.2.tgz#bd44c708188f2e84c810bf55fcea9231bcaed8a0"
   integrity sha512-VhlMZmGy6A6hrkJWHLNTGl5gtgMUm+xfGza6wbwnE914yeQ5Ybm18vgM734RZhMgfw4tacUrWseGZlpUrrakEQ==
@@ -13846,17 +13846,6 @@ react-resize-detector@^4.0.5:
     lodash-es "^4.17.11"
     prop-types "^15.7.2"
     raf-schd "^4.0.0"
-    resize-observer-polyfill "^1.5.1"
-
-react-resize-detector@^4.2.1:
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/react-resize-detector/-/react-resize-detector-4.2.1.tgz#8982b74c3e1cf949afaa3c41050458c87b033982"
-  integrity sha512-ZfPMBPxXi0o3xox42MIEtz84tPSVMW9GgwLHYvjVXlFM+OkNzbeEtpVSV+mSTJmk4Znwomolzt35zHN9LNBQMQ==
-  dependencies:
-    lodash "^4.17.15"
-    lodash-es "^4.17.15"
-    prop-types "^15.7.2"
-    raf-schd "^4.0.2"
     resize-observer-polyfill "^1.5.1"
 
 react-responsive@^8.0.3:
